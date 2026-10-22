@@ -1,0 +1,1794 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#991b1b">
+  <title>消防小本本</title>
+  <style>
+    .preview-banner { position: sticky; top: 0; z-index: 20; padding: 8px 12px; color: #713f12; background: #fef3c7; text-align: center; font-size: 12px; font-weight: 700; }
+
+    :root {
+      --red: #b91c1c;
+      --red-dark: #991b1b;
+      --red-pale: #fef2f2;
+      --ink: #172033;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --surface: #fff;
+      --canvas: #f5f7fb;
+      --shadow: 0 10px 28px rgba(15, 23, 42, .08);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--canvas); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--canvas);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    button:disabled { cursor: wait; opacity: .65; }
+    a { color: inherit; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: calc(12px + env(safe-area-inset-top)) max(20px, calc((100vw - 1180px) / 2)) 12px;
+      color: #fff; background: var(--red-dark);
+      box-shadow: 0 2px 12px rgba(80, 15, 15, .2);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; min-width: 0; }
+    .brand-mark {
+      width: 42px; height: 42px; display: grid; place-items: center;
+      border: 1px solid rgba(255,255,255,.25); border-radius: 13px;
+      background: rgba(255,255,255,.12); font-size: 23px;
+    }
+    .brand-title { font-size: 16px; line-height: 1.3; font-weight: 750; }
+    .brand-subtitle { margin-top: 2px; color: rgba(255,255,255,.72); font-size: 11px; }
+    .top-actions { display: flex; align-items: center; gap: 9px; }
+    .btn {
+      min-height: 40px; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      padding: 9px 13px; border: 1px solid transparent; border-radius: 11px;
+      background: #fff; color: var(--ink); font-weight: 700; text-decoration: none;
+      transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,23,42,.12); }
+    .btn-primary { color: #fff; background: var(--red); }
+    .btn-primary:hover { background: var(--red-dark); }
+    .btn-ghost { color: #fff; background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.28); }
+    .btn-outline { background: #fff; border-color: var(--line); }
+    .btn-small { min-height: 34px; padding: 7px 10px; font-size: 13px; border-radius: 9px; }
+    .btn-amber { color: #78350f; border-color: #f59e0b; background: #fef3c7; }
+    .badge-count {
+      min-width: 21px; height: 21px; padding: 0 6px; display: inline-grid; place-items: center;
+      border-radius: 999px; color: white; background: #ef4444; font-size: 11px; font-weight: 800;
+    }
+    .container { width: min(1180px, calc(100% - 32px)); margin: 24px auto 56px; }
+    .intro-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 18px; }
+    h1 { margin: 0; font-size: clamp(21px, 3vw, 28px); letter-spacing: -.03em; }
+    .intro-copy { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+    .performance {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+      padding: 12px 15px; margin: 17px 0; border: 1px solid #fecaca; border-radius: 13px;
+      color: #7f1d1d; background: var(--red-pale); font-size: 13px;
+    }
+    .performance-left { display: flex; align-items: center; gap: 8px; }
+    .performance-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 4px #dcfce7; }
+    .archive-tools { display: flex; align-items: center; gap: 8px; }
+    .archive-select { min-height: 35px; padding: 6px 10px; border: 1px solid #fca5a5; border-radius: 9px; background: #fff; color: var(--ink); }
+    .search-wrap { position: relative; margin: 18px 0 13px; }
+    .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 17px; pointer-events: none; }
+    .search {
+      width: 100%; height: 50px; padding: 0 16px 0 45px; border: 1px solid var(--line); border-radius: 14px;
+      outline: none; background: #fff; box-shadow: 0 2px 7px rgba(15,23,42,.025);
+    }
+    .search:focus, .field:focus, .textarea:focus, .select:focus { border-color: #f87171; box-shadow: 0 0 0 3px rgba(248,113,113,.14); }
+    .filter-line { display: flex; align-items: center; gap: 8px; overflow-x: auto; padding: 2px 1px 7px; scrollbar-width: thin; }
+    .filter-caption { flex: 0 0 auto; color: var(--muted); font-size: 12px; font-weight: 700; margin-right: 2px; }
+    .pill {
+      flex: 0 0 auto; min-height: 34px; padding: 7px 12px; border: 1px solid var(--line);
+      border-radius: 999px; background: #fff; color: #475569; font-size: 13px; font-weight: 650;
+    }
+    .pill.active { border-color: var(--red); color: #fff; background: var(--red); }
+    .status-tabs {
+      display: flex; gap: 5px; overflow-x: auto; margin: 13px 0 17px; padding: 4px;
+      border: 1px solid var(--line); border-radius: 13px; background: #e9edf4; scrollbar-width: thin;
+    }
+    .status-tab {
+      flex: 1 0 auto; min-height: 38px; padding: 8px 11px; border: 0; border-radius: 9px;
+      color: #536174; background: transparent; font-size: 13px; font-weight: 700;
+    }
+    .status-tab.active { color: var(--ink); background: #fff; box-shadow: 0 1px 4px rgba(15,23,42,.09); }
+    .status-tab .count { margin-left: 5px; color: #94a3b8; font-size: 11px; }
+    .list-heading { display: flex; justify-content: space-between; align-items: center; margin: 13px 2px 11px; }
+    .list-heading strong { font-size: 15px; }
+    .list-heading span { color: var(--muted); font-size: 12px; }
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+    .load-more-row { display: flex; justify-content: center; padding: 16px 0 30px; }
+    .load-more-row.hidden { display: none; }
+    .card {
+      min-width: 0; padding: 17px; border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--surface); box-shadow: 0 3px 12px rgba(15,23,42,.035);
+    }
+    .card:hover { box-shadow: var(--shadow); }
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 999px; font-size: 11px; font-weight: 750; white-space: nowrap; }
+    .tag-公文 { color: #1e3a8a; background: #dbeafe; }
+    .tag-訓練 { color: #6b21a8; background: #f3e8ff; }
+    .tag-耗材 { color: #9a3412; background: #ffedd5; }
+    .tag-器材 { color: #065f46; background: #d1fae5; }
+    .tag-custom { color: #334155; background: #e2e8f0; }
+    .status-待辦 { color: #b91c1c; background: #fee2e2; }
+    .status-辦理中 { color: #1d4ed8; background: #dbeafe; }
+    .status-已結案 { color: #15803d; background: #dcfce7; }
+    .status-存查 { color: #475569; background: #e2e8f0; }
+    .card-title { margin: 11px 0 7px; font-size: 17px; line-height: 1.45; overflow-wrap: anywhere; }
+    .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 13px; color: var(--muted); font-size: 12px; }
+    .meta .id { color: #94a3b8; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .due { font-weight: 750; }
+    .due.late { color: #b91c1c; }
+    .due.soon { color: #b45309; }
+    .description { margin: 12px 0 11px; color: #475569; font-size: 13px; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .history-label { margin: 0 0 6px; color: #64748b; font-size: 11px; font-weight: 750; }
+    .history-preview {
+      max-height: 122px; overflow: auto; padding: 10px 11px; border: 1px solid #e7ebf1; border-radius: 10px;
+      color: #475569; background: #f8fafc; font-size: 12px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere;
+    }
+    .card-actions { display: flex; flex-wrap: wrap; gap: 7px; padding-top: 12px; margin-top: 12px; border-top: 1px solid #f0f2f5; }
+    .card-actions a[aria-disabled="true"] { opacity: .55; pointer-events: none; }
+    .empty {
+      grid-column: 1 / -1; padding: 48px 20px; border: 1px dashed #cbd5e1; border-radius: var(--radius);
+      color: var(--muted); background: rgba(255,255,255,.7); text-align: center;
+    }
+    .empty-icon { display: block; margin-bottom: 8px; font-size: 31px; }
+    .drawer-backdrop, .modal-backdrop {
+      position: fixed; inset: 0; z-index: 30; display: none; background: rgba(15,23,42,.45);
+    }
+    .drawer-backdrop.open, .modal-backdrop.open { display: block; }
+    .tasks-drawer {
+      position: fixed; z-index: 31; top: 0; right: 0; bottom: 0; width: min(440px, 100%);
+      display: flex; flex-direction: column; background: #fff; box-shadow: -12px 0 35px rgba(15,23,42,.2);
+      padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);
+      transform: translateX(105%); transition: transform .22s ease;
+    }
+    .tasks-drawer.open { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px; border-bottom: 1px solid var(--line); }
+    .drawer-title { margin: 0; font-size: 18px; }
+    .drawer-subtitle { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .task-note { margin: 0; padding: 10px 16px; color: #7c2d12; background: #fff7ed; border-bottom: 1px solid #fed7aa; font-size: 12px; line-height: 1.5; }
+    .icon-button { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font-size: 18px; }
+    .task-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+    .task-form .task-date { grid-column: 1; }
+    .task-form .task-add { grid-column: 2; grid-row: 1 / span 2; align-self: stretch; }
+    .task-list { flex: 1; overflow: auto; padding: 6px 14px 24px; }
+    .task-section-title { margin: 14px 3px 6px; color: #64748b; font-size: 11px; font-weight: 800; letter-spacing: .04em; }
+    .task-row { display: flex; align-items: flex-start; gap: 10px; padding: 11px 7px; border-bottom: 1px solid #f1f4f7; }
+    .task-check { width: 19px; height: 19px; margin-top: 2px; accent-color: var(--red); }
+    .task-main { flex: 1; min-width: 0; }
+    .task-title { color: var(--ink); font-size: 14px; line-height: 1.45; overflow-wrap: anywhere; }
+    .task-title.done { color: #94a3b8; text-decoration: line-through; }
+    .task-due { margin-top: 4px; color: #64748b; font-size: 11px; }
+    .task-delete { border: 0; color: #94a3b8; background: transparent; font-size: 16px; }
+    .task-empty { padding: 30px 12px; color: var(--muted); text-align: center; font-size: 13px; }
+    .modal-backdrop { z-index: 40; display: none; align-items: center; justify-content: center; padding: 18px; }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      width: min(660px, 100%); max-height: min(92vh, 900px); max-height: min(92dvh, 900px); overflow: auto;
+      border-radius: 18px; background: #fff; box-shadow: 0 24px 75px rgba(15,23,42,.28);
+    }
+    .modal-head { position: sticky; top: 0; z-index: 2; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 18px 20px; border-bottom: 1px solid var(--line); background: #fff; }
+    .modal-head h2 { margin: 0; font-size: 19px; }
+    .modal-head p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .modal-body { padding: 18px 20px 20px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .field-group { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .field-group.full { grid-column: 1 / -1; }
+    .field-group label, .field-label { color: #334155; font-size: 12px; font-weight: 750; }
+    .field { width: 100%; min-height: 42px; padding: 9px 11px; border: 1px solid #cbd5e1; border-radius: 10px; outline: none; background: #fff; color: var(--ink); }
+    .textarea { width: 100%; min-height: 104px; resize: vertical; padding: 10px 11px; border: 1px solid #cbd5e1; border-radius: 10px; outline: none; color: var(--ink); line-height: 1.55; }
+    .file-input { width: 100%; padding: 9px; border: 1px dashed #cbd5e1; border-radius: 10px; background: #f8fafc; color: #475569; font-size: 12px; }
+    .file-help { color: #64748b; font-size: 11px; line-height: 1.45; }
+    .file-names { color: #475569; font-size: 11px; line-height: 1.5; overflow-wrap: anywhere; }
+    .checkbox-line { display: flex; align-items: flex-start; gap: 9px; padding: 11px; border: 1px solid #fecaca; border-radius: 11px; color: #7f1d1d; background: #fff7f7; font-size: 13px; line-height: 1.45; }
+    .checkbox-line input { margin-top: 2px; accent-color: var(--red); }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; padding-top: 16px; margin-top: 16px; border-top: 1px solid #eef1f4; }
+    .readonly-info { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 15px; padding: 11px 12px; border-radius: 10px; background: #f1f5f9; }
+    .readonly-info .info-item { min-width: 0; }
+    .info-label { display: block; margin-bottom: 3px; color: #64748b; font-size: 10px; }
+    .info-value { display: block; color: #1e293b; font-size: 12px; font-weight: 700; overflow-wrap: anywhere; }
+    .basic-edit { grid-column: 1 / -1; border: 1px solid #dbe2ea; border-radius: 11px; background: #fbfcfe; }
+    .basic-edit summary { padding: 12px; color: #334155; font-size: 13px; font-weight: 750; cursor: pointer; }
+    .basic-edit .form-grid { padding: 0 12px 12px; }
+    .history-mode-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .history-readonly { background: #f1f5f9; color: #475569; border-color: #e2e8f0; }
+    .mode-hint { color: #64748b; font-size: 11px; }
+    .toast {
+      position: fixed; z-index: 60; left: 50%; bottom: max(22px, env(safe-area-inset-bottom));
+      max-width: min(580px, calc(100vw - 28px)); padding: 12px 16px; border-radius: 12px;
+      color: #fff; background: #172033; box-shadow: var(--shadow); font-size: 13px;
+      opacity: 0; pointer-events: none; transform: translate(-50%, 15px); transition: .2s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .toast.error { background: #991b1b; }
+    .loading {
+      grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 46px; color: var(--muted);
+    }
+    .spinner { width: 18px; height: 18px; border: 2px solid #fecaca; border-top-color: var(--red); border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hidden { display: none !important; }
+    @media (max-width: 760px) {
+      .topbar { gap: 10px; padding: calc(10px + env(safe-area-inset-top)) 14px 10px; }
+      .brand { flex: 1 1 auto; gap: 8px; }
+      .brand-mark { width: 38px; height: 38px; flex: 0 0 38px; }
+      .brand-title { max-width: 48vw; font-size: 13px; overflow-wrap: anywhere; }
+      .brand-subtitle { display: none; }
+      .top-actions { flex: 0 0 auto; gap: 6px; }
+      .top-actions .btn { min-height: 38px; padding: 8px 10px; font-size: 12px; }
+      .container { width: calc(100% - 22px); margin: 17px auto 40px; }
+      .intro-row { margin-bottom: 13px; }
+      .intro-copy { font-size: 12px; }
+      .cards { grid-template-columns: 1fr; gap: 10px; }
+      .card { padding: 14px; }
+      .card-title { font-size: 16px; }
+      .card-actions .btn { flex: 1; }
+      .performance { align-items: flex-start; font-size: 12px; }
+      .archive-tools { width: 100%; }
+      .archive-select { flex: 1; }
+      .modal-backdrop { align-items: flex-end; padding: 0; }
+      .modal { width: 100%; max-height: 94vh; max-height: 94dvh; border-radius: 18px 18px 0 0; padding-bottom: env(safe-area-inset-bottom); }
+      .modal-head, .modal-body { padding-left: 16px; padding-right: 16px; }
+      .form-grid { grid-template-columns: 1fr; gap: 11px; }
+      .field-group.full { grid-column: auto; }
+      .readonly-info { grid-template-columns: 1fr; }
+      .modal-actions .btn { flex: 1; }
+    }
+    @media (max-width: 390px) {
+      .topbar { gap: 8px; padding-left: 10px; padding-right: 10px; }
+      .brand-mark { width: 36px; height: 36px; flex-basis: 36px; }
+      .brand-title { max-width: 43vw; font-size: 12px; }
+      .top-actions .tasks-trigger .button-label { display: none; }
+      .top-actions #openNew .button-label { display: none; }
+      .top-actions .btn { padding: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="preview-banner">UI 示範模式：所有新增、更新與 Tasks 操作只保存在此頁記憶體，重新整理即還原。</div>
+  <script>
+(function () {
+  "use strict";
+  var demoNow = new Date();
+  var DEMO_RECORDS = [
+    {
+      rowIndex: 2, id: "DOC-20261020-0001", date: "2026-10-18", category: "公文",
+      subject: "115 年第 4 季救護耗材定期盤點與補充案",
+      description: "彙整各救護車耗材數量，確認效期並提出補充需求。請於期限前完成盤點表與採購清單。",
+      dueDate: "2026-10-28", status: "辦理中",
+      history: "⏱️ [2026-10-20 09:20] (狀態：辦理中)\n已完成 3 輛救護車盤點，另 2 輛待補登。\n----------------------------------------\n⏱️ [2026-10-18 14:35] (狀態：待辦)\n收到本季盤點通知，建立案件並分配資料。",
+      folderUrl: "", createdAt: "2026-10-18 14:30:12"
+    },
+    {
+      rowIndex: 3, id: "DOC-20261019-0001", date: "2026-10-19", category: "訓練",
+      subject: "EMT 年度複訓課程名冊與場地確認",
+      description: "確認參訓人員名冊、訓練時數與教室設備。課程資料由承辦人彙整後存入專屬資料夾。",
+      dueDate: "2026-10-24", status: "待辦",
+      history: "⏱️ [2026-10-19 16:05] (狀態：待辦)\n已向各分隊發出參訓人員調查。",
+      folderUrl: "", createdAt: "2026-10-19 16:03:40"
+    },
+    {
+      rowIndex: 4, id: "DOC-20261016-0001", date: "2026-10-16", category: "器材",
+      subject: "第一大隊熱顯像儀電池檢修與備品調度",
+      description: "盤點熱顯像儀電池狀況，確認保固及送修所需文件。",
+      dueDate: "2026-11-03", status: "待辦",
+      history: "⏱️ [2026-10-16 11:10] (狀態：待辦)\n已建立檢修清單。",
+      folderUrl: "", createdAt: "2026-10-16 11:08:22"
+    },
+    {
+      rowIndex: 5, id: "DOC-20261010-0001", date: "2026-10-10", category: "耗材",
+      subject: "新進救護手套尺寸與數量調查",
+      description: "收集各分隊需求，核對目前庫存。",
+      dueDate: "", status: "已結案",
+      history: "⏱️ [2026-10-15 13:30] (狀態：已結案)\n已完成需求統計並歸檔。",
+      folderUrl: "", createdAt: "2026-10-10 10:25:00"
+    },
+    {
+      rowIndex: 6, id: "DOC-20241004-0007", date: "2024-10-04", category: "品管",
+      subject: "年度救護品質指標檢討會議紀錄",
+      description: "彙整年度品質指標與改善事項。",
+      dueDate: "", status: "已結案",
+      history: "⏱️ [2024-11-02 17:10] (狀態：已結案)\n會議紀錄完成核定並存查。",
+      folderUrl: "", createdAt: "2024-10-04 08:20:00"
+    }
+  ];
+  var DEMO_TASKS = [
+    { id: "demo-task-1", title: "【公文】115 年第 4 季救護耗材定期盤點與補充案", notes: "資料ID：DOC-20261020-0001", status: "needsAction", dueDate: "2026-10-28", completed: false, webViewLink: "" },
+    { id: "demo-task-2", title: "確認 EMT 複訓場地投影設備", notes: "", status: "needsAction", dueDate: "2026-10-22", completed: false, webViewLink: "" },
+    { id: "demo-task-3", title: "提交上季器材保養紀錄", notes: "", status: "completed", dueDate: "2026-10-17", completed: true, webViewLink: "" }
+  ];
+  function copy(value) { return JSON.parse(JSON.stringify(value)); }
+  function cardRecord(record) {
+    var card = copy(record);
+    card.historyPreview = String(card.history || "").split(/\r?\n-{10,}\r?\n/)[0].slice(0, 500);
+    delete card.history;
+    return card;
+  }
+  function findRecord(id) {
+    for (var i = 0; i < DEMO_RECORDS.length; i++) if (DEMO_RECORDS[i].id === id) return DEMO_RECORDS[i];
+    return null;
+  }
+  function response(method, args) {
+    if (method === "apiBootstrap") {
+      var active = DEMO_RECORDS.filter(function (r) {
+        return r.status === "待辦" || r.status === "辦理中" || r.date >= "2026-07-22";
+      });
+      return {
+        records: active.map(cardRecord), activeCursor: "", activeHasMore: false,
+        archiveYears: ["2024"], spreadsheetUrl: "", rootFolderUrl: "", uploadLimitBytes: 5242880,
+        maxRequestJsonBytes: 6291456, timeZone: "Asia/Taipei"
+      };
+    }
+    if (method === "apiLoadArchiveYear") {
+      return {
+        records: DEMO_RECORDS.filter(function (r) { return r.date.slice(0, 4) === String(args[0]); }).map(cardRecord),
+        cursor: "", hasMore: false
+      };
+    }
+    if (method === "apiLoadActivePage") {
+      return { records: [], cursor: "", hasMore: false };
+    }
+    if (method === "apiGetRecordHistory") {
+      var historyRecord = findRecord(args[0]);
+      if (!historyRecord) throw new Error("示範案件不存在。");
+      return { id: historyRecord.id, history: historyRecord.history || "", description: historyRecord.description || "" };
+    }
+    if (method === "apiLoadTasks") {
+      return {
+        listId: "demo-list", title: "待辦事項 (消防)", tasks: copy(DEMO_TASKS),
+        nextPageToken: "", openCount: DEMO_TASKS.filter(function (t) { return !t.completed; }).length
+      };
+    }
+    if (method === "apiToggleTask") {
+      var task = DEMO_TASKS.find(function (t) { return t.id === args[0]; });
+      if (!task) throw new Error("示範任務不存在。");
+      task.completed = Boolean(args[1]);
+      task.status = task.completed ? "completed" : "needsAction";
+      return { id: task.id, status: task.status, completed: task.completed };
+    }
+    if (method === "apiDeleteTask") {
+      DEMO_TASKS = DEMO_TASKS.filter(function (t) { return t.id !== args[0]; });
+      return { deleted: true, id: args[0] };
+    }
+    if (method === "apiAddQuickTask") {
+      var quick = {
+        id: "demo-task-" + Date.now(), title: String(args[0] || ""), notes: "",
+        status: "needsAction", dueDate: String(args[1] || ""), completed: false, webViewLink: ""
+      };
+      DEMO_TASKS.unshift(quick);
+      return copy(quick);
+    }
+    if (method === "apiCreateRecord") {
+      var p = args[0] || {};
+      var id = "DEMO-" + Date.now();
+      var createdAt = new Date().toLocaleString("sv-SE", { hour12: false }).replace("T", " ");
+      var record = {
+        rowIndex: 7 + DEMO_RECORDS.length, id: id, date: p.date, category: p.category, subject: p.subject,
+        description: p.description || "", dueDate: p.dueDate || "", status: p.status || "待辦",
+        history: "⏱️ [" + createdAt.slice(0, 16) + "] (狀態：" + (p.status || "待辦") + ")\n案件建立" +
+          ((p.files || []).length ? "\n📎 附檔：" + p.files.map(function (f) { return "[原件]_" + f.name; }).join("\n📎 附檔：") : ""),
+        folderUrl: "", createdAt: createdAt
+      };
+      DEMO_RECORDS.unshift(record);
+      if (p.addToTasks) {
+        var createdTask = {
+          id: "demo-task-" + Date.now(), title: "【" + record.category + "】" + record.subject,
+          notes: "資料ID：" + record.id, status: "needsAction", dueDate: record.dueDate,
+          completed: false, webViewLink: ""
+        };
+        DEMO_TASKS.unshift(createdTask);
+        record.taskId = createdTask.id;
+      }
+      return { record: cardRecord(record), taskWarning: "" };
+    }
+    if (method === "apiUpdateRecord") {
+      var update = args[0] || {};
+      var existing = findRecord(update.id);
+      if (!existing) throw new Error("示範案件不存在。");
+      var oldStatus = existing.status;
+      existing.status = update.status;
+      var moment = new Date().toLocaleString("sv-SE", { hour12: false }).replace("T", " ").slice(0, 16);
+      var additions = [];
+      if (update.progressText) additions.push(update.progressText);
+      (update.files || []).forEach(function (f) { additions.push("📎 附檔：[進度_" + moment.slice(5, 7) + moment.slice(8, 10) + "_" + moment.slice(11, 13) + moment.slice(14, 16) + "]_" + f.name); });
+      if (update.manualMode) {
+        existing.history = additions.length || oldStatus !== update.status
+          ? "⏱️ [" + moment + "] (狀態：" + update.status + ")\n" + additions.join("\n") + "\n----------------------------------------\n" + (update.fullHistory || "")
+          : (update.fullHistory || "");
+      } else {
+        existing.history = "⏱️ [" + moment + "] (狀態：" + update.status + ")\n" + additions.join("\n") +
+          "\n----------------------------------------\n" + existing.history;
+      }
+      if (oldStatus === "已結案" && update.status !== "已結案") {
+        DEMO_TASKS.forEach(function (t) { if ((t.notes || "").indexOf(existing.id) !== -1) { t.completed = false; t.status = "needsAction"; } });
+      } else if (update.status === "已結案") {
+        DEMO_TASKS.forEach(function (t) { if ((t.notes || "").indexOf(existing.id) !== -1) { t.completed = true; t.status = "completed"; } });
+      }
+      return { record: cardRecord(existing), taskWarning: "" };
+    }
+    if (method === "apiSyncRecordToTask") {
+      var linkedRecord = findRecord(args[0]);
+      if (!linkedRecord) throw new Error("示範案件不存在。");
+      var linked = DEMO_TASKS.find(function (t) { return (t.notes || "").indexOf(linkedRecord.id) !== -1; });
+      if (!linked) {
+        linked = { id: "demo-task-" + Date.now(), title: "【" + linkedRecord.category + "】" + linkedRecord.subject,
+          notes: "資料ID：" + linkedRecord.id, status: linkedRecord.status === "已結案" ? "completed" : "needsAction",
+          dueDate: linkedRecord.dueDate, completed: linkedRecord.status === "已結案", webViewLink: "" };
+        DEMO_TASKS.unshift(linked);
+      }
+      return copy(linked);
+    }
+    throw new Error("測試 UI 未定義此操作：" + method);
+  }
+  function makeRunner() {
+    var success = function () {};
+    var failure = function (err) { setTimeout(function () { throw err; }, 0); };
+    var runner;
+    runner = new Proxy({}, {
+      get: function (target, property) {
+        if (property === "withSuccessHandler") return function (fn) { success = fn; return runner; };
+        if (property === "withFailureHandler") return function (fn) { failure = fn; return runner; };
+        return function () {
+          var args = Array.prototype.slice.call(arguments);
+          var onSuccess = success;
+          var onFailure = failure;
+          success = function () {};
+          failure = function (err) { setTimeout(function () { throw err; }, 0); };
+          setTimeout(function () {
+            try { onSuccess(response(String(property), args)); }
+            catch (err) { onFailure({ message: err.message || String(err) }); }
+          }, 180);
+        };
+      }
+    });
+    return runner;
+  }
+  window.google = { script: { run: makeRunner() } };
+})();
+  </script>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">🚒</div>
+      <div>
+        <div class="brand-title">消防小本本</div>
+        <div class="brand-subtitle">個人工作台・資料儲存在你的 Google 帳戶</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="btn btn-ghost tasks-trigger" id="openTasks" type="button" aria-label="開啟待辦事項（消防）">
+        <span>🚒</span><span class="button-label">待辦事項 (消防)</span><span class="badge-count" id="taskBadge">…</span>
+      </button>
+      <button class="btn btn-primary" id="openNew" type="button" aria-label="新增建檔">＋ <span class="button-label">新增建檔</span></button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="intro-row">
+      <div>
+        <h1>公文與業務案件</h1>
+        <p class="intro-copy">快速查找案件、追蹤進度，並開啟每案專屬資料夾。</p>
+      </div>
+    </div>
+
+    <section class="performance" aria-label="載入狀態">
+      <div class="performance-left"><span class="performance-dot"></span><span>摘要分頁載入；搜尋與狀態統計涵蓋已載入案件，完整進度與 Tasks 於開啟時讀取。</span></div>
+      <div class="archive-tools">
+        <button class="btn btn-small btn-outline" id="toggleArchive" type="button">🗄️ 載入年度歷史庫</button>
+        <select class="archive-select hidden" id="archiveYear" aria-label="選擇歷史年度"></select>
+      </div>
+    </section>
+
+    <div class="search-wrap">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input class="search" id="searchInput" type="search" placeholder="搜尋主旨、內容、最新進度或資料ID…" autocomplete="off">
+    </div>
+    <div class="filter-line" id="categoryFilters" aria-label="標籤過濾"></div>
+    <div class="status-tabs" id="statusFilters" aria-label="狀態過濾"></div>
+    <div class="list-heading">
+      <strong id="resultTitle">目前案件</strong>
+      <span id="resultSummary"></span>
+    </div>
+    <section class="cards" id="cards" aria-live="polite">
+      <div class="loading"><span class="spinner"></span>載入案件資料…</div>
+    </section>
+    <div class="load-more-row hidden" id="loadMoreRow">
+      <button class="btn btn-outline" id="loadMoreRecords" type="button">載入更多案件</button>
+    </div>
+  </main>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="tasks-drawer" id="tasksDrawer" aria-label="Google Tasks 消防待辦">
+    <div class="drawer-head">
+      <div>
+        <h2 class="drawer-title">🚒 待辦事項 (消防)</h2>
+        <p class="drawer-subtitle" id="tasksSubtitle">連結至你的 Google Tasks 清單</p>
+      </div>
+      <button class="icon-button" id="closeTasks" type="button" aria-label="關閉待辦面板">×</button>
+    </div>
+    <p class="task-note">勾選僅完成 Google Tasks 待辦提醒；案件結案請至案件卡片更新進度</p>
+    <form class="task-form" id="quickTaskForm">
+      <input class="field" id="quickTaskTitle" type="text" maxlength="1024" placeholder="新增臨時交辦任務…" required>
+      <input class="field task-date" id="quickTaskDue" type="date" aria-label="任務日期">
+      <button class="btn btn-primary task-add" type="submit">＋ 新增</button>
+    </form>
+    <div class="task-list" id="taskList"><div class="task-empty">開啟待辦面板時載入任務。</div></div>
+  </aside>
+
+  <div class="modal-backdrop" id="newModal" role="dialog" aria-modal="true" aria-labelledby="newModalTitle">
+    <section class="modal">
+      <div class="modal-head">
+        <div><h2 id="newModalTitle">新增案件建檔</h2><p>建立專屬 Drive 資料夾，附件會一併歸檔。</p></div>
+        <button class="icon-button close-modal" type="button" aria-label="關閉">×</button>
+      </div>
+      <form class="modal-body" id="newForm">
+        <div class="form-grid">
+          <div class="field-group">
+            <label for="newDate">發文/登記日期 *</label>
+            <input class="field" id="newDate" type="date" required>
+          </div>
+          <div class="field-group">
+            <label for="newDueDate">限辦/完成期限</label>
+            <input class="field" id="newDueDate" type="date">
+          </div>
+          <div class="field-group">
+            <label for="newCategory">標籤類別 *</label>
+            <input class="field" id="newCategory" type="text" list="categoryOptions" maxlength="100" required value="公文" placeholder="可選既有標籤或輸入自訂標籤">
+            <datalist id="categoryOptions"><option value="公文"><option value="訓練"><option value="耗材"><option value="器材"></datalist>
+          </div>
+          <div class="field-group">
+            <label for="newStatus">執行狀態</label>
+            <select class="field" id="newStatus">
+              <option>待辦</option><option>辦理中</option><option>已結案</option><option>存查</option>
+            </select>
+          </div>
+          <div class="field-group full">
+            <label for="newSubject">案件/公文主旨 *</label>
+            <input class="field" id="newSubject" type="text" maxlength="500" required placeholder="輸入清楚易辨識的案件主旨">
+          </div>
+          <div class="field-group full">
+            <label for="newDescription">內容說明</label>
+            <textarea class="textarea" id="newDescription" maxlength="20000" placeholder="補充說明、規格需求或重點摘要"></textarea>
+          </div>
+          <div class="field-group full">
+            <label for="newFiles">原件照片/附件</label>
+            <input class="file-input" id="newFiles" type="file" multiple accept="image/*,application/pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip">
+            <div class="file-help">照片會在瀏覽器中縮至最長邊 1600px、JPEG 品質 0.75。PDF 與 Office 文件保留原檔；附件合計限制以送出資料量 6 MiB 為準。HEIC 若無法轉成 JPEG，系統會阻止上傳並提示先轉存。</div>
+            <div class="file-names" id="newFileNames"></div>
+          </div>
+          <div class="field-group full">
+            <label class="checkbox-line">
+              <input id="newAddTask" type="checkbox" checked>
+              <span>🚒 同時加入 Google Tasks「待辦事項 (消防)」，並帶入期限日期。Tasks API 提供日期，不會設定額外通知。</span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-outline close-modal" type="button">取消</button>
+          <button class="btn btn-primary" id="createButton" type="submit">建立案件</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="progressModal" role="dialog" aria-modal="true" aria-labelledby="progressModalTitle">
+    <section class="modal">
+      <div class="modal-head">
+        <div><h2 id="progressModalTitle">更新案件進度</h2><p>安全模式會把本次紀錄加在時間軸最上方。</p></div>
+        <button class="icon-button close-modal" type="button" aria-label="關閉">×</button>
+      </div>
+      <form class="modal-body" id="progressForm">
+        <div class="form-grid">
+          <div class="field-group full">
+            <div class="readonly-info">
+              <div class="info-item"><span class="info-label">案件主旨</span><span class="info-value" id="progressSubject"></span></div>
+              <div class="info-item"><span class="info-label">發文/登記日期</span><span class="info-value" id="progressDate"></span></div>
+              <div class="info-item"><span class="info-label">資料ID</span><span class="info-value" id="progressId"></span></div>
+              <div class="info-item"><span class="info-label">建檔時間</span><span class="info-value" id="progressCreated"></span></div>
+            </div>
+          </div>
+          <details class="basic-edit" id="basicEditDetails">
+            <summary>📝 修改案件基本資料（主旨／日期／標籤／期限／內容說明）</summary>
+            <div class="form-grid">
+              <div class="field-group">
+                <label for="editRecordDate">發文/登記日期 *</label>
+                <input class="field" id="editRecordDate" type="date" required>
+              </div>
+              <div class="field-group">
+                <label for="editRecordDueDate">限辦/完成期限</label>
+                <input class="field" id="editRecordDueDate" type="date">
+              </div>
+              <div class="field-group">
+                <label for="editRecordCategory">標籤類別 *</label>
+                <input class="field" id="editRecordCategory" type="text" list="categoryOptions" maxlength="100" required>
+              </div>
+              <div class="field-group">
+                <label for="editRecordSubject">案件/公文主旨 *</label>
+                <input class="field" id="editRecordSubject" type="text" maxlength="500" required>
+              </div>
+              <div class="field-group full">
+                <label for="editRecordDescription">內容說明</label>
+                <textarea class="textarea" id="editRecordDescription" maxlength="20000"></textarea>
+              </div>
+            </div>
+          </details>
+          <div class="field-group">
+            <label for="progressStatus">執行狀態</label>
+            <select class="field" id="progressStatus">
+              <option>待辦</option><option>辦理中</option><option>已結案</option><option>存查</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="progressFiles">上傳進度照片/附件</label>
+            <input class="file-input" id="progressFiles" type="file" multiple accept="image/*,application/pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip">
+            <div class="file-names" id="progressFileNames"></div>
+          </div>
+          <div class="field-group full">
+            <label for="progressText">➕ 新增本次執行進度</label>
+            <textarea class="textarea" id="progressText" maxlength="10000" placeholder="輸入本次處理情形；可只變更狀態或上傳附件"></textarea>
+          </div>
+          <div class="field-group full">
+            <div class="history-mode-row">
+              <span class="field-label">完整歷史時間軸</span>
+              <button class="btn btn-small btn-outline" id="toggleManual" type="button">🔧 切換為全文手動修改</button>
+            </div>
+            <textarea class="textarea history-readonly" id="fullHistory" readonly aria-label="完整歷史時間軸"></textarea>
+            <span class="mode-hint" id="historyHint">灰底唯讀。切換手動修改後可直接整理全文；若有新增附件或進度，系統會在最上方加上時間戳與附件名稱。</span>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-outline close-modal" type="button">取消</button>
+          <button class="btn btn-primary" id="updateButton" type="submit">儲存更新</button>
+        </div>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      "use strict";
+      var STANDARD_TAGS = ["公文", "訓練", "耗材", "器材"];
+      var TAG_ICONS = { "公文": "📑", "訓練": "🏃", "耗材": "📦", "器材": "🔧" };
+      var STATUS_ITEMS = [
+        { key: "全部", label: "全部" },
+        { key: "待辦", label: "🔴 待辦" },
+        { key: "辦理中", label: "🔵 辦理中" },
+        { key: "已結案", label: "🟢 已結案" },
+        { key: "存查", label: "⚪ 存查" }
+      ];
+      var CARD_BATCH_SIZE = 40;
+      var recordsCache = null;
+      var visibleRecordCache = [];
+      var renderedCardCount = 0;
+      var recordsById = {};
+      var archiveYears = [];
+      var loadedYears = {};
+      var archivePages = {};
+      var archiveGenerations = {};
+      var activeIds = {};
+      var selectedArchiveYear = "";
+      var activeCursor = "";
+      var activeHasMore = false;
+      var recordsLoading = false;
+      var pendingArchiveRequest = false;
+      var pendingArchiveYear = "";
+      var selectedTag = "全部";
+      var selectedStatus = "全部";
+      var activeRecord = null;
+      var activeHistoryText = "";
+      var activeDescriptionLoaded = false;
+      var manualMode = false;
+      var tasks = [];
+      var tasksLoaded = false;
+      var tasksLoading = false;
+      var taskPageToken = "";
+      var taskHasMore = false;
+      var openTaskCount = 0;
+      var tasksCountKnown = false;
+      var newSubmitInFlight = false;
+      var progressSubmitInFlight = false;
+      var quickTaskInFlight = false;
+      var drawerOpen = false;
+      var toastTimer = null;
+      var searchTimer = null;
+      var uploadLimitBytes = 5 * 1024 * 1024;
+      var requestJsonLimitBytes = 6 * 1024 * 1024;
+      var requestIdMemory = {};
+
+      function el(id) { return document.getElementById(id); }
+      function todayString() {
+        return taipeiDateString(Date.now());
+      }
+      function taipeiDateString(timestamp) {
+        var taipeiNow = new Date(Number(timestamp) + 8 * 60 * 60 * 1000);
+        return taipeiNow.getUTCFullYear() + "-" + String(taipeiNow.getUTCMonth() + 1).padStart(2, "0") + "-" + String(taipeiNow.getUTCDate()).padStart(2, "0");
+      }
+      function activeCutoffDate() {
+        return taipeiDateString(Date.now() - 90 * 24 * 60 * 60 * 1000);
+      }
+      function isActiveRecord(record) {
+        return record.status === "待辦" || record.status === "辦理中" || (!!record.date && record.date >= activeCutoffDate());
+      }
+      function showToast(message, isError) {
+        var node = el("toast");
+        node.textContent = message;
+        node.classList.toggle("error", !!isError);
+        node.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { node.classList.remove("show"); }, 3800);
+      }
+      function setBusy(button, busy, label) {
+        if (!button) return;
+        if (busy) {
+          if (!button.disabled) button.dataset.originalText = button.textContent;
+          button.disabled = true;
+          button.textContent = label || "處理中…";
+        } else {
+          button.disabled = false;
+          if (button.dataset.originalText) button.textContent = button.dataset.originalText;
+        }
+      }
+      function serverFailure(error) {
+        var message = error && error.message ? error.message : String(error || "伺服器發生錯誤。");
+        if (message.indexOf("檔案合計過大") !== -1 || message.indexOf("HEIC") !== -1) {
+          window.alert(message);
+        } else {
+          showToast(message, true);
+        }
+      }
+      function mergeRecords(list, isActive) {
+        (list || []).forEach(function (record) {
+          var preview = record.historyPreview || record.history || "";
+          var description = record.description || "";
+          record.historyPreview = preview.split(/\r?\n-{10,}\r?\n/)[0].slice(0, 500);
+          record.descriptionPreview = description.length > 500 ? description.slice(0, 500) + "…" : description;
+          delete record.history;
+          record.searchText = [record.id, record.subject, description, record.historyPreview, record.category, record.status]
+            .join("\n").toLocaleLowerCase();
+          delete record.description;
+          recordsById[record.id] = record;
+          if (isActiveRecord(record)) activeIds[record.id] = true;
+          else delete activeIds[record.id];
+        });
+        recordsCache = null;
+      }
+      function getRecords() {
+        if (!recordsCache) {
+          recordsCache = Object.keys(recordsById).map(function (key) { return recordsById[key]; });
+          recordsCache.sort(function (a, b) {
+            var aOpen = a.status === "待辦" || a.status === "辦理中";
+            var bOpen = b.status === "待辦" || b.status === "辦理中";
+            if (aOpen !== bOpen) return aOpen ? -1 : 1;
+            if (aOpen) {
+              var aDue = a.dueDate || "";
+              var bDue = b.dueDate || "";
+              if (aDue && !bDue) return -1;
+              if (!aDue && bDue) return 1;
+              if (aDue && bDue && aDue !== bDue) return aDue.localeCompare(bDue);
+            } else {
+              var aDate = a.date || "";
+              var bDate = b.date || "";
+              if (aDate !== bDate) return bDate.localeCompare(aDate);
+            }
+            var createdCompare = String(b.createdAt || "").localeCompare(String(a.createdAt || ""));
+            return createdCompare || String(b.id || "").localeCompare(String(a.id || ""));
+          });
+        }
+        return recordsCache;
+      }
+      function loadBootstrap() {
+        el("cards").innerHTML = '<div class="loading"><span class="spinner"></span>載入案件資料…</div>';
+        google.script.run
+          .withSuccessHandler(function (data) {
+            recordsById = {};
+            mergeRecords(data.records || [], true);
+            archiveYears = data.archiveYears || [];
+            activeCursor = data.activeCursor || "";
+            activeHasMore = !!data.activeHasMore;
+            uploadLimitBytes = data.uploadLimitBytes || uploadLimitBytes;
+            requestJsonLimitBytes = data.maxRequestJsonBytes || requestJsonLimitBytes;
+            renderArchiveYears();
+            renderFilters();
+            renderCards();
+          })
+          .withFailureHandler(function (error) {
+            el("cards").innerHTML = "";
+            showEmpty("資料載入失敗", error && error.message ? error.message : "請確認 ROOT_FOLDER_ID 與試算表設定。");
+          })
+          .apiBootstrap();
+      }
+      function renderArchiveYears() {
+        var select = el("archiveYear");
+        var selected = select.value;
+        select.innerHTML = "";
+        var placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "選擇年度";
+        select.appendChild(placeholder);
+        archiveYears.forEach(function (year) {
+          var option = document.createElement("option");
+          option.value = year;
+          option.textContent = year + (loadedYears[year]
+            ? (archivePages[year] && archivePages[year].hasMore ? "（已載入部分）" : "（已載入）")
+            : "");
+          select.appendChild(option);
+        });
+        if (selected) select.value = selected;
+        el("toggleArchive").textContent = select.classList.contains("hidden") ? "🗄️ 載入年度歷史庫" : "🗄️ 收合年度選單";
+      }
+      function unloadArchiveYear(year) {
+        if (!year) return;
+        archiveGenerations[year] = (archiveGenerations[year] || 0) + 1;
+        Object.keys(recordsById).forEach(function (id) {
+          var record = recordsById[id];
+          if (!activeIds[id] && record.date && record.date.slice(0, 4) === year) delete recordsById[id];
+        });
+        delete archivePages[year];
+        delete loadedYears[year];
+        recordsCache = null;
+        renderArchiveYears();
+      }
+      function renderFilters() {
+        var tags = STANDARD_TAGS.slice();
+        getRecords().forEach(function (record) {
+          if (record.category && tags.indexOf(record.category) === -1) tags.push(record.category);
+        });
+        var container = el("categoryFilters");
+        container.innerHTML = "";
+        var caption = document.createElement("span");
+        caption.className = "filter-caption";
+        caption.textContent = "標籤";
+        container.appendChild(caption);
+        var all = ["全部"].concat(tags);
+        all.forEach(function (tag) {
+          var button = document.createElement("button");
+          button.type = "button";
+          button.className = "pill" + (selectedTag === tag ? " active" : "");
+          button.textContent = tag === "全部" ? "全部" : ((TAG_ICONS[tag] || "🏷️") + " " + tag);
+          button.addEventListener("click", function () {
+            selectedTag = tag;
+            renderFilters();
+            renderCards();
+          });
+          container.appendChild(button);
+        });
+        renderStatusFilters();
+      }
+      function renderStatusFilters() {
+        var container = el("statusFilters");
+        container.innerHTML = "";
+        var records = getRecords();
+        STATUS_ITEMS.forEach(function (item) {
+          var count = item.key === "全部" ? records.length : records.filter(function (record) { return record.status === item.key; }).length;
+          var button = document.createElement("button");
+          button.type = "button";
+          button.className = "status-tab" + (selectedStatus === item.key ? " active" : "");
+          button.appendChild(document.createTextNode(item.label));
+          var badge = document.createElement("span");
+          badge.className = "count";
+          badge.textContent = String(count);
+          button.appendChild(badge);
+          button.addEventListener("click", function () {
+            selectedStatus = item.key;
+            renderStatusFilters();
+            renderCards();
+          });
+          container.appendChild(button);
+        });
+      }
+      function visibleRecords() {
+        var query = el("searchInput").value.trim().toLocaleLowerCase();
+        return getRecords().filter(function (record) {
+          if (selectedTag !== "全部" && record.category !== selectedTag) return false;
+          if (selectedStatus !== "全部" && record.status !== selectedStatus) return false;
+          return !query || record.searchText.indexOf(query) !== -1;
+        });
+      }
+      function renderCards() {
+        renderStatusFilters();
+        var container = el("cards");
+        container.innerHTML = "";
+        visibleRecordCache = visibleRecords();
+        renderedCardCount = 0;
+        el("resultSummary").textContent = "符合 " + visibleRecordCache.length + " / " + getRecords().length + " 筆已載入案件";
+        var selectedYear = el("archiveYear").value;
+        el("resultTitle").textContent = selectedYear && loadedYears[selectedYear]
+          ? selectedYear + " 年歷史庫與目前案件"
+          : "目前案件";
+        if (!visibleRecordCache.length) {
+          showEmpty("沒有符合條件的案件", "調整搜尋字詞或篩選條件，或載入其他年度的歷史資料。");
+          updateLoadMoreControl();
+          return;
+        }
+        appendCardBatch();
+      }
+      function appendCardBatch() {
+        var container = el("cards");
+        var fragment = document.createDocumentFragment();
+        var end = Math.min(renderedCardCount + CARD_BATCH_SIZE, visibleRecordCache.length);
+        for (var i = renderedCardCount; i < end; i++) fragment.appendChild(createCard(visibleRecordCache[i]));
+        container.appendChild(fragment);
+        renderedCardCount = end;
+        updateLoadMoreControl();
+      }
+      function hasRemoteRecords() {
+        var year = el("archiveYear").value;
+        if (year && archivePages[year] && archivePages[year].hasMore) return true;
+        return activeHasMore;
+      }
+      function updateLoadMoreControl() {
+        var row = el("loadMoreRow");
+        var button = el("loadMoreRecords");
+        var localMore = renderedCardCount < visibleRecordCache.length;
+        var remoteMore = hasRemoteRecords();
+        row.classList.toggle("hidden", !localMore && !remoteMore);
+        button.disabled = recordsLoading;
+        button.textContent = recordsLoading ? "載入中…" : (localMore ? "顯示更多結果" : "載入更多案件");
+      }
+      function loadMoreRecords() {
+        if (renderedCardCount < visibleRecordCache.length) {
+          appendCardBatch();
+          return;
+        }
+        var year = el("archiveYear").value;
+        if (year && archivePages[year] && archivePages[year].hasMore) requestArchivePage(year, true);
+        else loadActivePage();
+      }
+      function showEmpty(title, subtitle) {
+        var container = el("cards");
+        container.innerHTML = "";
+        var empty = document.createElement("div");
+        empty.className = "empty";
+        var icon = document.createElement("span");
+        icon.className = "empty-icon";
+        icon.textContent = title === "資料載入失敗" ? "⚠️" : "📂";
+        var strong = document.createElement("strong");
+        strong.textContent = title;
+        var copy = document.createElement("div");
+        copy.style.marginTop = "5px";
+        copy.style.fontSize = "13px";
+        copy.textContent = subtitle || "";
+        empty.appendChild(icon);
+        empty.appendChild(strong);
+        empty.appendChild(copy);
+        container.appendChild(empty);
+      }
+      function createCard(record) {
+        var card = document.createElement("article");
+        card.className = "card";
+        var top = document.createElement("div");
+        top.className = "card-top";
+        var chips = document.createElement("div");
+        chips.className = "chips";
+        var tag = document.createElement("span");
+        tag.className = "chip " + tagClass(record.category);
+        tag.textContent = (TAG_ICONS[record.category] || "🏷️") + " " + record.category;
+        var status = document.createElement("span");
+        status.className = "chip " + statusClass(record.status);
+        status.textContent = record.status || "待辦";
+        chips.appendChild(tag);
+        chips.appendChild(status);
+        top.appendChild(chips);
+        card.appendChild(top);
+
+        var title = document.createElement("h2");
+        title.className = "card-title";
+        title.textContent = record.subject || "（未填寫主旨）";
+        card.appendChild(title);
+
+        var meta = document.createElement("div");
+        meta.className = "meta";
+        var date = document.createElement("span");
+        date.textContent = "📅 " + (record.date || "未填日期");
+        meta.appendChild(date);
+        if (record.dueDate) {
+          var due = document.createElement("span");
+          var delta = daysUntil(record.dueDate);
+          due.className = "due" + (delta < 0 && record.status !== "已結案" ? " late" : (delta >= 0 && delta <= 3 && record.status !== "已結案" ? " soon" : ""));
+          due.textContent = "⏳ " + dueLabel(record.dueDate, delta);
+          meta.appendChild(due);
+        }
+        var id = document.createElement("span");
+        id.className = "id";
+        id.textContent = record.id;
+        meta.appendChild(id);
+        card.appendChild(meta);
+
+        if (record.descriptionPreview) {
+          var description = document.createElement("p");
+          description.className = "description";
+          description.textContent = record.descriptionPreview;
+          card.appendChild(description);
+        }
+        var historyLabel = document.createElement("div");
+        historyLabel.className = "history-label";
+        historyLabel.textContent = "最新執行進度";
+        card.appendChild(historyLabel);
+        var history = document.createElement("div");
+        history.className = "history-preview";
+        history.textContent = record.historyPreview || "尚無最新進度摘要；開啟案件可查看完整時間軸。";
+        card.appendChild(history);
+
+        var actions = document.createElement("div");
+        actions.className = "card-actions";
+        var drive = document.createElement("a");
+        drive.className = "btn btn-small btn-outline";
+        drive.textContent = "📁 開啟資料夾";
+        if (record.folderUrl) {
+          drive.href = record.folderUrl;
+          drive.target = "_blank";
+          drive.rel = "noopener";
+        } else {
+          drive.setAttribute("aria-disabled", "true");
+        }
+        actions.appendChild(drive);
+        var sync = document.createElement("button");
+        sync.className = "btn btn-small btn-outline";
+        sync.type = "button";
+        sync.textContent = "🚒 同步到 Tasks";
+        sync.addEventListener("click", function () { syncRecord(record, sync); });
+        actions.appendChild(sync);
+        var update = document.createElement("button");
+        update.className = "btn btn-small btn-primary";
+        update.type = "button";
+        update.textContent = "更新進度";
+        update.addEventListener("click", function () { openProgressModal(record); });
+        actions.appendChild(update);
+        card.appendChild(actions);
+        return card;
+      }
+      function tagClass(category) {
+        return STANDARD_TAGS.indexOf(category) !== -1 ? "tag-" + category : "tag-custom";
+      }
+      function statusClass(status) { return "status-" + (VALID_STATUS(status) ? status : "待辦"); }
+      function VALID_STATUS(status) { return ["待辦", "辦理中", "已結案", "存查"].indexOf(status) !== -1; }
+      function daysUntil(dateText) {
+        if (!dateText) return 9999;
+        var parts = dateText.split("-").map(Number);
+        var todayParts = todayString().split("-").map(Number);
+        var due = Date.UTC(parts[0], parts[1] - 1, parts[2]);
+        var today = Date.UTC(todayParts[0], todayParts[1] - 1, todayParts[2]);
+        return Math.round((due - today) / 86400000);
+      }
+      function dueLabel(date, delta) {
+        if (delta < 0) return date + "・逾期 " + Math.abs(delta) + " 天";
+        if (delta === 0) return date + "・今天到期";
+        if (delta <= 3) return date + "・剩 " + delta + " 天";
+        return date;
+      }
+      function openNewModal() {
+        el("newDate").value = todayString();
+        el("newDueDate").value = "";
+        el("newCategory").value = "公文";
+        el("newStatus").value = "待辦";
+        el("newSubject").value = "";
+        el("newDescription").value = "";
+        el("newFiles").value = "";
+        el("newFileNames").textContent = "";
+        el("newAddTask").checked = true;
+        openModal("newModal");
+        setTimeout(function () { el("newSubject").focus(); }, 50);
+      }
+      function openProgressModal(record) {
+        activeRecord = record;
+        activeHistoryText = "";
+        activeDescriptionLoaded = false;
+        manualMode = false;
+        el("progressSubject").textContent = record.subject || "";
+        el("progressDate").textContent = record.date || "";
+        el("progressId").textContent = record.id || "";
+        el("progressCreated").textContent = record.createdAt || "";
+        el("editRecordDate").value = record.date || "";
+        el("editRecordDueDate").value = record.dueDate || "";
+        el("editRecordCategory").value = record.category || "";
+        el("editRecordSubject").value = record.subject || "";
+        el("editRecordDescription").value = "";
+        el("editRecordDescription").disabled = true;
+        el("basicEditDetails").open = false;
+        el("progressStatus").value = record.status || "待辦";
+        el("progressText").value = "";
+        el("progressFiles").value = "";
+        el("progressFileNames").textContent = "";
+        el("fullHistory").value = "載入完整時間軸…";
+        el("fullHistory").readOnly = true;
+        el("toggleManual").disabled = true;
+        el("fullHistory").classList.add("history-readonly");
+        el("toggleManual").classList.remove("btn-amber");
+        el("toggleManual").textContent = "🔧 切換為全文手動修改";
+        el("historyHint").textContent = "正在載入完整時間軸；載入後可切換全文手動修改。";
+        setBusy(el("updateButton"), true, "載入案件資料…");
+        openModal("progressModal");
+        google.script.run
+          .withSuccessHandler(function (data) {
+            if (activeRecord !== record) return;
+            setBusy(el("updateButton"), false);
+            activeHistoryText = data.history || "";
+            el("fullHistory").value = activeHistoryText;
+            el("editRecordDescription").value = data.description || "";
+            el("editRecordDescription").disabled = false;
+            activeDescriptionLoaded = true;
+            el("toggleManual").disabled = false;
+            el("historyHint").textContent = "灰底唯讀。切換手動修改後可直接整理全文；新增附件或進度會置頂。時間軸上限 50,000 字元。";
+          })
+          .withFailureHandler(function (error) {
+            if (activeRecord !== record) return;
+            el("fullHistory").value = "";
+            el("historyHint").textContent = "完整時間軸載入失敗，請關閉視窗後重試。";
+            serverFailure(error);
+          })
+          .apiGetRecordHistory(record.id, record.rowIndex);
+      }
+      function openModal(id) { el(id).classList.add("open"); document.body.style.overflow = "hidden"; }
+      function closeModal(id) {
+        el(id).classList.remove("open");
+        if (id === "progressModal") {
+          el("progressFiles").value = "";
+          el("progressFileNames").textContent = "";
+        }
+        if (id === "newModal") {
+          el("newFiles").value = "";
+          el("newFileNames").textContent = "";
+        }
+        if (id === "progressModal") {
+          setBusy(el("updateButton"), false);
+          activeRecord = null;
+          activeHistoryText = "";
+          activeDescriptionLoaded = false;
+          el("editRecordDescription").disabled = true;
+          el("fullHistory").value = "";
+          el("toggleManual").disabled = false;
+        }
+        if (!document.querySelector(".modal-backdrop.open")) document.body.style.overflow = "";
+      }
+      function toggleManualMode() {
+        manualMode = !manualMode;
+        var history = el("fullHistory");
+        history.readOnly = !manualMode;
+        history.classList.toggle("history-readonly", !manualMode);
+        el("toggleManual").classList.toggle("btn-amber", manualMode);
+        el("toggleManual").textContent = manualMode ? "🔒 切回安全時間軸累加模式" : "🔧 切換為全文手動修改";
+        el("historyHint").textContent = manualMode
+          ? "手動模式：儲存時以此全文替換歷史；若本次另有進度或附件，系統會先加入時間戳與附件名稱。時間軸上限 50,000 字元。"
+          : "灰底唯讀。新增進度會置頂累加，保留舊時間軸。時間軸上限 50,000 字元。";
+      }
+      function openDrawer() {
+        drawerOpen = true;
+        el("drawerBackdrop").classList.add("open");
+        el("tasksDrawer").classList.add("open");
+        document.body.style.overflow = "hidden";
+        if (!tasksLoaded) loadTasks();
+      }
+      function closeDrawer() {
+        drawerOpen = false;
+        el("drawerBackdrop").classList.remove("open");
+        el("tasksDrawer").classList.remove("open");
+        if (!document.querySelector(".modal-backdrop.open")) document.body.style.overflow = "";
+      }
+      function loadTasks(append) {
+        if (tasksLoading || (append && !taskHasMore)) return;
+        tasksLoading = true;
+        if (!append) el("taskList").innerHTML = '<div class="loading"><span class="spinner"></span>載入 Tasks…</div>';
+        else renderTasks();
+        google.script.run
+          .withSuccessHandler(function (data) {
+            tasks = append ? tasks.concat(data.tasks || []) : (data.tasks || []);
+            tasksLoaded = true;
+            tasksLoading = false;
+            taskPageToken = data.nextPageToken || "";
+            taskHasMore = !!taskPageToken;
+            if (typeof data.openCount === "number") {
+              openTaskCount = data.openCount;
+              tasksCountKnown = true;
+            }
+            el("tasksSubtitle").textContent = data.title + "・你的個人 Google Tasks";
+            renderTasks();
+          })
+          .withFailureHandler(function (error) {
+            tasksLoading = false;
+            if (!append) el("taskList").innerHTML = "";
+            var message = document.createElement("div");
+            message.className = "task-empty";
+            message.textContent = error && error.message ? error.message : "載入 Tasks 失敗。";
+            el("taskList").appendChild(message);
+          })
+          .apiLoadTasks(append ? taskPageToken : "");
+      }
+      function renderTasks() {
+        var list = el("taskList");
+        list.innerHTML = "";
+        var openTasks = tasks.filter(function (task) { return !task.completed; });
+        var doneTasks = tasks.filter(function (task) { return task.completed; });
+        el("taskBadge").textContent = tasksCountKnown ? String(openTaskCount) : "…";
+        renderTaskSection(list, "未完成（已載入 " + openTasks.length + (tasksCountKnown ? " / 共 " + openTaskCount : "") + "）", openTasks);
+        renderTaskSection(list, "已完成（" + doneTasks.length + "）", doneTasks);
+        if (!tasks.length) {
+          var empty = document.createElement("div");
+          empty.className = "task-empty";
+          empty.textContent = "目前沒有任務。可在上方新增，或從案件卡片同步。";
+          list.appendChild(empty);
+        }
+        if (taskHasMore) {
+          var more = document.createElement("button");
+          more.type = "button";
+          more.className = "btn btn-outline";
+          more.style.width = "100%";
+          more.style.marginTop = "12px";
+          more.disabled = tasksLoading;
+          more.textContent = tasksLoading ? "載入中…" : "載入更多任務";
+          more.addEventListener("click", function () { loadTasks(true); });
+          list.appendChild(more);
+        }
+      }
+      function renderTaskSection(parent, title, taskList) {
+        var heading = document.createElement("div");
+        heading.className = "task-section-title";
+        heading.textContent = title;
+        parent.appendChild(heading);
+        if (!taskList.length) {
+          var empty = document.createElement("div");
+          empty.className = "task-empty";
+          empty.textContent = "沒有項目";
+          parent.appendChild(empty);
+          return;
+        }
+        taskList.forEach(function (task) {
+          var row = document.createElement("div");
+          row.className = "task-row";
+          var checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.className = "task-check";
+          checkbox.checked = task.completed;
+          checkbox.disabled = !!task.pending;
+          checkbox.setAttribute("aria-label", task.completed ? "標記為未完成" : "標記為完成");
+          checkbox.addEventListener("change", function () { toggleTask(task, checkbox); });
+          row.appendChild(checkbox);
+          var main = document.createElement("div");
+          main.className = "task-main";
+          var titleNode = document.createElement("div");
+          titleNode.className = "task-title" + (task.completed ? " done" : "");
+          titleNode.textContent = task.title;
+          main.appendChild(titleNode);
+          if (task.dueDate) {
+            var due = document.createElement("div");
+            due.className = "task-due";
+            due.textContent = "📅 " + task.dueDate;
+            main.appendChild(due);
+          }
+          row.appendChild(main);
+          var remove = document.createElement("button");
+          remove.type = "button";
+          remove.className = "task-delete";
+          remove.textContent = "×";
+          remove.title = "刪除此任務";
+          remove.addEventListener("click", function () { deleteTask(task); });
+          row.appendChild(remove);
+          parent.appendChild(row);
+        });
+      }
+      function toggleTask(task, checkbox) {
+        if (task.pending) return;
+        var wanted = checkbox.checked;
+        var old = task.completed;
+        task.pending = true;
+        task.completed = wanted;
+        if (old !== wanted && tasksCountKnown) openTaskCount += wanted ? -1 : 1;
+        renderTasks();
+        google.script.run
+          .withSuccessHandler(function (result) {
+            task.pending = false;
+            task.completed = result.completed;
+            renderTasks();
+          })
+          .withFailureHandler(function (error) {
+            task.pending = false;
+            task.completed = old;
+            if (old !== wanted && tasksCountKnown) openTaskCount += wanted ? 1 : -1;
+            renderTasks();
+            serverFailure(error);
+          })
+          .apiToggleTask(task.id, wanted);
+      }
+      function deleteTask(task) {
+        if (!window.confirm("確定刪除這項 Google Tasks 任務？")) return;
+        google.script.run
+          .withSuccessHandler(function () {
+            if (!task.completed && tasksCountKnown) openTaskCount = Math.max(0, openTaskCount - 1);
+            tasks = tasks.filter(function (item) { return item.id !== task.id; });
+            renderTasks();
+            showToast("任務已刪除。");
+          })
+          .withFailureHandler(serverFailure)
+          .apiDeleteTask(task.id);
+      }
+      function syncRecord(record, button) {
+        setBusy(button, true, "同步中…");
+        google.script.run
+          .withSuccessHandler(function (task) {
+            setBusy(button, false);
+            showToast("已同步到 Google Tasks。");
+            if (tasksLoaded) loadTasks(false);
+          })
+          .withFailureHandler(function (error) { setBusy(button, false); serverFailure(error); })
+          .apiSyncRecordToTask(record.id, record.rowIndex);
+      }
+      function renderSelectedFileNames(input, target) {
+        var files = Array.prototype.slice.call(input.files || []);
+        target.textContent = files.length ? files.map(function (file) { return file.name; }).join("、") : "";
+      }
+      function imageToJpeg(file) {
+        function imageElementSource() {
+          return new Promise(function (resolve, reject) {
+            var url = URL.createObjectURL(file);
+            var image = new Image();
+            image.onload = function () {
+              resolve({
+                source: image, width: image.naturalWidth, height: image.naturalHeight,
+                close: function () { URL.revokeObjectURL(url); }
+              });
+            };
+            image.onerror = function () { URL.revokeObjectURL(url); reject(new Error("無法解碼影像")); };
+            image.src = url;
+          });
+        }
+        var sourcePromise = window.createImageBitmap
+          ? createImageBitmap(file).then(function (bitmap) {
+              return {
+                source: bitmap, width: bitmap.width, height: bitmap.height,
+                close: function () { bitmap.close(); }
+              };
+            }).catch(imageElementSource)
+          : imageElementSource();
+
+        return sourcePromise.then(function (img) {
+          return new Promise(function (resolve, reject) {
+            try {
+              var scale = Math.min(1, 1600 / Math.max(img.width, img.height));
+              var width = Math.max(1, Math.round(img.width * scale));
+              var height = Math.max(1, Math.round(img.height * scale));
+              var canvas = document.createElement("canvas");
+              canvas.width = width;
+              canvas.height = height;
+              var context = canvas.getContext("2d", { alpha: false });
+              if (!context) throw new Error("無法建立圖片轉檔畫布");
+              context.fillStyle = "#ffffff";
+              context.fillRect(0, 0, width, height);
+              context.drawImage(img.source, 0, 0, width, height);
+              img.close();
+              canvas.toBlob(function (blob) {
+                if (!blob) { reject(new Error("JPEG 轉檔失敗")); return; }
+                var stem = file.name.replace(/\.[^.]+$/, "");
+                try {
+                  resolve(new File([blob], stem + ".jpg", { type: "image/jpeg", lastModified: Date.now() }));
+                } catch (err) {
+                  try { Object.defineProperty(blob, "name", { value: stem + ".jpg" }); } catch (ignored) {}
+                  resolve(blob);
+                }
+              }, "image/jpeg", 0.75);
+            } catch (err) {
+              try { img.close(); } catch (ignored) {}
+              reject(err);
+            }
+          });
+        });
+      }
+      function readAsBase64(file) {
+        return new Promise(function (resolve, reject) {
+          var reader = new FileReader();
+          reader.onload = function () {
+            var result = String(reader.result || "");
+            resolve(result.substring(result.indexOf(",") + 1));
+          };
+          reader.onerror = function () { reject(new Error("讀取附件失敗：" + file.name)); };
+          reader.readAsDataURL(file);
+        });
+      }
+      async function collectFiles(input, onProgress) {
+        var source = Array.prototype.slice.call(input.files || []);
+        var result = [];
+        var total = 0;
+        for (var i = 0; i < source.length; i++) {
+          var file = source[i];
+          if (onProgress) onProgress("處理附件 " + (i + 1) + " / " + source.length + "…");
+          var isHeic = isHeicFile(file);
+          var isImage = isHeic || !!(file.type && file.type.indexOf("image/") === 0);
+          var processed = file;
+          if (isImage) {
+            try {
+              processed = await imageToJpeg(file);
+            } catch (error) {
+              if (isHeic) {
+                throw new Error("這張 HEIC/HEIF 照片無法在目前瀏覽器轉成 JPEG。請先在 iPhone 將照片轉存為 JPEG，再重新選取。");
+              }
+              processed = file;
+            }
+          }
+          if (isHeic && (!processed.type || processed.type.toLowerCase() !== "image/jpeg")) {
+            throw new Error("HEIC/HEIF 必須先轉成 JPEG 才能上傳。");
+          }
+          total += processed.size;
+          if (total > uploadLimitBytes) {
+            throw new Error("本次附件合計超過 " + Math.floor(uploadLimitBytes / 1024 / 1024) + " MB。請分批上傳，或直接放入案件資料夾。");
+          }
+          var encoded = await readAsBase64(processed);
+          var outputName = processed.name || file.name;
+          if (isHeic && /\.hei[cf]$/i.test(outputName)) outputName = outputName.replace(/\.hei[cf]$/i, ".jpg");
+          result.push({
+            name: outputName,
+            mimeType: processed.type || file.type || "application/octet-stream",
+            data: encoded
+          });
+          if (onProgress) onProgress("已準備 " + (i + 1) + " / " + source.length + " 個附件・" + (total / 1024 / 1024).toFixed(1) + " MB");
+        }
+        return result;
+      }
+
+      function isHeicFile(file) {
+        return /\.(heic|heif)$/i.test(String(file.name || "")) ||
+          /image\/hei[cf]/i.test(String(file.type || ""));
+      }
+
+      function ensureRequestSize(payload) {
+        var size = new Blob([JSON.stringify(payload)]).size;
+        if (size > requestJsonLimitBytes) {
+          var message = "檔案合計過大，請分批上傳或只留重點附件";
+          window.alert(message);
+          throw new Error("REQUEST_SIZE_ALREADY_ALERTED");
+        }
+      }
+
+      function fastHash(text) {
+        var value = 2166136261;
+        text = String(text || "");
+        for (var i = 0; i < text.length; i++) {
+          value ^= text.charCodeAt(i);
+          value = Math.imul(value, 16777619);
+        }
+        return (value >>> 0).toString(16);
+      }
+
+      function requestFingerprint(payload) {
+        var copy = {};
+        Object.keys(payload).forEach(function (key) {
+          if (key !== "clientRequestId" && key !== "files") copy[key] = payload[key];
+        });
+        copy.files = (payload.files || []).map(function (file) {
+          return {
+            name: file.name, mimeType: file.mimeType,
+            length: file.data.length, hash: fastHash(file.data)
+          };
+        });
+        return fastHash(JSON.stringify(copy));
+      }
+
+      function makeRequestId() {
+        if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
+        return "req-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+      }
+
+      function prepareClientRequest(kind, payload) {
+        var fingerprint = requestFingerprint(payload);
+        var key = "fireNotebook.pending." + kind;
+        var saved = requestIdMemory[kind] || null;
+        try {
+          var raw = sessionStorage.getItem(key);
+          if (raw) saved = JSON.parse(raw);
+        } catch (ignored) {}
+        var next;
+        if (saved && saved.id && saved.fingerprint === fingerprint) {
+          next = saved;
+        } else {
+          if (saved && !window.confirm("上一筆操作的結果可能尚未確認。請先重新載入案件清單確認沒有建立或更新，再按「確定」開始新操作。")) {
+            throw new Error("為避免重複操作，已取消送出。");
+          }
+          next = { id: makeRequestId(), fingerprint: fingerprint };
+        }
+        payload.clientRequestId = next.id;
+        ensureRequestSize(payload);
+
+        // Persist only after validating the exact serialized payload. An
+        // oversized request must not leave a phantom retry ID in sessionStorage.
+        requestIdMemory[kind] = next;
+        try { sessionStorage.setItem(key, JSON.stringify(next)); } catch (ignored) {}
+        return next.id;
+      }
+
+      function clearClientRequestId(kind) {
+        delete requestIdMemory[kind];
+        try { sessionStorage.removeItem("fireNotebook.pending." + kind); } catch (ignored) {}
+      }
+      function handleNewSubmit(event) {
+        event.preventDefault();
+        if (newSubmitInFlight) return;
+        newSubmitInFlight = true;
+        var button = el("createButton");
+        setBusy(button, true, "壓縮附件並建立…");
+        collectFiles(el("newFiles"), function (label) { setBusy(button, true, label); }).then(function (files) {
+          var payload = {
+            date: el("newDate").value,
+            dueDate: el("newDueDate").value,
+            category: el("newCategory").value,
+            subject: el("newSubject").value,
+            description: el("newDescription").value,
+            status: el("newStatus").value,
+            addToTasks: el("newAddTask").checked,
+            files: files
+          };
+          prepareClientRequest("CREATE", payload);
+          setBusy(button, true, "送出案件與附件…");
+          google.script.run
+            .withSuccessHandler(function (result) {
+              newSubmitInFlight = false;
+              clearClientRequestId("CREATE");
+              setBusy(button, false);
+              mergeRecords([result.record], true);
+              closeModal("newModal");
+              if (result.taskWarning) showToast(result.taskWarning, true);
+              else showToast("案件已建立。" + (result.record.taskId ? " 已同步到 Tasks。" : ""));
+              el("searchInput").value = "";
+              selectedStatus = "全部";
+              selectedTag = "全部";
+              renderFilters();
+              renderCards();
+              if (tasksLoaded && result.record.taskId) loadTasks(false);
+            })
+            .withFailureHandler(function (error) {
+              newSubmitInFlight = false; setBusy(button, false);
+              if (!error || error.message !== "REQUEST_SIZE_ALREADY_ALERTED") serverFailure(error);
+            })
+            .apiCreateRecord(payload);
+        }).catch(function (error) {
+          newSubmitInFlight = false;
+          setBusy(button, false);
+          if (!error || error.message !== "REQUEST_SIZE_ALREADY_ALERTED") serverFailure(error);
+        });
+      }
+      function handleProgressSubmit(event) {
+        event.preventDefault();
+        if (!activeRecord || progressSubmitInFlight) return;
+        progressSubmitInFlight = true;
+        var previousStatus = activeRecord.status;
+        var button = el("updateButton");
+        setBusy(button, true, "壓縮附件並儲存…");
+        collectFiles(el("progressFiles"), function (label) { setBusy(button, true, label); }).then(function (files) {
+          var payload = {
+            id: activeRecord.id,
+            rowIndex: activeRecord.rowIndex,
+            date: el("editRecordDate").value,
+            category: el("editRecordCategory").value,
+            subject: el("editRecordSubject").value,
+            dueDate: el("editRecordDueDate").value,
+            status: el("progressStatus").value,
+            progressText: el("progressText").value,
+            manualMode: manualMode,
+            fullHistory: manualMode ? el("fullHistory").value : "",
+            files: files
+          };
+          if (activeDescriptionLoaded) payload.description = el("editRecordDescription").value;
+          prepareClientRequest("UPDATE", payload);
+          setBusy(button, true, "儲存進度與附件…");
+          google.script.run
+            .withSuccessHandler(function (result) {
+              progressSubmitInFlight = false;
+              clearClientRequestId("UPDATE");
+              setBusy(button, false);
+              mergeRecords([result.record], true);
+              closeModal("progressModal");
+              renderFilters();
+              renderCards();
+              if (result.taskWarning) showToast(result.taskWarning, true);
+              else showToast("案件進度已更新。");
+              activeRecord = null;
+              if (tasksLoaded && (result.record.status === "已結案" || previousStatus === "已結案")) loadTasks(false);
+            })
+            .withFailureHandler(function (error) {
+              progressSubmitInFlight = false; setBusy(button, false);
+              if (!error || error.message !== "REQUEST_SIZE_ALREADY_ALERTED") serverFailure(error);
+            })
+            .apiUpdateRecord(payload);
+        }).catch(function (error) {
+          progressSubmitInFlight = false;
+          setBusy(button, false);
+          if (!error || error.message !== "REQUEST_SIZE_ALREADY_ALERTED") serverFailure(error);
+        });
+      }
+      function handleQuickTask(event) {
+        event.preventDefault();
+        if (quickTaskInFlight) return;
+        quickTaskInFlight = true;
+        var titleInput = el("quickTaskTitle");
+        var dueInput = el("quickTaskDue");
+        var button = event.submitter || event.target.querySelector("button[type=submit]");
+        setBusy(button, true, "新增中…");
+        google.script.run
+          .withSuccessHandler(function (task) {
+            quickTaskInFlight = false;
+            setBusy(button, false);
+            tasks.unshift(task);
+            if (tasksCountKnown && !task.completed) openTaskCount++;
+            titleInput.value = "";
+            dueInput.value = "";
+            renderTasks();
+            showToast("任務已新增。");
+          })
+          .withFailureHandler(function (error) { quickTaskInFlight = false; setBusy(button, false); serverFailure(error); })
+          .apiAddQuickTask(titleInput.value, dueInput.value);
+      }
+      function loadArchiveYear(year) {
+        if (!year) return;
+        if (loadedYears[year]) {
+          renderCards();
+          return;
+        }
+        requestArchivePage(year, false);
+      }
+      function processPendingArchiveRequest() {
+        if (!pendingArchiveRequest) return false;
+        var year = pendingArchiveYear;
+        pendingArchiveRequest = false;
+        pendingArchiveYear = "";
+        if (year && selectedArchiveYear === year) loadArchiveYear(year);
+        else renderCards();
+        return true;
+      }
+      function requestArchivePage(year, append) {
+        if (recordsLoading) {
+          pendingArchiveRequest = true;
+          pendingArchiveYear = year;
+          return;
+        }
+        var state = archivePages[year] || { cursor: "", hasMore: true };
+        if (append && !state.hasMore) return;
+        var generation = archiveGenerations[year] || 0;
+        recordsLoading = true;
+        updateLoadMoreControl();
+        if (!append && !getRecords().length) {
+          el("cards").innerHTML = '<div class="loading"><span class="spinner"></span>載入 ' + year + ' 年歷史資料…</div>';
+        }
+        google.script.run
+          .withSuccessHandler(function (data) {
+            recordsLoading = false;
+            if (selectedArchiveYear !== year || (archiveGenerations[year] || 0) !== generation) {
+              processPendingArchiveRequest();
+              updateLoadMoreControl();
+              return;
+            }
+            mergeRecords(data.records || [], false);
+            archivePages[year] = { cursor: data.cursor || "", hasMore: !!data.hasMore };
+            loadedYears[year] = true;
+            renderArchiveYears();
+            el("archiveYear").value = year;
+            renderFilters();
+            renderCards();
+            if (!append) showToast("已載入 " + year + " 年歷史資料首批案件。");
+            processPendingArchiveRequest();
+          })
+          .withFailureHandler(function (error) {
+            recordsLoading = false;
+            if ((archiveGenerations[year] || 0) !== generation) {
+              processPendingArchiveRequest();
+              updateLoadMoreControl();
+              return;
+            }
+            if (!processPendingArchiveRequest()) {
+              if (selectedArchiveYear === year) {
+                selectedArchiveYear = "";
+                el("archiveYear").value = "";
+              }
+              renderCards();
+              serverFailure(error);
+            }
+          })
+          .apiLoadArchiveYear(year, append ? state.cursor : "");
+      }
+      function loadActivePage() {
+        if (recordsLoading || !activeHasMore) return;
+        recordsLoading = true;
+        updateLoadMoreControl();
+        google.script.run
+          .withSuccessHandler(function (data) {
+            recordsLoading = false;
+            mergeRecords(data.records || [], true);
+            activeCursor = data.cursor || "";
+            activeHasMore = !!data.hasMore;
+            renderFilters();
+            renderCards();
+            processPendingArchiveRequest();
+          })
+          .withFailureHandler(function (error) {
+            recordsLoading = false;
+            updateLoadMoreControl();
+            if (!processPendingArchiveRequest()) serverFailure(error);
+          })
+          .apiLoadActivePage(activeCursor);
+      }
+      function init() {
+        el("openNew").addEventListener("click", openNewModal);
+        el("openTasks").addEventListener("click", openDrawer);
+        el("closeTasks").addEventListener("click", closeDrawer);
+        el("drawerBackdrop").addEventListener("click", closeDrawer);
+        el("toggleArchive").addEventListener("click", function () {
+          var select = el("archiveYear");
+          var wasOpen = !select.classList.contains("hidden");
+          select.classList.toggle("hidden");
+          if (wasOpen) {
+            var year = selectedArchiveYear || select.value;
+            selectedArchiveYear = "";
+            select.value = "";
+            if (year) unloadArchiveYear(year);
+            if (pendingArchiveYear === year) {
+              pendingArchiveRequest = false;
+              pendingArchiveYear = "";
+            }
+            renderFilters();
+            renderCards();
+          }
+          renderArchiveYears();
+        });
+        el("archiveYear").addEventListener("change", function () {
+          var nextYear = this.value;
+          if (selectedArchiveYear && selectedArchiveYear !== nextYear) unloadArchiveYear(selectedArchiveYear);
+          selectedArchiveYear = nextYear;
+          renderCards();
+          if (recordsLoading) {
+            pendingArchiveRequest = true;
+            pendingArchiveYear = nextYear;
+          } else if (nextYear) loadArchiveYear(nextYear);
+        });
+        el("searchInput").addEventListener("input", function () {
+          clearTimeout(searchTimer);
+          searchTimer = setTimeout(renderCards, 180);
+        });
+        el("loadMoreRecords").addEventListener("click", loadMoreRecords);
+        el("newFiles").addEventListener("change", function () { renderSelectedFileNames(this, el("newFileNames")); });
+        el("progressFiles").addEventListener("change", function () { renderSelectedFileNames(this, el("progressFileNames")); });
+        el("newStatus").addEventListener("change", function () {
+          if (this.value === "存查" || this.value === "已結案") el("newAddTask").checked = false;
+          else el("newAddTask").checked = true;
+        });
+        el("newForm").addEventListener("submit", handleNewSubmit);
+        el("progressForm").addEventListener("submit", handleProgressSubmit);
+        el("toggleManual").addEventListener("click", toggleManualMode);
+        el("quickTaskForm").addEventListener("submit", handleQuickTask);
+        Array.prototype.forEach.call(document.querySelectorAll(".close-modal"), function (button) {
+          button.addEventListener("click", function () {
+            var modal = button.closest(".modal-backdrop");
+            if (modal) closeModal(modal.id);
+          });
+        });
+        Array.prototype.forEach.call(document.querySelectorAll(".modal-backdrop"), function (backdrop) {
+          backdrop.addEventListener("click", function (event) {
+            if (event.target === backdrop) closeModal(backdrop.id);
+          });
+        });
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            closeDrawer();
+            Array.prototype.forEach.call(document.querySelectorAll(".modal-backdrop.open"), function (modal) { closeModal(modal.id); });
+          }
+        });
+        loadBootstrap();
+      }
+      init();
+    })();
+  </script>
+</body>
+</html>

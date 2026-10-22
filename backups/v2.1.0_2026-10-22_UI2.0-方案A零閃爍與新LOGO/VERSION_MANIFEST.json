@@ -1,0 +1,52 @@
+{
+  "version": "v2.1.0",
+  "slug": "UI2.0-方案A零閃爍與新LOGO",
+  "date": "2026-10-22",
+  "createdAt": "2026-10-22 19:57:51",
+  "folderName": "v2.1.0_2026-10-22_UI2.0-方案A零閃爍與新LOGO",
+  "summary": "UI 2.0 正式版＋方案 A 零閃爍自然捲動＋救護包公文夾新 LOGO",
+  "changes": [
+    "頂部改為方案 A（僅固定深紅窄標題列，搜尋與篩選列隨手指 1:1 自然捲走，徹底消除捲動高度回彈閃爍，並於手機頂欄新增「🔍 搜尋/篩選」快速回頂端鈕）",
+    "更換全套系統圖示為「消防業務卷宗＋急救包＋水帶」新 LOGO（含網頁頂欄、iOS/Android 主畫面圖示與 Windows 桌面 .ico）",
+    "預設載入範圍由「近 90 天」升級為「當年度 YYYY-01-01 起全部案件（含已結案）＋跨年未結案」，並為跨年未結案加上醒目橘色標籤",
+    "手機版開啟公文內文／更新進度與新增建檔改為 Bottom Sheet 底部抽屜模式，多行說明框採用柔和淺色底（#f8fafc）",
+    "進度歷史支援垂直視覺化時間軸（可一鍵切回全文手動修改）與現代化拖曳檔案上傳區（Dropzone）"
+  ],
+  "files": [
+    {
+      "relativePath": "outputs/Code.gs",
+      "sizeBytes": 72942,
+      "sha256": "94aed0b31e5a4dbab89b097052e532b16ee87c0f14d27ebb0780b88723e7829a"
+    },
+    {
+      "relativePath": "outputs/Index.html",
+      "sizeBytes": 142029,
+      "sha256": "9b9ebead2011dee14d0c9ade3eaf54f222c25a37736b1d1bcdeae3e5ca50dd61"
+    },
+    {
+      "relativePath": "outputs/UI-Preview.html",
+      "sizeBytes": 91518,
+      "sha256": "9ea48fb33a5b0903ca1d3130ea27201f28ced37e818870c8240650014acc745b"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon.ico",
+      "sizeBytes": 204190,
+      "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon.png",
+      "sizeBytes": 467161,
+      "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon-192.png",
+      "sizeBytes": 82349,
+      "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon-180.png",
+      "sizeBytes": 73083,
+      "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+    }
+  ]
+}
