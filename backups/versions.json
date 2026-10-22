@@ -1,5 +1,89 @@
 [
   {
+    "version": "v2.4.0",
+    "slug": "手機版C2單行滾輪篩選與待辦說明彈窗",
+    "date": "2026-10-22",
+    "createdAt": "2026-10-22 23:18:28",
+    "folderName": "v2.4.0_2026-10-22_手機版C2單行滾輪篩選與待辦說明彈窗",
+    "summary": "實作手機版方案 C2（40px 單行極簡內嵌上下滾輪篩選器：執行狀態＋標籤類別，預設全部）與待辦事項「ⓘ 說明」彈跳式視窗。",
+    "changes": [
+      "手機版篩選列升級為方案 C2 單行極簡上下滾輪（40px 高，支援上下滑動翻頁、▲/▼ 按鈕與一鍵重設全部）",
+      "待辦事項（消防）抽屜移除常駐黃框，改為標題旁「ⓘ 說明」按鈕與彈跳說明視窗"
+    ],
+    "files": [
+      {
+        "relativePath": "outputs/Code.gs",
+        "sizeBytes": 77633,
+        "sha256": "bda87113a46f97987ab8fe429a4119e0ef5b8d1b8d7805f527fdaeb2647b133e"
+      },
+      {
+        "relativePath": "outputs/Index.html",
+        "sizeBytes": 188633,
+        "sha256": "7c2fad524462081f4de57b8e3f5e24658e8d9342341ae5c2e701125cb52dbc45"
+      },
+      {
+        "relativePath": "outputs/UI-Preview.html",
+        "sizeBytes": 188633,
+        "sha256": "7c2fad524462081f4de57b8e3f5e24658e8d9342341ae5c2e701125cb52dbc45"
+      },
+      {
+        "relativePath": "outputs/Desktop-Icon.ico",
+        "sizeBytes": 204190,
+        "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+      },
+      {
+        "relativePath": "outputs/Desktop-Icon.png",
+        "sizeBytes": 467161,
+        "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+      },
+      {
+        "relativePath": "outputs/Desktop-Icon-192.png",
+        "sizeBytes": 82349,
+        "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+      },
+      {
+        "relativePath": "outputs/Desktop-Icon-180.png",
+        "sizeBytes": 73083,
+        "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+      },
+      {
+        "relativePath": "pwa/apple-touch-icon.png",
+        "sizeBytes": 73083,
+        "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+      },
+      {
+        "relativePath": "pwa/favicon.ico",
+        "sizeBytes": 204190,
+        "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+      },
+      {
+        "relativePath": "pwa/icon-192.png",
+        "sizeBytes": 82349,
+        "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+      },
+      {
+        "relativePath": "pwa/icon-512.png",
+        "sizeBytes": 467161,
+        "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+      },
+      {
+        "relativePath": "pwa/index.html",
+        "sizeBytes": 188633,
+        "sha256": "7c2fad524462081f4de57b8e3f5e24658e8d9342341ae5c2e701125cb52dbc45"
+      },
+      {
+        "relativePath": "pwa/manifest.json",
+        "sizeBytes": 685,
+        "sha256": "75cf8ef908ac40e4df1968abc6fb78628a3ef70ac191a0a389b5f08ef92af86e"
+      },
+      {
+        "relativePath": "pwa/sw.js",
+        "sizeBytes": 1831,
+        "sha256": "f742fe8f766bf59856935eafdd497ee9a8bec89e224c4b12a407b720498c75a5"
+      }
+    ]
+  },
+  {
     "version": "v2.3.0",
     "slug": "0.05秒瞬開快取與後端IO瘦身",
     "date": "2026-10-22",

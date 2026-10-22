@@ -327,9 +327,82 @@
     }
     .tasks-drawer.open { transform: translateX(0); }
     .drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+    .drawer-title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .drawer-title { margin: 0; font-size: 18px; }
     .drawer-subtitle { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
-    .task-note { margin: 0; padding: 10px 16px; color: #7c2d12; background: #fff7ed; border-bottom: 1px solid #fed7aa; font-size: 12px; line-height: 1.5; }
+    .task-note-btn {
+      display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 999px;
+      border: 1px solid #f59e0b; background: #fffbeb; color: #b45309; font-size: 12px; font-weight: 800;
+      transition: background .15s ease, transform .12s ease;
+    }
+    .task-note-btn:hover { background: #fef3c7; transform: translateY(-1px); }
+    .task-note-modal-backdrop {
+      position: fixed; inset: 0; z-index: 65; display: none;
+      align-items: center; justify-content: center; padding: 20px;
+      background: rgba(15, 23, 42, .52); backdrop-filter: blur(3px);
+    }
+    .task-note-modal-backdrop.open { display: flex; }
+    .task-note-modal-card {
+      width: min(340px, 100%); background: #fff; border-radius: 18px; padding: 18px;
+      border: 1px solid #fde68a; box-shadow: 0 20px 42px rgba(15, 23, 42, .28);
+      animation: sheetPop .18s cubic-bezier(.22,1,.36,1);
+    }
+    .task-note-modal-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 15px; color: var(--ink); }
+    .task-note-modal-icon {
+      width: 32px; height: 32px; border-radius: 10px; background: #fef3c7; color: #b45309;
+      display: inline-grid; place-items: center; font-size: 16px;
+    }
+    .task-note-modal-body {
+      margin: 0 0 14px; padding: 11px 12px; border-radius: 11px;
+      background: #fffbeb; border: 1px solid #fde68a; color: #7c2d12; font-size: 13px; line-height: 1.6;
+    }
+
+    /* 方案 C2：手機版單行極簡上下滾輪（40px 高） */
+    .mobile-wheel-bar { display: none; }
+    .wheel-c2 {
+      position: relative; height: 40px; background: #fff; border: 1px solid #cbd5e1;
+      border-radius: 12px; overflow: hidden; box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+      display: flex; align-items: center; min-width: 0;
+    }
+    .wheel-c2.filtered { border-color: #fca5a5; background: #fffdfd; }
+    .wheel-c2-prefix {
+      padding: 0 7px 0 9px; font-size: 12px; font-weight: 800; color: #64748b;
+      border-right: 1px solid #e2e8f0; white-space: nowrap; user-select: none;
+    }
+    .wheel-c2-scroller {
+      flex: 1; height: 40px; overflow-y: scroll; scroll-snap-type: y mandatory;
+      scrollbar-width: none; -ms-overflow-style: none; min-width: 0;
+      overscroll-behavior-y: contain;
+    }
+    .wheel-c2-scroller::-webkit-scrollbar { display: none; }
+    .wheel-c2-item {
+      height: 40px; padding: 0 4px; display: flex; align-items: center; justify-content: center;
+      gap: 4px; font-size: 13px; font-weight: 800; color: var(--ink);
+      scroll-snap-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      user-select: none;
+    }
+    .wheel-c2-item.is-active-filter { color: var(--red-dark); }
+    .wheel-c2-count {
+      font-size: 11px; padding: 0 5px; border-radius: 999px;
+      background: rgba(15, 23, 42, .07); color: #334155; font-weight: 800;
+    }
+    .wheel-c2-item.is-active-filter .wheel-c2-count {
+      background: #fee2e2; color: #991b1b;
+    }
+    .wheel-c2-arrows {
+      display: flex; flex-direction: column; padding-right: 5px; line-height: 1; gap: 1px;
+    }
+    .wheel-c2-arrows button {
+      border: 0; background: transparent; padding: 1px 4px; font-size: 10px;
+      color: #64748b; border-radius: 4px; line-height: 1;
+    }
+    .wheel-c2-arrows button:active, .wheel-c2-arrows button:hover {
+      color: var(--red-dark); background: #fee2e2;
+    }
+    .wheel-reset-pill {
+      border: 0; background: #fee2e2; color: #991b1b; font-size: 12px; font-weight: 800;
+      padding: 2px 8px; border-radius: 999px;
+    }
     .icon-button { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font-size: 18px; display: inline-grid; place-items: center; }
     .icon-button:hover { background: #f1f5f9; }
     .task-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: #f8fafc; }
@@ -509,7 +582,10 @@
       .command-bar { flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
       .archive-tools { width: 100%; }
       .archive-select { flex: 1; height: 38px; }
-      .filter-dashboard { padding: 6px 8px; gap: 6px; }
+      .filter-dashboard { display: none; }
+      .mobile-wheel-bar {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-bottom: 6px;
+      }
       .container { width: calc(100% - 20px); margin: 4px auto 40px; }
       .cards { grid-template-columns: 1fr; gap: 10px; }
       .card { padding: 14px 14px 13px 18px; }
@@ -618,10 +694,31 @@
         <div class="status-tabs" id="statusFilters" aria-label="狀態過濾"></div>
         <div class="filter-line" id="categoryFilters" aria-label="標籤過濾"></div>
       </div>
+      <div class="mobile-wheel-bar" aria-label="手機上下滾輪篩選">
+        <div class="wheel-c2" id="mobileStatusWheelBox">
+          <span class="wheel-c2-prefix">狀態</span>
+          <div class="wheel-c2-scroller" id="mobileStatusWheel" aria-label="上下滾動選擇執行狀態"></div>
+          <div class="wheel-c2-arrows">
+            <button type="button" id="statusWheelUp" aria-label="上一個狀態" title="上一個狀態">▲</button>
+            <button type="button" id="statusWheelDown" aria-label="下一個狀態" title="下一個狀態">▼</button>
+          </div>
+        </div>
+        <div class="wheel-c2" id="mobileTagWheelBox">
+          <span class="wheel-c2-prefix">標籤</span>
+          <div class="wheel-c2-scroller" id="mobileTagWheel" aria-label="上下滾動選擇標籤類別"></div>
+          <div class="wheel-c2-arrows">
+            <button type="button" id="tagWheelUp" aria-label="上一個標籤" title="上一個標籤">▲</button>
+            <button type="button" id="tagWheelDown" aria-label="下一個標籤" title="下一個標籤">▼</button>
+          </div>
+        </div>
+      </div>
     </section>
     <div class="list-heading">
       <strong id="resultTitle">當年度案件與跨年未結案</strong>
-      <span id="resultSummary"></span>
+      <div style="display:flex;align-items:center;gap:6px">
+        <button class="wheel-reset-pill hidden" id="mobileResetFilterBtn" type="button">↺ 全部</button>
+        <span id="resultSummary"></span>
+      </div>
     </div>
     <section class="cards" id="cards" aria-live="polite">
       <div class="loading"><span class="spinner"></span>載入案件資料…</div>
@@ -640,12 +737,14 @@
   <aside class="tasks-drawer" id="tasksDrawer" aria-label="Google Tasks 消防待辦">
     <div class="drawer-head">
       <div>
-        <h2 class="drawer-title">🚒 待辦事項 (消防)</h2>
+        <div class="drawer-title-row">
+          <h2 class="drawer-title">🚒 待辦事項 (消防)</h2>
+          <button class="task-note-btn" id="openTaskNoteBtn" type="button" aria-label="查看待辦事項同步說明">ⓘ 說明</button>
+        </div>
         <p class="drawer-subtitle" id="tasksSubtitle">連結至你的 Google Tasks 清單</p>
       </div>
       <button class="icon-button" id="closeTasks" type="button" aria-label="關閉待辦面板">×</button>
     </div>
-    <p class="task-note">勾選僅完成 Google Tasks 待辦提醒；案件結案請至案件卡片更新進度</p>
     <form class="task-form" id="quickTaskForm">
       <input class="field" id="quickTaskTitle" type="text" maxlength="1024" placeholder="新增臨時交辦任務…" required>
       <input class="field task-date" id="quickTaskDue" type="date" aria-label="任務日期">
@@ -653,6 +752,17 @@
     </form>
     <div class="task-list" id="taskList"><div class="task-empty">開啟待辦面板時載入任務。</div></div>
   </aside>
+
+  <div class="task-note-modal-backdrop" id="taskNoteModal" role="dialog" aria-modal="true" aria-labelledby="taskNoteModalTitle">
+    <div class="task-note-modal-card">
+      <div class="task-note-modal-head">
+        <span class="task-note-modal-icon">💡</span>
+        <strong id="taskNoteModalTitle">待辦事項同步說明</strong>
+      </div>
+      <p class="task-note-modal-body">勾選僅完成 <strong>Google Tasks 待辦提醒</strong>；案件結案請至<strong>案件卡片更新進度</strong>。</p>
+      <button class="btn btn-primary" id="closeTaskNoteBtn" type="button" style="width:100%">我知道了</button>
+    </div>
+  </div>
 
   <div class="modal-backdrop" id="newModal" role="dialog" aria-modal="true" aria-labelledby="newModalTitle">
     <section class="modal">
@@ -1328,17 +1438,106 @@
           return isActiveRecord(record);
         });
       }
-      function renderFilters() {
+      var wheelScrollTimers = {};
+      var wheelProgrammaticLock = { status: false, tag: false };
+      var currentTagOptions = ["全部"];
+
+      function getAvailableTags() {
         var tags = STANDARD_TAGS.slice();
         getScopedRecords().forEach(function (record) {
           if (record.category && tags.indexOf(record.category) === -1) tags.push(record.category);
         });
+        return ["全部"].concat(tags);
+      }
+
+      function renderMobileWheels() {
+        var records = getScopedRecords();
+        var statusWheel = el("mobileStatusWheel");
+        var tagWheel = el("mobileTagWheel");
+        var ROW_H = 40;
+
+        if (statusWheel) {
+          statusWheel.innerHTML = "";
+          var activeStatusIdx = 0;
+          STATUS_ITEMS.forEach(function (item, idx) {
+            if (item.key === selectedStatus) activeStatusIdx = idx;
+            var count = item.key === "全部" ? records.length : records.filter(function (record) { return record.status === item.key; }).length;
+            var row = document.createElement("div");
+            row.className = "wheel-c2-item" + (item.key !== "全部" && item.key === selectedStatus ? " is-active-filter" : "");
+            var labelSpan = document.createElement("span");
+            labelSpan.textContent = item.label;
+            var countSpan = document.createElement("span");
+            countSpan.className = "wheel-c2-count";
+            countSpan.textContent = String(count);
+            row.appendChild(labelSpan);
+            row.appendChild(countSpan);
+            statusWheel.appendChild(row);
+          });
+          wheelProgrammaticLock.status = true;
+          statusWheel.scrollTop = activeStatusIdx * ROW_H;
+          setTimeout(function () { wheelProgrammaticLock.status = false; }, 120);
+        }
+
+        currentTagOptions = getAvailableTags();
+        if (tagWheel) {
+          tagWheel.innerHTML = "";
+          var activeTagIdx = 0;
+          currentTagOptions.forEach(function (tag, idx) {
+            if (tag === selectedTag) activeTagIdx = idx;
+            var count = tag === "全部" ? records.length : records.filter(function (record) { return record.category === tag; }).length;
+            var row = document.createElement("div");
+            row.className = "wheel-c2-item" + (tag !== "全部" && tag === selectedTag ? " is-active-filter" : "");
+            var labelSpan = document.createElement("span");
+            labelSpan.textContent = tag === "全部" ? "全部" : ((TAG_ICONS[tag] || "🏷️") + " " + tag);
+            var countSpan = document.createElement("span");
+            countSpan.className = "wheel-c2-count";
+            countSpan.textContent = String(count);
+            row.appendChild(labelSpan);
+            row.appendChild(countSpan);
+            tagWheel.appendChild(row);
+          });
+          wheelProgrammaticLock.tag = true;
+          tagWheel.scrollTop = activeTagIdx * ROW_H;
+          setTimeout(function () { wheelProgrammaticLock.tag = false; }, 120);
+        }
+
+        if (el("mobileStatusWheelBox")) el("mobileStatusWheelBox").classList.toggle("filtered", selectedStatus !== "全部");
+        if (el("mobileTagWheelBox")) el("mobileTagWheelBox").classList.toggle("filtered", selectedTag !== "全部");
+        if (el("mobileResetFilterBtn")) {
+          el("mobileResetFilterBtn").classList.toggle("hidden", selectedStatus === "全部" && selectedTag === "全部");
+        }
+      }
+
+      function stepMobileWheel(kind, delta) {
+        if (kind === "status") {
+          var sIdx = STATUS_ITEMS.findIndex(function (x) { return x.key === selectedStatus; });
+          if (sIdx < 0) sIdx = 0;
+          var nextS = Math.max(0, Math.min(STATUS_ITEMS.length - 1, sIdx + delta));
+          if (STATUS_ITEMS[nextS].key !== selectedStatus) {
+            selectedStatus = STATUS_ITEMS[nextS].key;
+            renderFilters();
+            renderCards();
+          }
+        } else {
+          var tags = getAvailableTags();
+          var tIdx = tags.indexOf(selectedTag);
+          if (tIdx < 0) tIdx = 0;
+          var nextT = Math.max(0, Math.min(tags.length - 1, tIdx + delta));
+          if (tags[nextT] !== selectedTag) {
+            selectedTag = tags[nextT];
+            renderFilters();
+            renderCards();
+          }
+        }
+      }
+
+      function renderFilters() {
+        var all = getAvailableTags();
         var container = el("categoryFilters");
         container.innerHTML = "";
         var divider = document.createElement("div");
         divider.className = "filter-divider";
         container.appendChild(divider);
-        var all = ["全部"].concat(tags);
         all.forEach(function (tag) {
           var button = document.createElement("button");
           button.type = "button";
@@ -1375,6 +1574,7 @@
           });
           container.appendChild(button);
         });
+        renderMobileWheels();
       }
       function visibleRecords() {
         var query = el("searchInput").value.trim().toLocaleLowerCase();
@@ -2367,6 +2567,70 @@
         if (el("mobileOpenTasks")) el("mobileOpenTasks").addEventListener("click", openDrawer);
         el("closeTasks").addEventListener("click", closeDrawer);
         el("drawerBackdrop").addEventListener("click", closeDrawer);
+
+        if (el("openTaskNoteBtn") && el("taskNoteModal")) {
+          el("openTaskNoteBtn").addEventListener("click", function () {
+            el("taskNoteModal").classList.add("open");
+          });
+          el("closeTaskNoteBtn").addEventListener("click", function () {
+            el("taskNoteModal").classList.remove("open");
+          });
+          el("taskNoteModal").addEventListener("click", function (ev) {
+            if (ev.target === el("taskNoteModal")) el("taskNoteModal").classList.remove("open");
+          });
+        }
+
+        if (el("mobileStatusWheel")) {
+          el("mobileStatusWheel").addEventListener("scroll", function () {
+            if (wheelProgrammaticLock.status) return;
+            var scroller = this;
+            clearTimeout(wheelScrollTimers.status);
+            wheelScrollTimers.status = setTimeout(function () {
+              var idx = Math.round(scroller.scrollTop / 40);
+              idx = Math.max(0, Math.min(STATUS_ITEMS.length - 1, idx));
+              var chosen = STATUS_ITEMS[idx].key;
+              if (chosen !== selectedStatus) {
+                selectedStatus = chosen;
+                renderCards();
+              } else {
+                scroller.scrollTo({ top: idx * 40, behavior: "smooth" });
+              }
+            }, 90);
+          }, { passive: true });
+        }
+
+        if (el("mobileTagWheel")) {
+          el("mobileTagWheel").addEventListener("scroll", function () {
+            if (wheelProgrammaticLock.tag) return;
+            var scroller = this;
+            clearTimeout(wheelScrollTimers.tag);
+            wheelScrollTimers.tag = setTimeout(function () {
+              var tags = currentTagOptions.length ? currentTagOptions : getAvailableTags();
+              var idx = Math.round(scroller.scrollTop / 40);
+              idx = Math.max(0, Math.min(tags.length - 1, idx));
+              var chosen = tags[idx];
+              if (chosen !== selectedTag) {
+                selectedTag = chosen;
+                renderCards();
+              } else {
+                scroller.scrollTo({ top: idx * 40, behavior: "smooth" });
+              }
+            }, 90);
+          }, { passive: true });
+        }
+
+        if (el("statusWheelUp")) el("statusWheelUp").addEventListener("click", function () { stepMobileWheel("status", -1); });
+        if (el("statusWheelDown")) el("statusWheelDown").addEventListener("click", function () { stepMobileWheel("status", 1); });
+        if (el("tagWheelUp")) el("tagWheelUp").addEventListener("click", function () { stepMobileWheel("tag", -1); });
+        if (el("tagWheelDown")) el("tagWheelDown").addEventListener("click", function () { stepMobileWheel("tag", 1); });
+        if (el("mobileResetFilterBtn")) {
+          el("mobileResetFilterBtn").addEventListener("click", function () {
+            selectedStatus = "全部";
+            selectedTag = "全部";
+            renderFilters();
+            renderCards();
+          });
+        }
 
         /* 方案 A：點擊頂部「🔍 搜尋/篩選」平滑捲回頂端搜尋列 */
         if (el("scrollToSearchBtn")) {
