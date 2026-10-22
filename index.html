@@ -875,6 +875,41 @@
         authModalOpen = false;
       }
 
+      function parseGasResponseText(rawText) {
+        var trimmed = String(rawText || "").trim();
+        if (!trimmed) throw new Error("伺服器回傳空白內容");
+        try {
+          return JSON.parse(trimmed);
+        } catch (e) {
+          var titleMatch = trimmed.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+          var titleText = titleMatch ? titleMatch[1].replace(/\s+/g, " ").trim() : "";
+          var bodyMatch = trimmed.replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+          var detail = titleText || bodyMatch.slice(0, 120) || trimmed.slice(0, 80);
+          throw new Error("Google 回傳了網頁而非資料 (" + detail + ")");
+        }
+      }
+
+      function sendGasPost(payloadObj, isRetry) {
+        var targetUrl = GAS_API_URL + "?_t=" + Date.now() + (isRetry ? "&retry=1" : "");
+        return fetch(targetUrl, {
+          method: "POST",
+          mode: "cors",
+          credentials: "omit",
+          cache: "no-store",
+          redirect: "follow",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payloadObj)
+        })
+          .then(function (res) { return res.text(); })
+          .then(function (text) { return parseGasResponseText(text); })
+          .catch(function (err) {
+            if (!isRetry) {
+              return sendGasPost(payloadObj, true);
+            }
+            throw err;
+          });
+      }
+
       function callGasApi(action, args, onSuccess, onFailure) {
         var passcode = getSavedPasscode();
         if (!passcode && action !== "apiVerifyPasscode") {
@@ -882,18 +917,11 @@
           showAuthGate("");
           return;
         }
-        fetch(GAS_API_URL, {
-          method: "POST",
-          mode: "cors",
-          redirect: "follow",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({
-            passcode: passcode,
-            action: action,
-            args: args || []
-          })
-        })
-          .then(function (res) { return res.json(); })
+        sendGasPost({
+          passcode: passcode,
+          action: action,
+          args: args || []
+        }, false)
           .then(function (data) {
             if (data && data.ok) {
               if (onSuccess) onSuccess(data.result);
@@ -907,7 +935,7 @@
             }
           })
           .catch(function (err) {
-            if (onFailure) onFailure({ message: "連線至 Google Apps Script 失敗，請確認已部署新版本且權限設為「所有人」。(" + (err && err.message ? err.message : err) + ")" });
+            if (onFailure) onFailure({ message: "連線至 Google Apps Script 失敗：" + (err && err.message ? err.message : err) });
           });
       }
 
@@ -956,14 +984,7 @@
             errNode.textContent = "";
             setSavedPasscode(candidate);
 
-            fetch(GAS_API_URL, {
-              method: "POST",
-              mode: "cors",
-              redirect: "follow",
-              headers: { "Content-Type": "text/plain;charset=utf-8" },
-              body: JSON.stringify({ passcode: candidate, action: "apiVerifyPasscode", args: [] })
-            })
-              .then(function (r) { return r.json(); })
+            sendGasPost({ passcode: candidate, action: "apiVerifyPasscode", args: [] }, false)
               .then(function (data) {
                 btn.disabled = false;
                 btn.textContent = "🔓 驗證並設為信任裝置";

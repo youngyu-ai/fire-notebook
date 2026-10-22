@@ -1,4 +1,4 @@
-const CACHE_NAME = "fire-notebook-pwa-v2.2.0";
+const CACHE_NAME = "fire-notebook-pwa-v2.2.1";
 const SHELL_ASSETS = [
   "./",
   "./index.html",
