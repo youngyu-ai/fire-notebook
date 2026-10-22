@@ -3,7 +3,7 @@
     "version": "v2.3.0",
     "slug": "0.05秒瞬開快取與後端IO瘦身",
     "date": "2026-10-22",
-    "createdAt": "2026-10-22 22:29:19",
+    "createdAt": "2026-10-22 22:35:19",
     "folderName": "v2.3.0_2026-10-22_0.05秒瞬開快取與後端IO瘦身",
     "summary": "實作方案 1（localStorage 0.05 秒瞬開快取 Stale-While-Revalidate ＋ 頂部同步狀態呼吸燈）與方案 2（後端 Code.gs 移除 apiBootstrap 中 DriveApp 喚醒與重複試算表表頭檢查之無副作用 I/O 瘦身）。",
     "changes": [
@@ -14,8 +14,8 @@
     "files": [
       {
         "relativePath": "outputs/Code.gs",
-        "sizeBytes": 77425,
-        "sha256": "88607e6b76d6ec43d0635e63b9eda4236565308a5475c01f79150e9ab81f111b"
+        "sizeBytes": 77633,
+        "sha256": "bda87113a46f97987ab8fe429a4119e0ef5b8d1b8d7805f527fdaeb2647b133e"
       },
       {
         "relativePath": "outputs/Index.html",

@@ -172,8 +172,15 @@ function apiBootstrap() {
   });
   const page = pageRecords_(active, "");
   const years = archiveYearsFromMetadata_(rows, cutoff);
-  const rootId = configuredRootFolderId_();
-  const rootUrl = rootId ? ("https://drive.google.com/drive/folders/" + rootId) : "";
+  let rootUrl = "";
+  try {
+    const rootId = (ROOT_FOLDER_ID && ROOT_FOLDER_ID !== "YOUR_FOLDER_ID")
+      ? ROOT_FOLDER_ID
+      : (PropertiesService.getScriptProperties().getProperty("ROOT_FOLDER_ID") || "");
+    if (rootId) rootUrl = "https://drive.google.com/drive/folders/" + rootId;
+  } catch (err) {
+    rootUrl = "";
+  }
   return {
     records: hydrateRecords_(page.records, false, metadata.rowById, sheet),
     activeCursor: page.cursor,
