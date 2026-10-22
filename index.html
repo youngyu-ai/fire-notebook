@@ -61,8 +61,17 @@
     .sync-pill {
       display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px;
       background: rgba(255,255,255,.14); color: rgba(255,255,255,.92); font-size: 12px; font-weight: 600;
+      transition: background .2s ease;
     }
-    .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 3px rgba(74,222,128,.25); }
+    .sync-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
+      box-shadow: 0 0 0 3px rgba(74,222,128,.25); transition: background .2s ease, box-shadow .2s ease;
+    }
+    .sync-dot.syncing {
+      background: #fbbf24; box-shadow: 0 0 0 3px rgba(251,191,36,.32);
+      animation: syncPulse 1.2s ease-in-out infinite;
+    }
+    @keyframes syncPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .45; transform: scale(.85); } }
     .brand-subtitle { margin-top: 2px; color: rgba(255,255,255,.78); font-size: 12px; }
     .top-actions { display: flex; align-items: center; gap: 8px; }
     .mobile-search-jump { display: none; }
@@ -577,7 +586,7 @@
       <div>
         <div class="brand-title-row">
           <span class="brand-title">消防小本本</span>
-          <span class="sync-pill" title="預設載入當年度全部案件與跨年未結案；完整進度與 Tasks 於開啟時即時讀取"><span class="sync-dot"></span>當年度已載入</span>
+          <span class="sync-pill" id="syncPill" title="秒開本機快取並於背景自動同步最新雲端公文；完整進度與 Tasks 於開啟時即時讀取"><span class="sync-dot" id="syncDot"></span><span id="syncText">當年度已載入</span></span>
         </div>
         <div class="brand-subtitle">個人工作台・資料儲存在你的 Google 帳戶</div>
       </div>
@@ -1018,6 +1027,7 @@
         if (revokeBtn) {
           revokeBtn.addEventListener("click", function () {
             setSavedPasscode("");
+            try { localStorage.removeItem("fire_notebook_bootstrap_cache_v1"); } catch (e) {}
             if (secModal) secModal.classList.remove("open");
             showAuthGate("已解除此裝置的信任狀態，請重新輸入密碼以繼續使用。");
           });
@@ -1147,10 +1157,45 @@
           showToast(message, true);
         }
       }
+      var BOOTSTRAP_CACHE_KEY = "fire_notebook_bootstrap_cache_v1";
+      function setSyncStatus(syncing, label) {
+        var dot = el("syncDot");
+        var text = el("syncText");
+        if (dot) dot.classList.toggle("syncing", !!syncing);
+        if (text) text.textContent = label || (syncing ? "雲端同步中…" : "已同步最新");
+      }
+      function readBootstrapCache() {
+        try {
+          var raw = localStorage.getItem(BOOTSTRAP_CACHE_KEY);
+          if (!raw) return null;
+          var parsed = JSON.parse(raw);
+          if (!parsed || !Array.isArray(parsed.records)) return null;
+          return parsed;
+        } catch (err) {
+          return null;
+        }
+      }
+      function saveBootstrapCache() {
+        try {
+          var activeList = getRecords().filter(function (record) {
+            return isActiveRecord(record);
+          }).slice(0, 120);
+          var payload = {
+            records: activeList,
+            archiveYears: archiveYears,
+            activeCursor: activeCursor,
+            activeHasMore: activeHasMore,
+            uploadLimitBytes: uploadLimitBytes,
+            maxRequestJsonBytes: requestJsonLimitBytes,
+            savedAt: Date.now()
+          };
+          localStorage.setItem(BOOTSTRAP_CACHE_KEY, JSON.stringify(payload));
+        } catch (err) {}
+      }
       function mergeRecords(list, isActive) {
         (list || []).forEach(function (record) {
           var preview = record.historyPreview || record.history || "";
-          var description = record.description || "";
+          var description = record.description != null ? record.description : (record.descriptionPreview || "");
           record.historyPreview = preview.split(/\r?\n-{10,}\r?\n/)[0].slice(0, 500);
           record.descriptionPreview = description.length > 500 ? description.slice(0, 500) + "…" : description;
           delete record.history;
@@ -1188,21 +1233,53 @@
         return recordsCache;
       }
       function loadBootstrap() {
-        el("cards").innerHTML = '<div class="loading"><span class="spinner"></span>載入案件資料…</div>';
+        var cached = readBootstrapCache();
+        var hasCachedView = false;
+        if (cached && cached.records && cached.records.length) {
+          hasCachedView = true;
+          recordsById = {};
+          activeIds = {};
+          mergeRecords(cached.records, true);
+          archiveYears = cached.archiveYears || [];
+          activeCursor = cached.activeCursor || "";
+          activeHasMore = !!cached.activeHasMore;
+          uploadLimitBytes = cached.uploadLimitBytes || uploadLimitBytes;
+          requestJsonLimitBytes = cached.maxRequestJsonBytes || requestJsonLimitBytes;
+          renderArchiveYears();
+          renderFilters();
+          renderCards();
+          setSyncStatus(true, "雲端同步中…");
+        } else {
+          el("cards").innerHTML = '<div class="loading"><span class="spinner"></span>載入案件資料…</div>';
+          setSyncStatus(true, "雲端同步中…");
+        }
         google.script.run
           .withSuccessHandler(function (data) {
-            recordsById = {};
+            var preservedArchive = {};
+            Object.keys(recordsById).forEach(function (id) {
+              if (!activeIds[id]) preservedArchive[id] = recordsById[id];
+            });
+            recordsById = preservedArchive;
+            activeIds = {};
             mergeRecords(data.records || [], true);
             archiveYears = data.archiveYears || [];
             activeCursor = data.activeCursor || "";
             activeHasMore = !!data.activeHasMore;
             uploadLimitBytes = data.uploadLimitBytes || uploadLimitBytes;
             requestJsonLimitBytes = data.maxRequestJsonBytes || requestJsonLimitBytes;
+            saveBootstrapCache();
             renderArchiveYears();
             renderFilters();
             renderCards();
+            setSyncStatus(false, "已同步最新");
           })
           .withFailureHandler(function (error) {
+            if (hasCachedView) {
+              setSyncStatus(false, "快取檢視中");
+              showToast("雲端背景同步未完成，目前顯示本機快取資料。", true);
+              return;
+            }
+            setSyncStatus(false, "連線失敗");
             el("cards").innerHTML = "";
             showEmpty("資料載入失敗", error && error.message ? error.message : "請確認 ROOT_FOLDER_ID 與試算表設定。");
           })
@@ -2100,6 +2177,7 @@
               clearClientRequestId("CREATE");
               setBusy(button, false);
               mergeRecords([result.record], true);
+              saveBootstrapCache();
               closeModal("newModal");
               if (result.taskWarning) showToast(result.taskWarning, true);
               else showToast("案件已建立。" + (result.record.taskId ? " 已同步到 Tasks。" : ""));
@@ -2151,6 +2229,7 @@
               clearClientRequestId("UPDATE");
               setBusy(button, false);
               mergeRecords([result.record], true);
+              saveBootstrapCache();
               closeModal("progressModal");
               renderFilters();
               renderCards();
@@ -2269,6 +2348,7 @@
             mergeRecords(data.records || [], true);
             activeCursor = data.cursor || "";
             activeHasMore = !!data.hasMore;
+            saveBootstrapCache();
             renderFilters();
             renderCards();
             processPendingArchiveRequest();

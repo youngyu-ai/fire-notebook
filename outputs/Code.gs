@@ -163,9 +163,8 @@ function setupSystem() {
 
 function apiBootstrap() {
   const ss = getSpreadsheet_();
-  getDataSheet_(ss);
-  getIndexSheet_(ss);
-  const metadata = readMetadata_();
+  const sheet = getDataSheet_(ss);
+  const metadata = readMetadata_(ss, sheet);
   const rows = metadata.records;
   const cutoff = dateString_(new Date()).slice(0, 4) + "-01-01";
   const active = rows.filter(function (r) {
@@ -173,14 +172,10 @@ function apiBootstrap() {
   });
   const page = pageRecords_(active, "");
   const years = archiveYearsFromMetadata_(rows, cutoff);
-  let rootUrl = "";
-  try {
-    rootUrl = getRootFolder_().getUrl();
-  } catch (err) {
-    rootUrl = "";
-  }
+  const rootId = configuredRootFolderId_();
+  const rootUrl = rootId ? ("https://drive.google.com/drive/folders/" + rootId) : "";
   return {
-    records: hydrateRecords_(page.records, false, metadata.rowById),
+    records: hydrateRecords_(page.records, false, metadata.rowById, sheet),
     activeCursor: page.cursor,
     activeHasMore: page.hasMore,
     archiveYears: years,
@@ -193,14 +188,16 @@ function apiBootstrap() {
 }
 
 function apiLoadActivePage(cursor) {
+  const ss = getSpreadsheet_();
+  const sheet = getDataSheet_(ss);
   const cutoff = dateString_(new Date()).slice(0, 4) + "-01-01";
-  const metadata = readMetadata_();
+  const metadata = readMetadata_(ss, sheet);
   const active = metadata.records.filter(function (r) {
     return r.status === "待辦" || r.status === "辦理中" || (r.date && r.date >= cutoff);
   });
   const page = pageRecords_(active, cursor);
   return {
-    records: hydrateRecords_(page.records, false, metadata.rowById),
+    records: hydrateRecords_(page.records, false, metadata.rowById, sheet),
     cursor: page.cursor,
     hasMore: page.hasMore
   };
@@ -209,13 +206,15 @@ function apiLoadActivePage(cursor) {
 function apiLoadArchiveYear(year, cursor) {
   const yearText = String(year || "");
   if (!/^\d{4}$/.test(yearText)) throw new Error("年度格式不正確。");
-  const metadata = readMetadata_();
+  const ss = getSpreadsheet_();
+  const sheet = getDataSheet_(ss);
+  const metadata = readMetadata_(ss, sheet);
   const matches = metadata.records.filter(function (r) {
     return r.date && r.date.slice(0, 4) === yearText;
   });
   const page = pageRecords_(matches, cursor);
   return {
-    records: hydrateRecords_(page.records, false, metadata.rowById),
+    records: hydrateRecords_(page.records, false, metadata.rowById, sheet),
     cursor: page.cursor,
     hasMore: page.hasMore
   };
@@ -1113,9 +1112,9 @@ function installMonthlyBackupTrigger_() {
   ScriptApp.newTrigger("monthlySpreadsheetBackup").timeBased().onMonthDay(1).atHour(3).create();
 }
 
-function readMetadata_() {
-  const ss = getSpreadsheet_();
-  const sheet = getDataSheet_(ss);
+function readMetadata_(ss, sheet) {
+  ss = ss || getSpreadsheet_();
+  sheet = sheet || getDataSheet_(ss);
   const spreadsheetId = ss.getId();
   const lastRow = sheet.getLastRow();
   if (lastRow < 2) return { records: [], rowById: {} };
@@ -1307,9 +1306,9 @@ function archiveYearsFromMetadata_(rows, cutoff) {
   return Object.keys(yearSet).sort().reverse();
 }
 
-function hydrateRecords_(metadata, retried, rowById) {
+function hydrateRecords_(metadata, retried, rowById, sheet) {
   if (!metadata.length) return [];
-  const sheet = getDataSheet_(getSpreadsheet_());
+  sheet = sheet || getDataSheet_(getSpreadsheet_());
   const lastRow = sheet.getLastRow();
   if (lastRow < 2) return [];
   rowById = rowById || readRowIndexMap_(sheet, lastRow);
@@ -1338,7 +1337,7 @@ function hydrateRecords_(metadata, retried, rowById) {
     });
   } catch (err) {
     if (String(err && err.message) === "ROW_ID_MISMATCH" && !retried) {
-      return hydrateRecords_(metadata, true, readRowIndexMap_(sheet, sheet.getLastRow()));
+      return hydrateRecords_(metadata, true, readRowIndexMap_(sheet, sheet.getLastRow()), sheet);
     }
     throw new Error("試算表列剛有變動，請重新載入案件後再試。");
   }

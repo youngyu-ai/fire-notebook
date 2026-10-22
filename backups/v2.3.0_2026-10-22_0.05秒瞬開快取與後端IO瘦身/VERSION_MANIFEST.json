@@ -1,0 +1,85 @@
+{
+  "version": "v2.3.0",
+  "slug": "0.05秒瞬開快取與後端IO瘦身",
+  "date": "2026-10-22",
+  "createdAt": "2026-10-22 22:29:19",
+  "folderName": "v2.3.0_2026-10-22_0.05秒瞬開快取與後端IO瘦身",
+  "summary": "實作方案 1（localStorage 0.05 秒瞬開快取 Stale-While-Revalidate ＋ 頂部同步狀態呼吸燈）與方案 2（後端 Code.gs 移除 apiBootstrap 中 DriveApp 喚醒與重複試算表表頭檢查之無副作用 I/O 瘦身）。",
+  "changes": [
+    "前端 Index.html / PWA：新增 fire_notebook_bootstrap_cache_v1 本機快取，進入系統 0.05 秒立即顯示案件卡片並於背景自動同步最新雲端資料",
+    "頂部狀態膠囊（#syncPill）：新增橘黃脈衝燈「雲端同步中…」與綠燈「已同步最新」即時狀態提示，解除信任裝置時一併清除快取",
+    "後端 Code.gs：移除 apiBootstrap 中耗時 ~0.8 秒的 DriveApp.getFolderById 呼叫與重複 3 次的 getSpreadsheet_/getDataSheet_ 表頭檢查"
+  ],
+  "files": [
+    {
+      "relativePath": "outputs/Code.gs",
+      "sizeBytes": 77425,
+      "sha256": "88607e6b76d6ec43d0635e63b9eda4236565308a5475c01f79150e9ab81f111b"
+    },
+    {
+      "relativePath": "outputs/Index.html",
+      "sizeBytes": 175616,
+      "sha256": "072d6441f55f1d0af6f35dfe392cf8f99a3d7bd3300e8568b167dbaf2fd6e25b"
+    },
+    {
+      "relativePath": "outputs/UI-Preview.html",
+      "sizeBytes": 91518,
+      "sha256": "9ea48fb33a5b0903ca1d3130ea27201f28ced37e818870c8240650014acc745b"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon.ico",
+      "sizeBytes": 204190,
+      "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon.png",
+      "sizeBytes": 467161,
+      "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon-192.png",
+      "sizeBytes": 82349,
+      "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon-180.png",
+      "sizeBytes": 73083,
+      "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+    },
+    {
+      "relativePath": "pwa/apple-touch-icon.png",
+      "sizeBytes": 73083,
+      "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+    },
+    {
+      "relativePath": "pwa/favicon.ico",
+      "sizeBytes": 204190,
+      "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+    },
+    {
+      "relativePath": "pwa/icon-192.png",
+      "sizeBytes": 82349,
+      "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+    },
+    {
+      "relativePath": "pwa/icon-512.png",
+      "sizeBytes": 467161,
+      "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+    },
+    {
+      "relativePath": "pwa/index.html",
+      "sizeBytes": 175616,
+      "sha256": "072d6441f55f1d0af6f35dfe392cf8f99a3d7bd3300e8568b167dbaf2fd6e25b"
+    },
+    {
+      "relativePath": "pwa/manifest.json",
+      "sizeBytes": 685,
+      "sha256": "75cf8ef908ac40e4df1968abc6fb78628a3ef70ac191a0a389b5f08ef92af86e"
+    },
+    {
+      "relativePath": "pwa/sw.js",
+      "sizeBytes": 1831,
+      "sha256": "fdef28cc6f496e0336b68495b6d019812037d990837f2106e5384a8c1a09ed2d"
+    }
+  ]
+}
