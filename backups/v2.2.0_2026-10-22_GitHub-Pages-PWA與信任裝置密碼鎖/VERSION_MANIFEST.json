@@ -2,7 +2,7 @@
   "version": "v2.2.0",
   "slug": "GitHub-Pages-PWA與信任裝置密碼鎖",
   "date": "2026-10-22",
-  "createdAt": "2026-10-22 20:29:02",
+  "createdAt": "2026-10-22 20:29:47",
   "folderName": "v2.2.0_2026-10-22_GitHub-Pages-PWA與信任裝置密碼鎖",
   "summary": "升級為 GitHub Pages 標準 PWA 架構＋跨裝置首次通行密碼信任機制＋GAS doPost API",
   "changes": [
@@ -14,8 +14,8 @@
   "files": [
     {
       "relativePath": "outputs/Code.gs",
-      "sizeBytes": 79085,
-      "sha256": "06cbcf02edb8f2400590ca912a0fa23aa1e341eaae1a16809712c87166694b02"
+      "sizeBytes": 77202,
+      "sha256": "6f619cba44510d8828148593ae59037b4438964a01871e274b1a7110dd6eb0de"
     },
     {
       "relativePath": "outputs/Index.html",
