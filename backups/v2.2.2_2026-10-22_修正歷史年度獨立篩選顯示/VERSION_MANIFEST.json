@@ -1,0 +1,85 @@
+{
+  "version": "v2.2.2",
+  "slug": "修正歷史年度獨立篩選顯示",
+  "date": "2026-10-22",
+  "createdAt": "2026-10-22 21:12:19",
+  "folderName": "v2.2.2_2026-10-22_修正歷史年度獨立篩選顯示",
+  "summary": "修正選擇歷史年度（如 2024 年）時混入其他年度案件的問題，改為僅顯示該指定年度之公文與統計數量",
+  "changes": [
+    "新增 getScopedRecords()：當選擇特定歷史年度（如 2024）時，卡片列表、狀態統計數字與標籤列皆嚴格過濾僅顯示該年度（record.date 為該年份）之公文，不再混入當年度案件",
+    "收合歷史年度或取消選擇時，自動恢復顯示「當年度全案件＋跨年未結案」",
+    "升級 Service Worker 快取版本至 v2.2.2"
+  ],
+  "files": [
+    {
+      "relativePath": "outputs/Code.gs",
+      "sizeBytes": 77202,
+      "sha256": "6f619cba44510d8828148593ae59037b4438964a01871e274b1a7110dd6eb0de"
+    },
+    {
+      "relativePath": "outputs/Index.html",
+      "sizeBytes": 172099,
+      "sha256": "125d5dca6c8ca73f037d2fa9d98dd1031935e181fdf9c413cf5d171ddc327931"
+    },
+    {
+      "relativePath": "outputs/UI-Preview.html",
+      "sizeBytes": 91518,
+      "sha256": "9ea48fb33a5b0903ca1d3130ea27201f28ced37e818870c8240650014acc745b"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon.ico",
+      "sizeBytes": 204190,
+      "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon.png",
+      "sizeBytes": 467161,
+      "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon-192.png",
+      "sizeBytes": 82349,
+      "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon-180.png",
+      "sizeBytes": 73083,
+      "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+    },
+    {
+      "relativePath": "pwa/apple-touch-icon.png",
+      "sizeBytes": 73083,
+      "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+    },
+    {
+      "relativePath": "pwa/favicon.ico",
+      "sizeBytes": 204190,
+      "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+    },
+    {
+      "relativePath": "pwa/icon-192.png",
+      "sizeBytes": 82349,
+      "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+    },
+    {
+      "relativePath": "pwa/icon-512.png",
+      "sizeBytes": 467161,
+      "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+    },
+    {
+      "relativePath": "pwa/index.html",
+      "sizeBytes": 172099,
+      "sha256": "125d5dca6c8ca73f037d2fa9d98dd1031935e181fdf9c413cf5d171ddc327931"
+    },
+    {
+      "relativePath": "pwa/manifest.json",
+      "sizeBytes": 685,
+      "sha256": "75cf8ef908ac40e4df1968abc6fb78628a3ef70ac191a0a389b5f08ef92af86e"
+    },
+    {
+      "relativePath": "pwa/sw.js",
+      "sizeBytes": 1831,
+      "sha256": "763564758f012b84150f5783972747c010503b67c4708abb42912008c29729ad"
+    }
+  ]
+}

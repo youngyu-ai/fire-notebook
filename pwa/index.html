@@ -1239,9 +1239,21 @@
         recordsCache = null;
         renderArchiveYears();
       }
+      function getScopedRecords() {
+        var all = getRecords();
+        var activeYear = selectedArchiveYear || (el("archiveYear") ? el("archiveYear").value : "");
+        if (activeYear) {
+          return all.filter(function (record) {
+            return record.date && record.date.slice(0, 4) === activeYear;
+          });
+        }
+        return all.filter(function (record) {
+          return isActiveRecord(record);
+        });
+      }
       function renderFilters() {
         var tags = STANDARD_TAGS.slice();
-        getRecords().forEach(function (record) {
+        getScopedRecords().forEach(function (record) {
           if (record.category && tags.indexOf(record.category) === -1) tags.push(record.category);
         });
         var container = el("categoryFilters");
@@ -1267,7 +1279,7 @@
       function renderStatusFilters() {
         var container = el("statusFilters");
         container.innerHTML = "";
-        var records = getRecords();
+        var records = getScopedRecords();
         STATUS_ITEMS.forEach(function (item) {
           var count = item.key === "全部" ? records.length : records.filter(function (record) { return record.status === item.key; }).length;
           var button = document.createElement("button");
@@ -1291,7 +1303,7 @@
         var query = el("searchInput").value.trim().toLocaleLowerCase();
         var clearBtn = el("searchClear");
         if (clearBtn) clearBtn.classList.toggle("visible", query.length > 0);
-        return getRecords().filter(function (record) {
+        return getScopedRecords().filter(function (record) {
           if (selectedTag !== "全部" && record.category !== selectedTag) return false;
           if (selectedStatus !== "全部" && record.status !== selectedStatus) return false;
           return !query || record.searchText.indexOf(query) !== -1;
@@ -1301,18 +1313,25 @@
         renderStatusFilters();
         var container = el("cards");
         container.innerHTML = "";
+        var selectedYear = selectedArchiveYear || el("archiveYear").value;
+        var curYear = todayString().slice(0, 4);
+        el("resultTitle").textContent = selectedYear
+          ? selectedYear + " 年度案件（僅顯示 " + selectedYear + " 年）"
+          : curYear + " 當年度全案件 ＋ 跨年未結案";
+        if (selectedYear && !loadedYears[selectedYear]) {
+          container.innerHTML = '<div class="loading"><span class="spinner"></span>載入 ' + selectedYear + ' 年歷史資料…</div>';
+          el("resultSummary").textContent = "載入中…";
+          updateLoadMoreControl();
+          return;
+        }
+        var scopedTotal = getScopedRecords().length;
         visibleRecordCache = visibleRecords();
         renderedCardCount = 0;
-        var summaryText = "符合 " + visibleRecordCache.length + " / " + getRecords().length + " 筆已載入案件";
+        var summaryText = "符合 " + visibleRecordCache.length + " / " + scopedTotal + " 筆" + (selectedYear ? (" (" + selectedYear + " 年)") : "已載入案件");
         el("resultSummary").textContent = summaryText;
         if (el("miniSummary")) el("miniSummary").textContent = "顯示 " + visibleRecordCache.length + " 筆";
-        var selectedYear = el("archiveYear").value;
-        var curYear = todayString().slice(0, 4);
-        el("resultTitle").textContent = selectedYear && loadedYears[selectedYear]
-          ? selectedYear + " 年歷史庫與 " + curYear + " 當年度案件"
-          : curYear + " 當年度全案件 ＋ 跨年未結案";
         if (!visibleRecordCache.length) {
-          showEmpty("沒有符合條件的案件", "調整搜尋字詞或篩選條件，或載入其他年度的歷史資料。");
+          showEmpty("沒有符合條件的案件", selectedYear ? (selectedYear + " 年度內沒有符合目前篩選條件的公文。") : "調整搜尋字詞或篩選條件，或載入其他年度的歷史資料。");
           updateLoadMoreControl();
           return;
         }
