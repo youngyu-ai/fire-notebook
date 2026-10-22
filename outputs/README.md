@@ -1,6 +1,6 @@
 # 🚒 消防小本本（Fire Notebook）— 消防電子公文暨業務檔案管理系統
 
-**目前最新版本**：`v2.2.0`（更新日期：`2026-10-22`）  
+**目前最新版本**：`v2.2.1`（更新日期：`2026-10-22`）  
 **系統定位**：個人專屬的消防公文、訓練、耗材、器材業務追蹤工作台，整合 **Google Sheets（案件資料庫＋索引快取）**、**Google Drive（每案自動建立專屬歸檔資料夾＋定期試算表備份）** 與 **Google Tasks（消防待辦清單雙向同步）**。
 
 ---
@@ -73,6 +73,12 @@ C:\Users\yshai\Documents\Codex\2026-10-20\gas-web-app-google-apps-script\
 ---
 
 ## 📜 歷次版本更新紀錄（Changelog）
+
+### `v2.2.1` — 2026-10-22（修復手機 Chrome 多 Google 帳號 Cookie 衝突導致無法讀取 Tasks 問題）
+- **備份路徑**：`backups/v2.2.1_2026-10-22_修復手機Chrome多帳號Cookie衝突與Tasks讀取/`（含同名 `.zip`）
+- **變更內容**：
+  1. **加入 `credentials: "omit"` 與 `cache: "no-store"`**：阻止 Android Chrome / iOS Safari 在跨網域請求及 `302` 轉址至 `script.googleusercontent.com` 時夾帶手機上已登入的多組 Google 帳號 Cookie 與 `X-Chrome-Connected` 標頭（避免 Google 伺服器回傳 `<!DOCTYPE html>` 錯誤頁）。
+  2. **防快取時間戳與自動重試**：API 請求網址附加 `?_t=` 防快取參數，並具備自動重試與 HTML 錯誤原因解析。
 
 ### `v2.2.0` — 2026-10-22（升級 GitHub Pages 標準 PWA ＋ 跨裝置首次通行密碼信任機制）
 - **備份路徑**：`backups/v2.2.0_2026-10-22_GitHub-Pages-PWA與信任裝置密碼鎖/`（含同名 `.zip`）

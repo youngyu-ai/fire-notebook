@@ -1,0 +1,85 @@
+{
+  "version": "v2.2.1",
+  "slug": "修復手機Chrome多帳號Cookie衝突與Tasks讀取",
+  "date": "2026-10-22",
+  "createdAt": "2026-10-22 20:56:04",
+  "folderName": "v2.2.1_2026-10-22_修復手機Chrome多帳號Cookie衝突與Tasks讀取",
+  "summary": "修復手機版 Chrome 多 Google 帳號 Cookie/Header 衝突導致 GAS 回傳 HTML (<!DOCTYPE) 問題",
+  "changes": [
+    "於前端 fetch(GAS_API_URL) 明確加入 credentials: 'omit' 與 cache: 'no-store'，阻止手機 Chrome 自動夾帶多帳號 Cookie 與 X-Chrome-Connected 標頭而觸發 Google 多帳號 HTML 錯誤頁",
+    "每次 API 請求加上時間戳參數 ?_t=... 防止手機瀏覽器快取 302 轉址結果，並加入自動重試（Auto-Retry）機制",
+    "將 res.json() 改為先讀取 res.text() 並智慧解析 HTML <title> 錯誤訊息，同時升級 Service Worker 快取版本至 v2.2.1"
+  ],
+  "files": [
+    {
+      "relativePath": "outputs/Code.gs",
+      "sizeBytes": 77202,
+      "sha256": "6f619cba44510d8828148593ae59037b4438964a01871e274b1a7110dd6eb0de"
+    },
+    {
+      "relativePath": "outputs/Index.html",
+      "sizeBytes": 171107,
+      "sha256": "e9ded9c1c7a7ebded034a9124d7497590318ee8230814b9f27943a47d4799aaa"
+    },
+    {
+      "relativePath": "outputs/UI-Preview.html",
+      "sizeBytes": 91518,
+      "sha256": "9ea48fb33a5b0903ca1d3130ea27201f28ced37e818870c8240650014acc745b"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon.ico",
+      "sizeBytes": 204190,
+      "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon.png",
+      "sizeBytes": 467161,
+      "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon-192.png",
+      "sizeBytes": 82349,
+      "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+    },
+    {
+      "relativePath": "outputs/Desktop-Icon-180.png",
+      "sizeBytes": 73083,
+      "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+    },
+    {
+      "relativePath": "pwa/apple-touch-icon.png",
+      "sizeBytes": 73083,
+      "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+    },
+    {
+      "relativePath": "pwa/favicon.ico",
+      "sizeBytes": 204190,
+      "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+    },
+    {
+      "relativePath": "pwa/icon-192.png",
+      "sizeBytes": 82349,
+      "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+    },
+    {
+      "relativePath": "pwa/icon-512.png",
+      "sizeBytes": 467161,
+      "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+    },
+    {
+      "relativePath": "pwa/index.html",
+      "sizeBytes": 171107,
+      "sha256": "e9ded9c1c7a7ebded034a9124d7497590318ee8230814b9f27943a47d4799aaa"
+    },
+    {
+      "relativePath": "pwa/manifest.json",
+      "sizeBytes": 685,
+      "sha256": "75cf8ef908ac40e4df1968abc6fb78628a3ef70ac191a0a389b5f08ef92af86e"
+    },
+    {
+      "relativePath": "pwa/sw.js",
+      "sizeBytes": 1831,
+      "sha256": "9d679acbe50679e25dc0badfb03edc8465d34b381bb46c2acf1fea99b1c4f07c"
+    }
+  ]
+}

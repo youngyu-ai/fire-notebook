@@ -1,0 +1,2356 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#991b1b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="消防小本本">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAADAFBMVEXloZ7i3eEVLFceaJTlbVYgFjELFTGkjWic1+1uamlUpM1hJSafl6UzV3ahdoYfXookLFOYWWcfBiCaXDcVZnRNUWrOWzklcpgDDzIcMVMAAP//AAAtSnHo7vHmmG9LGzdmlrJRLU62gTxlAAxeLE0mSnRqcn5SZJQemLT9/Pz1+v+ILkBEKkz8w6t4RRyyFByasMZ9hXicpbClrsBx1PoA///Me4Jml7NcTmoFoMxVAFWw0OZ2hpocME9FHDp7tOXUvsSqAAAAfwC5x9KdsMXflD5phZ1ff99jcIMQJ0kWNVgkSm4oVHkAAAAKGDj3+fscRGqPFioZPGLN2eQwZoy2xtWpuMkpW4KtGihyFCrX5O3QJywOFzluDCaTpbjk6vCtJzSIma0zFjBOhqlOdJRIWXCQJzJTCyYoOFZoeJBNFi1NaYioNDQ3dJjI0t1ylbDOmEwUJUyxhU3lNDFziqRrOE9RZnl0hJoHDCsKHkHst4/Ey9VYCByGDSTyxXYzCybQNjgxQlupekiasscPID1Xk7WTMzZwJjTquWz714nQR0jLp3LyxY+ldDpHfKK2mGiWq8IvJTSKCRlpChyUR0zapFX//8hUJjaYaDWSNkRqp8imq7pNNzSwRkrvZllpSTXqWFHLVlMpKkb+5Jf/9rJwV0pXRjnjLCp1OlQdV4T/6qbPsnmFOlJQKkWHZ0omPWLmSkQQJEfKHiRPR1B2tNL2dmrNt4SUVlNvSU+uO0P90noScqKwV1LHi0lROFAdUnhFTWZzEh4QGkCJWi6rsb0gWoaNEh11VTn1hXa60+VsNzSXd1IZbZrImWjXyJEdZZINJEmIiptyYlJrZ3BTU1ekLUCuZVNVVVU6NDfiqlgLFjfJPEK8pHFsKUkAAFUPJEVjbIPmQzurChi4zeA3fKI6hKm0Z2zSZlNvOhqsiWb4mIjMZmb7+/vhq2lYGhjMFx1lnMOSZXDUdXKxhZEAVVUAPT36+/iIeWWydnEAAH9wVmgQJkvIij2FjqDSlJXOqK80i9iKAAABAHRSTlP//x1b/xNa///+/+n78v+IWv/t/hBp/x6LzwEBao3/kxKn/wPtnhEUEE0J/nf///9V/3b//wL//6AUA3pum3cJ/wMCj4X/nQiP/v7+/wD+/v7+/v7//v7//v7+/tT+/v7+//7////+/v7+/v7+//7+/6z////6/v///f7//v7+/////v7///79/v7//v7////////+///8/f/+/////////////v7////N//7/tfr//f+O///////////+Rf/+/////8j//pP///////9X/v9tdf///v///gP//7H///4Dzv///////////////2z9////////AwQq//4C/0r/////DsnI8QAAIwlJREFUeNqtewd4G9eVLtSLZce9xHZ673U323dfvzODAQaYQaMw6MAAIAmGAgkw7GKBREkUSdFLUyQlkQ7pJHqkLEuyypNkZaW1LCnKqngV17j3bie213X/e2fQSNmf3/ftMU1CwOD+/z3n3HPOPXfGZJ4tn53P/sx/78zOnT//L5GdO8+8Zwz62TlwptlvfB3/X7dgwYJ/hXzmM+w3/v7bgn9j8jsmC36HC/5fXkpeLVigX/A7/erPUPlXXfDZdRj6D5/9ZAJ/MJu/seBSfsdXDtfNkV+VyP+9uHyxeMXsbx8+vIO/dME3GMTHErj6RvNf3bTjcN3Bd06//ItPlPUXl1+s/9hvvHz6nb37Dmtf/SvzjVd/HAFwu2m67sK6tbf98pe/ue223xTkl0X5508jhasLI2A0/Gvtugt10zeVK6GEwCLzdV+sW73+ttvW3rVx2flIudSXSjKZDOOnVJJ4s+ya0i/fB6lftmT72ttuW/983RevA9RFCCwyXz50Yf1ta7cvaydUuILYqFhny9133y0Ycvfdcz7FN7hSYUO2LwOH9Rdyl5u/PJfAl83fOXl67dp158qw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">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAADAFBMVEXloZ7i3eEVLFceaJTlbVYgFjELFTGkjWic1+1uamlUpM1hJSafl6UzV3ahdoYfXookLFOYWWcfBiCaXDcVZnRNUWrOWzklcpgDDzIcMVMAAP//AAAtSnHo7vHmmG9LGzdmlrJRLU62gTxlAAxeLE0mSnRqcn5SZJQemLT9/Pz1+v+ILkBEKkz8w6t4RRyyFByasMZ9hXicpbClrsBx1PoA///Me4Jml7NcTmoFoMxVAFWw0OZ2hpocME9FHDp7tOXUvsSqAAAAfwC5x9KdsMXflD5phZ1ff99jcIMQJ0kWNVgkSm4oVHkAAAAKGDj3+fscRGqPFioZPGLN2eQwZoy2xtWpuMkpW4KtGihyFCrX5O3QJywOFzluDCaTpbjk6vCtJzSIma0zFjBOhqlOdJRIWXCQJzJTCyYoOFZoeJBNFi1NaYioNDQ3dJjI0t1ylbDOmEwUJUyxhU3lNDFziqRrOE9RZnl0hJoHDCsKHkHst4/Ey9VYCByGDSTyxXYzCybQNjgxQlupekiasscPID1Xk7WTMzZwJjTquWz714nQR0jLp3LyxY+ldDpHfKK2mGiWq8IvJTSKCRlpChyUR0zapFX//8hUJjaYaDWSNkRqp8imq7pNNzSwRkrvZllpSTXqWFHLVlMpKkb+5Jf/9rJwV0pXRjnjLCp1OlQdV4T/6qbPsnmFOlJQKkWHZ0omPWLmSkQQJEfKHiRPR1B2tNL2dmrNt4SUVlNvSU+uO0P90noScqKwV1LHi0lROFAdUnhFTWZzEh4QGkCJWi6rsb0gWoaNEh11VTn1hXa60+VsNzSXd1IZbZrImWjXyJEdZZINJEmIiptyYlJrZ3BTU1ekLUCuZVNVVVU6NDfiqlgLFjfJPEK8pHFsKUkAAFUPJEVjbIPmQzurChi4zeA3fKI6hKm0Z2zSZlNvOhqsiWb4mIjMZmb7+/vhq2lYGhjMFx1lnMOSZXDUdXKxhZEAVVUAPT36+/iIeWWydnEAAH9wVmgQJkvIij2FjqDSlJXOqK80i9iKAAABAHRSTlP//x1b/xNa///+/+n78v+IWv/t/hBp/x6LzwEBao3/kxKn/wPtnhEUEE0J/nf///9V/3b//wL//6AUA3pum3cJ/wMCj4X/nQiP/v7+/wD+/v7+/v7//v7//v7+/tT+/v7+//7////+/v7+/v7+//7+/6z////6/v///f7//v7+/////v7///79/v7//v7////////+///8/f/+/////////////v7////N//7/tfr//f+O///////////+Rf/+/////8j//pP///////9X/v9tdf///v///gP//7H///4Dzv///////////////2z9////////AwQq//4C/0r/////DsnI8QAAIwlJREFUeNqtewd4G9eVLtSLZce9xHZ673U323dfvzODAQaYQaMw6MAAIAmGAgkw7GKBREkUSdFLUyQlkQ7pJHqkLEuyypNkZaW1LCnKqngV17j3bie213X/e2fQSNmf3/ftMU1CwOD+/z3n3HPOPXfGZJ4tn53P/sx/78zOnT//L5GdO8+8Zwz62TlwptlvfB3/X7dgwYJ/hXzmM+w3/v7bgn9j8jsmC36HC/5fXkpeLVigX/A7/erPUPlXXfDZdRj6D5/9ZAJ/MJu/seBSfsdXDtfNkV+VyP+9uHyxeMXsbx8+vIO/dME3GMTHErj6RvNf3bTjcN3Bd06//ItPlPUXl1+s/9hvvHz6nb37Dmtf/SvzjVd/HAFwu2m67sK6tbf98pe/ue223xTkl0X5508jhasLI2A0/Gvtugt10zeVK6GEwCLzdV+sW73+ttvW3rVx2flIudSXSjKZDOOnVJJ4s+ya0i/fB6lftmT72ttuW/983RevA9RFCCwyXz50Yf1ta7cvaydUuILYqFhny9133y0Ycvfdcz7FN7hSYUO2LwOH9Rdyl5u/PJfAl83fOXl67dp158qw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">
+  <title>消防小本本</title>
+  <style>
+    :root {
+      --red: #b91c1c;
+      --red-dark: #991b1b;
+      --red-pale: #fef2f2;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --surface: #ffffff;
+      --canvas: #f1f5f9;
+      --input-soft: #f8fafc;
+      --shadow: 0 12px 32px -4px rgba(15, 23, 42, .08), 0 4px 12px -2px rgba(15, 23, 42, .04);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html { min-height: 100%; background: var(--canvas); }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--canvas);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: calc(24px + env(safe-area-inset-bottom));
+    }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    button:disabled { cursor: wait; opacity: .65; }
+    a { color: inherit; }
+
+    /* 1. 方案 A：僅固定最上方深紅標題列，搜尋與篩選列隨頁面自然捲動（100% 零閃爍） */
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      padding: calc(10px + env(safe-area-inset-top)) max(20px, calc((100vw - 1180px) / 2)) 10px;
+      color: #fff;
+      background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
+      box-shadow: 0 4px 14px rgba(127, 29, 29, .18);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; min-width: 0; }
+    .brand-mark {
+      width: 42px; height: 42px; flex: 0 0 42px; display: grid; place-items: center;
+      border-radius: 11px; overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.22);
+    }
+    .brand-title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .brand-title { font-size: 17px; line-height: 1.25; font-weight: 800; letter-spacing: -.01em; }
+    .sync-pill {
+      display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px;
+      background: rgba(255,255,255,.14); color: rgba(255,255,255,.92); font-size: 12px; font-weight: 600;
+    }
+    .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 3px rgba(74,222,128,.25); }
+    .brand-subtitle { margin-top: 2px; color: rgba(255,255,255,.78); font-size: 12px; }
+    .top-actions { display: flex; align-items: center; gap: 8px; }
+    .mobile-search-jump { display: none; }
+
+    /* 搜尋與篩選控制區：位於主容器頂部，隨手指往下滑自然捲出畫面，完全不觸發高度重排 */
+    .controls-section {
+      margin: 10px 0 8px;
+    }
+
+    .btn {
+      min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 8px 13px; border: 1px solid transparent; border-radius: 11px;
+      background: #fff; color: var(--ink); font-size: 13px; font-weight: 700; text-decoration: none;
+      transition: transform .12s ease, background .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,23,42,.1); }
+    .btn-primary { color: #fff; background: var(--red); border-color: rgba(255,255,255,.15); }
+    .btn-primary:hover { background: var(--red-dark); }
+    .btn-ghost { color: #fff; background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.26); }
+    .btn-ghost:hover { background: rgba(255,255,255,.2); }
+    .btn-outline { background: #fff; border-color: var(--line); color: #334155; }
+    .btn-outline:hover { border-color: #cbd5e1; background: #f8fafc; }
+    .btn-small { min-height: 32px; padding: 5px 10px; font-size: 12px; border-radius: 9px; }
+    .btn-amber { color: #78350f; border-color: #f59e0b; background: #fef3c7; }
+    .badge-count {
+      min-width: 20px; height: 20px; padding: 0 6px; display: inline-grid; place-items: center;
+      border-radius: 999px; color: #991b1b; background: #fff; font-size: 12px; font-weight: 800;
+    }
+
+    .container { width: min(1180px, calc(100% - 32px)); margin: 6px auto 56px; }
+
+    /* 搜尋框＋年度切換 */
+    .command-bar {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+    }
+    .search-wrap { position: relative; flex: 1 1 auto; min-width: 0; }
+    .search-icon {
+      position: absolute; left: 13px; top: 50%; transform: translateY(-50%);
+      color: #64748b; font-size: 15px; pointer-events: none;
+    }
+    .search {
+      width: 100%; height: 42px; padding: 0 36px 0 38px; border: 1px solid #cbd5e1; border-radius: 12px;
+      outline: none; background: #fff; font-size: 14px;
+      box-shadow: 0 1px 2px rgba(15,23,42,.03);
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .search:focus, .field:focus, .archive-select:focus {
+      border-color: var(--red); box-shadow: 0 0 0 3px rgba(185,28,28,.12);
+    }
+    .search-clear {
+      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+      width: 24px; height: 24px; border: 0; border-radius: 50%;
+      background: #e2e8f0; color: #475569; font-size: 14px; font-weight: 700;
+      display: none; align-items: center; justify-content: center;
+    }
+    .search-clear.visible { display: inline-flex; }
+    .search-clear:hover { background: #cbd5e1; color: #0f172a; }
+
+    .archive-tools { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
+    .archive-select {
+      height: 42px; padding: 0 12px; border: 1px solid #cbd5e1; border-radius: 12px;
+      background: #fff; color: var(--ink); font-size: 13px; font-weight: 750;
+      cursor: pointer; outline: none; box-shadow: 0 1px 2px rgba(15,23,42,.03);
+    }
+    .archive-select:hover { border-color: #94a3b8; background: #f8fafc; }
+
+    /* 整合式儀表板狀態統計與標籤列 */
+    .filter-dashboard {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      padding: 8px 10px; margin-bottom: 6px;
+      background: #fff; border: 1px solid var(--line); border-radius: 13px;
+      box-shadow: 0 1px 3px rgba(15,23,42,.02);
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .status-tabs {
+      display: flex; align-items: center; gap: 5px; flex: 0 0 auto;
+    }
+    .status-tab {
+      flex: 0 0 auto; display: inline-flex; align-items: center; gap: 5px;
+      min-height: 32px; padding: 5px 10px; border: 1px solid transparent; border-radius: 9px;
+      color: #475569; background: #f8fafc; font-size: 12px; font-weight: 750;
+      transition: .14s ease;
+    }
+    .status-tab:hover { background: #f1f5f9; color: var(--ink); }
+    .status-tab.active {
+      color: var(--ink); background: #fff; border-color: #cbd5e1;
+      box-shadow: 0 1px 4px rgba(15,23,42,.08);
+    }
+    .status-tab[data-status="待辦"].active { border-color: #fca5a5; background: #fef2f2; color: #991b1b; }
+    .status-tab[data-status="辦理中"].active { border-color: #93c5fd; background: #eff6ff; color: #1e40af; }
+    .status-tab[data-status="已結案"].active { border-color: #86efac; background: #f0fdf4; color: #166534; }
+    .status-tab .count {
+      padding: 0 6px; border-radius: 999px; background: rgba(15,23,42,.07);
+      color: inherit; font-size: 12px; font-weight: 800;
+    }
+
+    .filter-line {
+      display: flex; align-items: center; gap: 5px; flex: 0 0 auto;
+    }
+    .filter-caption { display: none; }
+    .filter-divider { width: 1px; height: 18px; background: var(--line); margin: 0 2px; flex: 0 0 auto; }
+    .pill {
+      flex: 0 0 auto; min-height: 30px; padding: 4px 11px; border: 1px solid var(--line);
+      border-radius: 999px; background: #fff; color: #475569; font-size: 12px; font-weight: 700;
+      transition: .12s ease;
+    }
+    .pill:hover { background: #f8fafc; border-color: #cbd5e1; }
+    .pill.active { border-color: var(--ink); color: #fff; background: var(--ink); }
+
+    .list-heading {
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px; margin: 6px 2px 10px;
+    }
+    .list-heading strong { font-size: 14px; color: #334155; }
+    .list-heading span { color: var(--muted); font-size: 12px; font-weight: 600; }
+
+    /* 案件卡片列表：左側急迫度色條、無進度自動精簡、已結案視覺降噪、整卡可點擊 */
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+    .load-more-row { display: flex; justify-content: center; padding: 16px 0 30px; }
+    .load-more-row.hidden { display: none; }
+
+    .card {
+      position: relative; min-width: 0; padding: 15px 16px 14px 20px;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--surface); box-shadow: 0 2px 8px rgba(15,23,42,.03);
+      display: flex; flex-direction: column; justify-content: space-between;
+      cursor: pointer; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+      overflow: hidden;
+    }
+    .card::before {
+      content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+      background: #cbd5e1;
+    }
+    .card.accent-todo::before { background: #ef4444; }
+    .card.accent-doing::before { background: #3b82f6; }
+    .card.accent-done::before { background: #22c55e; }
+    .card.accent-archive::before { background: #94a3b8; }
+
+    .card.urgent-late {
+      border-color: #fca5a5;
+      background: linear-gradient(180deg, #fffafa 0%, #ffffff 48%);
+    }
+    .card.urgent-late::before { width: 7px; background: linear-gradient(180deg, #dc2626, #991b1b); }
+    .card.urgent-soon {
+      border-color: #fcd34d;
+      background: linear-gradient(180deg, #fffbeb 0%, #ffffff 48%);
+    }
+    .card.urgent-soon::before { width: 7px; background: #f59e0b; }
+
+    .card.is-closed {
+      background: #f8fafc; border-color: #e2e8f0; opacity: .88;
+    }
+    .card.is-closed:hover { opacity: 1; }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: #cbd5e1;
+    }
+
+    .card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px;
+      border-radius: 999px; font-size: 12px; font-weight: 750; white-space: nowrap;
+    }
+    .tag-公文 { color: #1e3a8a; background: #dbeafe; }
+    .tag-訓練 { color: #6b21a8; background: #f3e8ff; }
+    .tag-耗材 { color: #9a3412; background: #ffedd5; }
+    .tag-器材 { color: #065f46; background: #d1fae5; }
+    .tag-custom { color: #334155; background: #e2e8f0; }
+    .status-待辦 { color: #b91c1c; background: #fee2e2; }
+    .status-辦理中 { color: #1d4ed8; background: #dbeafe; }
+    .status-已結案 { color: #15803d; background: #dcfce7; }
+    .status-存查 { color: #475569; background: #e2e8f0; }
+    .chip-crossyear { color: #7c2d12; background: #ffedd5; border: 1px solid #fed7aa; }
+
+    .due-badge {
+      display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px;
+      border-radius: 999px; font-size: 12px; font-weight: 800;
+      background: #f1f5f9; color: #475569;
+    }
+    .due-badge.late { background: #dc2626; color: #fff; box-shadow: 0 2px 6px rgba(220,38,38,.25); }
+    .due-badge.soon { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+
+    .card-title {
+      margin: 8px 0 5px; font-size: 16px; font-weight: 800; line-height: 1.4;
+      color: var(--ink); overflow-wrap: anywhere;
+    }
+    .meta {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;
+      color: var(--muted); font-size: 12px; margin-bottom: 7px;
+    }
+    .meta .id { color: #94a3b8; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+    .description {
+      margin: 0 0 9px; color: #475569; font-size: 13px; line-height: 1.55;
+      white-space: pre-wrap; overflow-wrap: anywhere;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+
+    .history-label {
+      display: flex; align-items: center; justify-content: space-between;
+      margin: 0 0 4px; color: #64748b; font-size: 11px; font-weight: 750;
+    }
+    .history-preview {
+      max-height: 92px; overflow: hidden; padding: 8px 10px; border: 1px solid #e2e8f0; border-radius: 10px;
+      color: #334155; background: #f8fafc; font-size: 12px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere;
+    }
+    .history-empty-inline {
+      display: flex; align-items: center; gap: 6px; padding: 6px 10px;
+      border-radius: 8px; background: #f8fafc; color: #94a3b8; font-size: 12px;
+    }
+
+    .card-actions {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px;
+      padding-top: 10px; margin-top: 10px; border-top: 1px solid #f0f2f5;
+    }
+    .card-actions-left { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .card-actions a[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+
+    .empty {
+      grid-column: 1 / -1; padding: 48px 20px; border: 1px dashed #cbd5e1; border-radius: var(--radius);
+      color: var(--muted); background: rgba(255,255,255,.7); text-align: center;
+    }
+    .empty-icon { display: block; margin-bottom: 8px; font-size: 31px; }
+
+    /* 手機版單手底部快速操作懸浮列 */
+    .mobile-bottom-bar {
+      position: fixed; left: 50%; bottom: max(14px, env(safe-area-inset-bottom));
+      transform: translateX(-50%); z-index: 25;
+      display: none; align-items: center; gap: 8px;
+      padding: 6px 8px; border-radius: 999px;
+      background: rgba(15, 23, 42, .92); backdrop-filter: blur(10px);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, .35);
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .fab-btn {
+      min-height: 38px; padding: 7px 15px; border-radius: 999px; border: 0;
+      font-size: 13px; font-weight: 800; display: inline-flex; align-items: center; gap: 6px;
+      color: #fff; background: transparent; white-space: nowrap;
+    }
+    .fab-btn.primary { background: #dc2626; box-shadow: 0 4px 12px rgba(220,38,38,.4); }
+
+    /* 抽屜與彈窗 */
+    .drawer-backdrop, .modal-backdrop {
+      position: fixed; inset: 0; z-index: 30; display: none;
+      background: rgba(15,23,42,.48); backdrop-filter: blur(2px);
+    }
+    .drawer-backdrop.open, .modal-backdrop.open { display: block; }
+    .tasks-drawer {
+      position: fixed; z-index: 31; top: 0; right: 0; bottom: 0; width: min(440px, 100%);
+      display: flex; flex-direction: column; background: #fff; box-shadow: -12px 0 35px rgba(15,23,42,.2);
+      padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom);
+      transform: translateX(105%); transition: transform .22s ease;
+    }
+    .tasks-drawer.open { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+    .drawer-title { margin: 0; font-size: 18px; }
+    .drawer-subtitle { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .task-note { margin: 0; padding: 10px 16px; color: #7c2d12; background: #fff7ed; border-bottom: 1px solid #fed7aa; font-size: 12px; line-height: 1.5; }
+    .icon-button { width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 10px; background: #fff; font-size: 18px; display: inline-grid; place-items: center; }
+    .icon-button:hover { background: #f1f5f9; }
+    .task-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--line); background: #f8fafc; }
+    .task-form .task-date { grid-column: 1; }
+    .task-form .task-add { grid-column: 2; grid-row: 1 / span 2; align-self: stretch; }
+    .task-list { flex: 1; overflow: auto; padding: 6px 14px 24px; }
+    .task-section-title { margin: 14px 3px 6px; color: #64748b; font-size: 11px; font-weight: 800; letter-spacing: .04em; }
+    .task-row { display: flex; align-items: flex-start; gap: 10px; padding: 11px 7px; border-bottom: 1px solid #f1f4f7; }
+    .task-check { width: 19px; height: 19px; margin-top: 2px; accent-color: var(--red); }
+    .task-main { flex: 1; min-width: 0; }
+    .task-title { color: var(--ink); font-size: 14px; line-height: 1.45; overflow-wrap: anywhere; }
+    .task-title.done { color: #94a3b8; text-decoration: line-through; }
+    .task-due { margin-top: 4px; color: #64748b; font-size: 11px; }
+    .task-delete { border: 0; color: #94a3b8; background: transparent; font-size: 16px; }
+    .task-empty { padding: 30px 12px; color: var(--muted); text-align: center; font-size: 13px; }
+
+    /* 公文內文與進度視窗：支援電腦置中與手機 Bottom Sheet 底部抽屜模式 */
+    .modal-backdrop { z-index: 40; display: none; align-items: center; justify-content: center; padding: 18px; }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      width: min(680px, 100%); max-height: min(92vh, 900px); max-height: min(92dvh, 900px); overflow: auto;
+      border-radius: 20px; background: #fff; box-shadow: 0 24px 75px rgba(15,23,42,.28);
+      animation: sheetPop .2s cubic-bezier(.22,1,.36,1);
+    }
+    @keyframes sheetPop {
+      from { opacity: 0; transform: translateY(20px) scale(.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes bottomSheetSlideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
+    }
+    .sheet-handle-wrap {
+      display: none; justify-content: center; padding: 10px 0 2px; background: #fff;
+      position: sticky; top: 0; z-index: 3; cursor: pointer;
+    }
+    .sheet-handle { width: 42px; height: 5px; border-radius: 999px; background: #cbd5e1; }
+
+    .modal-head {
+      position: sticky; top: 0; z-index: 2; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+      padding: 16px 20px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.96); backdrop-filter: blur(8px);
+    }
+    .modal-head h2 { margin: 0; font-size: 19px; }
+    .modal-head p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .modal-body { padding: 18px 20px 20px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .field-group { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+    .field-group.full { grid-column: 1 / -1; }
+    .field-group label, .field-label { color: #334155; font-size: 12px; font-weight: 750; }
+    .field { width: 100%; min-height: 42px; padding: 9px 11px; border: 1px solid #cbd5e1; border-radius: 10px; outline: none; background: #fff; color: var(--ink); }
+
+    /* 內容說明與多行文字框：柔和淺色底色 (#f8fafc)，點擊輸入時自動轉亮白底 */
+    .textarea {
+      width: 100%; min-height: 104px; resize: vertical; padding: 10px 12px;
+      border: 1px solid #cbd5e1; border-radius: 11px; outline: none;
+      background: var(--input-soft); color: var(--ink); line-height: 1.6;
+      box-shadow: inset 0 1px 2px rgba(15, 23, 42, .03);
+      transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+    }
+    .textarea:focus {
+      background: #ffffff;
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(185, 28, 28, .12);
+    }
+
+    /* 現代化拖曳上傳區 (Dropzone) ＋ 檔案膠囊 */
+    .dropzone {
+      position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      padding: 14px; border: 2px dashed #cbd5e1; border-radius: 12px;
+      background: #f8fafc; color: #475569; text-align: center; cursor: pointer;
+      transition: border-color .15s ease, background .15s ease;
+    }
+    .dropzone:hover, .dropzone.dragover { border-color: var(--red); background: #fef2f2; color: #991b1b; }
+    .file-input {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; padding: 0; border: 0;
+    }
+    .dropzone-icon { font-size: 20px; line-height: 1; pointer-events: none; }
+    .dropzone-title { font-size: 13px; font-weight: 750; pointer-events: none; }
+    .file-help { color: #64748b; font-size: 11px; line-height: 1.45; margin-top: 2px; }
+    .file-names { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 4px; color: #475569; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+    .file-pill {
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+      border: 1px solid #cbd5e1; border-radius: 9px; background: #fff;
+      font-size: 12px; font-weight: 600; color: #1e293b;
+    }
+
+    .checkbox-line { display: flex; align-items: flex-start; gap: 9px; padding: 11px; border: 1px solid #fecaca; border-radius: 11px; color: #7f1d1d; background: #fff7f7; font-size: 13px; line-height: 1.45; }
+    .checkbox-line input { margin-top: 2px; accent-color: var(--red); }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; padding-top: 16px; margin-top: 16px; border-top: 1px solid #eef1f4; }
+
+    /* 公文內文展示卡片 */
+    .readonly-info {
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 8px 15px;
+      padding: 12px 14px; border-radius: 12px; background: #f8fafc; border: 1px solid #e2e8f0;
+    }
+    .readonly-info .info-item { min-width: 0; }
+    .readonly-info .info-item.full { grid-column: 1 / -1; }
+    .info-label { display: block; margin-bottom: 3px; color: #64748b; font-size: 11px; font-weight: 700; }
+    .info-value { display: block; color: #0f172a; font-size: 13px; font-weight: 750; overflow-wrap: anywhere; }
+    .info-desc-box {
+      margin-top: 4px; padding: 9px 11px; border-radius: 9px; background: #f1f5f9;
+      color: #334155; font-size: 13px; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere;
+      border-left: 3px solid #94a3b8;
+    }
+
+    .basic-edit { grid-column: 1 / -1; border: 1px solid #dbe2ea; border-radius: 11px; background: #fbfcfe; }
+    .basic-edit summary { padding: 11px 12px; color: #334155; font-size: 13px; font-weight: 750; cursor: pointer; }
+    .basic-edit .form-grid { padding: 0 12px 12px; }
+    .history-mode-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .history-readonly { background: #f1f5f9; color: #475569; border-color: #e2e8f0; }
+    .mode-hint { color: #64748b; font-size: 11px; }
+
+    /* 視覺化垂直時間軸 (Visual Timeline) */
+    .visual-timeline {
+      position: relative; padding: 12px 14px 12px 26px;
+      border: 1px solid #e2e8f0; border-radius: 12px; background: #f8fafc;
+      max-height: 280px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;
+    }
+    .visual-timeline::before {
+      content: ""; position: absolute; left: 17px; top: 22px; bottom: 22px; width: 2px;
+      background: #cbd5e1;
+    }
+    .tl-item {
+      position: relative; padding: 10px 12px; border-radius: 10px;
+      background: #fff; border: 1px solid #e2e8f0;
+      box-shadow: 0 1px 3px rgba(15,23,42,.03);
+    }
+    .tl-item:first-child { border-color: #fca5a5; background: #fffdfd; }
+    .tl-dot {
+      position: absolute; left: -14px; top: 14px; width: 10px; height: 10px;
+      border-radius: 50%; background: #94a3b8; border: 2px solid #fff;
+      box-shadow: 0 0 0 2px #cbd5e1;
+    }
+    .tl-item:first-child .tl-dot { background: var(--red); box-shadow: 0 0 0 3px #fecaca; }
+    .tl-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; font-size: 12px; }
+    .tl-time { font-weight: 800; color: #334155; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .tl-body { font-size: 13px; color: #1e293b; line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .tl-attachment {
+      display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; margin-right: 6px;
+      padding: 3px 8px; border-radius: 6px; background: #eff6ff; color: #1d4ed8;
+      border: 1px solid #bfdbfe; font-size: 12px; font-weight: 600;
+    }
+
+    .toast {
+      position: fixed; z-index: 60; left: 50%; bottom: max(22px, env(safe-area-inset-bottom));
+      max-width: min(580px, calc(100vw - 28px)); padding: 12px 16px; border-radius: 12px;
+      color: #fff; background: #172033; box-shadow: var(--shadow); font-size: 13px;
+      opacity: 0; pointer-events: none; transform: translate(-50%, 15px); transition: .2s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .toast.error { background: #991b1b; }
+    .loading {
+      grid-column: 1 / -1; display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 46px; color: var(--muted);
+    }
+    .spinner { width: 18px; height: 18px; border: 2px solid #fecaca; border-top-color: var(--red); border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hidden { display: none !important; }
+
+    /* 手機版響應式：上方減壓＋Bottom Sheet 底部抽屜模式＋底部單手懸浮列 */
+    @media (max-width: 760px) {
+      body { padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+      .topbar { gap: 10px; padding: calc(8px + env(safe-area-inset-top)) 14px 8px; }
+      .brand { flex: 1 1 auto; gap: 8px; }
+      .brand-mark { width: 36px; height: 36px; flex: 0 0 36px; border-radius: 9px; }
+      .brand-title { font-size: 15px; }
+      .brand-subtitle { display: none; }
+      .top-actions { flex: 0 0 auto; gap: 6px; }
+      .top-actions .desktop-only-btn { display: none; }
+      .mobile-search-jump {
+        display: inline-flex; align-items: center; gap: 4px;
+        min-height: 32px; padding: 5px 10px; border-radius: 999px;
+        border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.14);
+        color: #fff; font-size: 12px; font-weight: 700;
+      }
+      .controls-section { margin: 8px 0 6px; }
+      .command-bar { flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+      .archive-tools { width: 100%; }
+      .archive-select { flex: 1; height: 38px; }
+      .filter-dashboard { padding: 6px 8px; gap: 6px; }
+      .container { width: calc(100% - 20px); margin: 4px auto 40px; }
+      .cards { grid-template-columns: 1fr; gap: 10px; }
+      .card { padding: 14px 14px 13px 18px; }
+      .card-title { font-size: 15px; }
+      .mobile-bottom-bar { display: flex; }
+
+      /* Bottom Sheet 模式 */
+      .modal-backdrop { align-items: flex-end; padding: 0; }
+      .modal {
+        width: 100%; max-height: 90vh; max-height: 90dvh;
+        border-radius: 24px 24px 0 0; padding-bottom: env(safe-area-inset-bottom);
+        box-shadow: 0 -12px 48px rgba(15, 23, 42, .35);
+        animation: bottomSheetSlideUp .26s cubic-bezier(.22,1,.36,1);
+      }
+      .sheet-handle-wrap { display: flex; }
+      .modal-head { top: 17px; padding: 10px 16px 12px; }
+      .modal-body { padding: 14px 16px 20px; }
+      .form-grid { grid-template-columns: 1fr; gap: 11px; }
+      .field-group.full { grid-column: auto; }
+      .readonly-info { grid-template-columns: 1fr; }
+      .modal-actions .btn { flex: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+
+    /* PWA 信任裝置通行密碼鎖定與管理視窗 */
+    .auth-gate-backdrop {
+      position: fixed; inset: 0; z-index: 80;
+      display: none; align-items: center; justify-content: center; padding: 20px;
+      background: rgba(15, 23, 42, .72); backdrop-filter: blur(8px);
+    }
+    .auth-gate-backdrop.open { display: flex; }
+    .auth-card {
+      width: min(420px, 100%); padding: 24px 22px; border-radius: 22px;
+      background: #fff; box-shadow: 0 25px 70px rgba(15, 23, 42, .4);
+      text-align: center; animation: sheetPop .22s cubic-bezier(.22,1,.36,1);
+    }
+    .auth-logo {
+      width: 68px; height: 68px; margin: 0 auto 12px; border-radius: 18px;
+      overflow: hidden; box-shadow: 0 8px 22px rgba(153, 27, 27, .24);
+    }
+    .auth-title { margin: 0; font-size: 20px; font-weight: 800; color: var(--ink); }
+    .auth-sub { margin: 6px 0 16px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .auth-input {
+      width: 100%; height: 48px; padding: 0 14px; border: 2px solid #cbd5e1; border-radius: 13px;
+      font-size: 16px; font-weight: 700; text-align: center; letter-spacing: .08em;
+      background: var(--input-soft); color: var(--ink); outline: none;
+      transition: border-color .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+    .auth-input:focus {
+      background: #fff; border-color: var(--red); box-shadow: 0 0 0 4px rgba(185, 28, 28, .12);
+    }
+    .auth-error {
+      min-height: 20px; margin: 8px 0; color: #dc2626; font-size: 12px; font-weight: 700;
+    }
+    .auth-trust-note {
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      margin: 4px 0 14px; color: #475569; font-size: 12px;
+    }
+    .security-trigger {
+      min-height: 32px; padding: 5px 10px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.26); background: rgba(255,255,255,.12);
+      color: #fff; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .security-trigger:hover { background: rgba(255,255,255,.22); }
+
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAADAFBMVEXloZ7i3eEVLFceaJTlbVYgFjELFTGkjWic1+1uamlUpM1hJSafl6UzV3ahdoYfXookLFOYWWcfBiCaXDcVZnRNUWrOWzklcpgDDzIcMVMAAP//AAAtSnHo7vHmmG9LGzdmlrJRLU62gTxlAAxeLE0mSnRqcn5SZJQemLT9/Pz1+v+ILkBEKkz8w6t4RRyyFByasMZ9hXicpbClrsBx1PoA///Me4Jml7NcTmoFoMxVAFWw0OZ2hpocME9FHDp7tOXUvsSqAAAAfwC5x9KdsMXflD5phZ1ff99jcIMQJ0kWNVgkSm4oVHkAAAAKGDj3+fscRGqPFioZPGLN2eQwZoy2xtWpuMkpW4KtGihyFCrX5O3QJywOFzluDCaTpbjk6vCtJzSIma0zFjBOhqlOdJRIWXCQJzJTCyYoOFZoeJBNFi1NaYioNDQ3dJjI0t1ylbDOmEwUJUyxhU3lNDFziqRrOE9RZnl0hJoHDCsKHkHst4/Ey9VYCByGDSTyxXYzCybQNjgxQlupekiasscPID1Xk7WTMzZwJjTquWz714nQR0jLp3LyxY+ldDpHfKK2mGiWq8IvJTSKCRlpChyUR0zapFX//8hUJjaYaDWSNkRqp8imq7pNNzSwRkrvZllpSTXqWFHLVlMpKkb+5Jf/9rJwV0pXRjnjLCp1OlQdV4T/6qbPsnmFOlJQKkWHZ0omPWLmSkQQJEfKHiRPR1B2tNL2dmrNt4SUVlNvSU+uO0P90noScqKwV1LHi0lROFAdUnhFTWZzEh4QGkCJWi6rsb0gWoaNEh11VTn1hXa60+VsNzSXd1IZbZrImWjXyJEdZZINJEmIiptyYlJrZ3BTU1ekLUCuZVNVVVU6NDfiqlgLFjfJPEK8pHFsKUkAAFUPJEVjbIPmQzurChi4zeA3fKI6hKm0Z2zSZlNvOhqsiWb4mIjMZmb7+/vhq2lYGhjMFx1lnMOSZXDUdXKxhZEAVVUAPT36+/iIeWWydnEAAH9wVmgQJkvIij2FjqDSlJXOqK80i9iKAAABAHRSTlP//x1b/xNa///+/+n78v+IWv/t/hBp/x6LzwEBao3/kxKn/wPtnhEUEE0J/nf///9V/3b//wL//6AUA3pum3cJ/wMCj4X/nQiP/v7+/wD+/v7+/v7//v7//v7+/tT+/v7+//7////+/v7+/v7+//7+/6z////6/v///f7//v7+/////v7///79/v7//v7////////+///8/f/+/////////////v7////N//7/tfr//f+O///////////+Rf/+/////8j//pP///////9X/v9tdf///v///gP//7H///4Dzv///////////////2z9////////AwQq//4C/0r/////DsnI8QAAIwlJREFUeNqtewd4G9eVLtSLZce9xHZ673U323dfvzODAQaYQaMw6MAAIAmGAgkw7GKBREkUSdFLUyQlkQ7pJHqkLEuyypNkZaW1LCnKqngV17j3bie213X/e2fQSNmf3/ftMU1CwOD+/z3n3HPOPXfGZJ4tn53P/sx/78zOnT//L5GdO8+8Zwz62TlwptlvfB3/X7dgwYJ/hXzmM+w3/v7bgn9j8jsmC36HC/5fXkpeLVigX/A7/erPUPlXXfDZdRj6D5/9ZAJ/MJu/seBSfsdXDtfNkV+VyP+9uHyxeMXsbx8+vIO/dME3GMTHErj6RvNf3bTjcN3Bd06//ItPlPUXl1+s/9hvvHz6nb37Dmtf/SvzjVd/HAFwu2m67sK6tbf98pe/ue223xTkl0X5508jhasLI2A0/Gvtugt10zeVK6GEwCLzdV+sW73+ttvW3rVx2flIudSXSjKZDOOnVJJ4s+ya0i/fB6lftmT72ttuW/983RevA9RFCCwyXz50Yf1ta7cvaydUuILYqFhny9133y0Ycvfdcz7FN7hSYUO2LwOH9Rdyl5u/PJfAl83fOXl67dp158qw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" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+      <div>
+        <div class="brand-title-row">
+          <span class="brand-title">消防小本本</span>
+          <span class="sync-pill" title="預設載入當年度全部案件與跨年未結案；完整進度與 Tasks 於開啟時即時讀取"><span class="sync-dot"></span>當年度已載入</span>
+        </div>
+        <div class="brand-subtitle">個人工作台・資料儲存在你的 Google 帳戶</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="mobile-search-jump" id="scrollToSearchBtn" type="button" aria-label="回到頂部搜尋與篩選">🔍 搜尋/篩選</button>
+      <button class="security-trigger" id="openSecurityBtn" type="button" title="信任裝置與通行密碼設定">🔒 <span class="desktop-only-btn">信任裝置</span></button>
+      <button class="btn btn-ghost tasks-trigger desktop-only-btn" id="openTasks" type="button" aria-label="開啟待辦事項（消防）">
+        <span>🚒</span><span class="button-label">待辦事項 (消防)</span><span class="badge-count" id="taskBadge">…</span>
+      </button>
+      <button class="btn btn-primary desktop-only-btn" id="openNew" type="button" aria-label="新增建檔">＋ <span class="button-label">新增建檔</span></button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="controls-section" id="controlsSection" aria-label="搜尋與篩選">
+      <div class="command-bar">
+        <div class="search-wrap">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input class="search" id="searchInput" type="search" placeholder="搜尋當年度全案件、跨年未結案、內容或資料ID…" autocomplete="off">
+          <button class="search-clear" id="searchClear" type="button" aria-label="清除搜尋">×</button>
+        </div>
+        <div class="archive-tools">
+          <button class="btn btn-small btn-outline" id="toggleArchive" type="button" style="height:42px;border-radius:12px">🗄️ 歷史年度</button>
+          <select class="archive-select hidden" id="archiveYear" aria-label="選擇歷史年度"></select>
+        </div>
+      </div>
+      <div class="filter-dashboard">
+        <div class="status-tabs" id="statusFilters" aria-label="狀態過濾"></div>
+        <div class="filter-line" id="categoryFilters" aria-label="標籤過濾"></div>
+      </div>
+    </section>
+    <div class="list-heading">
+      <strong id="resultTitle">當年度案件與跨年未結案</strong>
+      <span id="resultSummary"></span>
+    </div>
+    <section class="cards" id="cards" aria-live="polite">
+      <div class="loading"><span class="spinner"></span>載入案件資料…</div>
+    </section>
+    <div class="load-more-row hidden" id="loadMoreRow">
+      <button class="btn btn-outline" id="loadMoreRecords" type="button">載入更多案件</button>
+    </div>
+  </main>
+
+  <nav class="mobile-bottom-bar" aria-label="手機快速操作">
+    <button class="fab-btn primary" id="mobileOpenNew" type="button">＋ 新增建檔</button>
+    <button class="fab-btn" id="mobileOpenTasks" type="button">🚒 待辦事項 <span class="badge-count" id="mobileTaskBadge" style="margin-left:2px">…</span></button>
+  </nav>
+
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="tasks-drawer" id="tasksDrawer" aria-label="Google Tasks 消防待辦">
+    <div class="drawer-head">
+      <div>
+        <h2 class="drawer-title">🚒 待辦事項 (消防)</h2>
+        <p class="drawer-subtitle" id="tasksSubtitle">連結至你的 Google Tasks 清單</p>
+      </div>
+      <button class="icon-button" id="closeTasks" type="button" aria-label="關閉待辦面板">×</button>
+    </div>
+    <p class="task-note">勾選僅完成 Google Tasks 待辦提醒；案件結案請至案件卡片更新進度</p>
+    <form class="task-form" id="quickTaskForm">
+      <input class="field" id="quickTaskTitle" type="text" maxlength="1024" placeholder="新增臨時交辦任務…" required>
+      <input class="field task-date" id="quickTaskDue" type="date" aria-label="任務日期">
+      <button class="btn btn-primary task-add" type="submit">＋ 新增</button>
+    </form>
+    <div class="task-list" id="taskList"><div class="task-empty">開啟待辦面板時載入任務。</div></div>
+  </aside>
+
+  <div class="modal-backdrop" id="newModal" role="dialog" aria-modal="true" aria-labelledby="newModalTitle">
+    <section class="modal">
+      <div class="sheet-handle-wrap close-modal" title="關閉視窗"><span class="sheet-handle"></span></div>
+      <div class="modal-head">
+        <div><h2 id="newModalTitle">新增案件建檔</h2><p>建立專屬 Drive 資料夾，附件會一併歸檔。</p></div>
+        <button class="icon-button close-modal" type="button" aria-label="關閉">×</button>
+      </div>
+      <form class="modal-body" id="newForm">
+        <div class="form-grid">
+          <div class="field-group">
+            <label for="newDate">發文/登記日期 *</label>
+            <input class="field" id="newDate" type="date" required>
+          </div>
+          <div class="field-group">
+            <label for="newDueDate">限辦/完成期限</label>
+            <input class="field" id="newDueDate" type="date">
+          </div>
+          <div class="field-group">
+            <label for="newCategory">標籤類別 *</label>
+            <input class="field" id="newCategory" type="text" list="categoryOptions" maxlength="100" required value="公文" placeholder="可選既有標籤或輸入自訂標籤">
+            <datalist id="categoryOptions"><option value="公文"><option value="訓練"><option value="耗材"><option value="器材"></datalist>
+          </div>
+          <div class="field-group">
+            <label for="newStatus">執行狀態</label>
+            <select class="field" id="newStatus">
+              <option>待辦</option><option>辦理中</option><option>已結案</option><option>存查</option>
+            </select>
+          </div>
+          <div class="field-group full">
+            <label for="newSubject">案件/公文主旨 *</label>
+            <input class="field" id="newSubject" type="text" maxlength="500" required placeholder="輸入清楚易辨識的案件主旨">
+          </div>
+          <div class="field-group full">
+            <label for="newDescription">內容說明</label>
+            <textarea class="textarea" id="newDescription" maxlength="20000" placeholder="補充說明、規格需求或重點摘要"></textarea>
+          </div>
+          <div class="field-group full">
+            <label for="newFiles">原件照片/附件</label>
+            <div class="dropzone">
+              <input class="file-input" id="newFiles" type="file" multiple accept="image/*,application/pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip">
+              <span class="dropzone-icon">📤</span>
+              <span class="dropzone-title">將公文 PDF 或照片拖曳至此，或點擊選取檔案</span>
+            </div>
+            <div class="file-help">照片會在瀏覽器中縮至最長邊 1600px、JPEG 品質 0.75。PDF 與 Office 文件保留原檔；附件合計限制以送出資料量 6 MiB 為準。HEIC 若無法轉成 JPEG，系統會阻止上傳並提示先轉存。</div>
+            <div class="file-names" id="newFileNames"></div>
+          </div>
+          <div class="field-group full">
+            <label class="checkbox-line">
+              <input id="newAddTask" type="checkbox" checked>
+              <span>🚒 同時加入 Google Tasks「待辦事項 (消防)」，並帶入期限日期。Tasks API 提供日期，不會設定額外通知。</span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-outline close-modal" type="button">取消</button>
+          <button class="btn btn-primary" id="createButton" type="submit">建立案件</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="progressModal" role="dialog" aria-modal="true" aria-labelledby="progressModalTitle">
+    <section class="modal">
+      <div class="sheet-handle-wrap close-modal" title="關閉視窗"><span class="sheet-handle"></span></div>
+      <div class="modal-head">
+        <div><h2 id="progressModalTitle">公文內文與進度更新</h2><p>安全模式會把本次紀錄加在時間軸最上方。</p></div>
+        <button class="icon-button close-modal" type="button" aria-label="關閉">×</button>
+      </div>
+      <form class="modal-body" id="progressForm">
+        <div class="form-grid">
+          <div class="field-group full">
+            <div class="readonly-info">
+              <div class="info-item full"><span class="info-label">案件/公文主旨</span><span class="info-value" id="progressSubject" style="font-size:15px"></span></div>
+              <div class="info-item"><span class="info-label">發文/登記日期</span><span class="info-value" id="progressDate"></span></div>
+              <div class="info-item"><span class="info-label">資料ID・建檔時間</span><span class="info-value"><span id="progressId"></span>・<span id="progressCreated" style="font-weight:500;color:#64748b"></span></span></div>
+              <div class="info-item full" id="progressDescWrap"><span class="info-label">公文內容說明</span><div class="info-desc-box" id="progressDescView">載入內容說明…</div></div>
+            </div>
+          </div>
+          <details class="basic-edit" id="basicEditDetails">
+            <summary>📝 修改案件基本資料（主旨／日期／標籤／期限／內容說明）</summary>
+            <div class="form-grid">
+              <div class="field-group">
+                <label for="editRecordDate">發文/登記日期 *</label>
+                <input class="field" id="editRecordDate" type="date" required>
+              </div>
+              <div class="field-group">
+                <label for="editRecordDueDate">限辦/完成期限</label>
+                <input class="field" id="editRecordDueDate" type="date">
+              </div>
+              <div class="field-group">
+                <label for="editRecordCategory">標籤類別 *</label>
+                <input class="field" id="editRecordCategory" type="text" list="categoryOptions" maxlength="100" required>
+              </div>
+              <div class="field-group">
+                <label for="editRecordSubject">案件/公文主旨 *</label>
+                <input class="field" id="editRecordSubject" type="text" maxlength="500" required>
+              </div>
+              <div class="field-group full">
+                <label for="editRecordDescription">內容說明</label>
+                <textarea class="textarea" id="editRecordDescription" maxlength="20000"></textarea>
+              </div>
+            </div>
+          </details>
+          <div class="field-group">
+            <label for="progressStatus">執行狀態</label>
+            <select class="field" id="progressStatus">
+              <option>待辦</option><option>辦理中</option><option>已結案</option><option>存查</option>
+            </select>
+          </div>
+          <div class="field-group">
+            <label for="progressFiles">上傳進度照片/附件</label>
+            <div class="dropzone" style="padding:10px">
+              <input class="file-input" id="progressFiles" type="file" multiple accept="image/*,application/pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.zip">
+              <span class="dropzone-title" style="font-size:12px">📎 拖曳或點擊選取進度附件</span>
+            </div>
+            <div class="file-names" id="progressFileNames"></div>
+          </div>
+          <div class="field-group full">
+            <label for="progressText">➕ 新增本次執行進度</label>
+            <textarea class="textarea" id="progressText" maxlength="10000" style="min-height:82px" placeholder="輸入本次處理情形；可只變更狀態或上傳附件"></textarea>
+          </div>
+          <div class="field-group full">
+            <div class="history-mode-row">
+              <span class="field-label">⏳ 完整歷史時間軸</span>
+              <button class="btn btn-small btn-outline" id="toggleManual" type="button">🔧 切換為全文手動修改</button>
+            </div>
+            <div class="visual-timeline" id="visualTimeline"></div>
+            <textarea class="textarea history-readonly hidden" id="fullHistory" readonly aria-label="完整歷史時間軸"></textarea>
+            <span class="mode-hint" id="historyHint">視覺化時間軸檢視中。切換手動修改後可直接整理全文；若有新增附件或進度，系統會在最上方加上時間戳與附件名稱。</span>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-outline close-modal" type="button">取消</button>
+          <button class="btn btn-primary" id="updateButton" type="submit">儲存更新</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <!-- PWA 首次開啟：信任裝置通行密碼驗證視窗 -->
+  <div class="auth-gate-backdrop" id="authGateModal" role="dialog" aria-modal="true" aria-labelledby="authGateTitle">
+    <div class="auth-card">
+      <div class="auth-logo"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAADAFBMVEXloZ7i3eEVLFceaJTlbVYgFjELFTGkjWic1+1uamlUpM1hJSafl6UzV3ahdoYfXookLFOYWWcfBiCaXDcVZnRNUWrOWzklcpgDDzIcMVMAAP//AAAtSnHo7vHmmG9LGzdmlrJRLU62gTxlAAxeLE0mSnRqcn5SZJQemLT9/Pz1+v+ILkBEKkz8w6t4RRyyFByasMZ9hXicpbClrsBx1PoA///Me4Jml7NcTmoFoMxVAFWw0OZ2hpocME9FHDp7tOXUvsSqAAAAfwC5x9KdsMXflD5phZ1ff99jcIMQJ0kWNVgkSm4oVHkAAAAKGDj3+fscRGqPFioZPGLN2eQwZoy2xtWpuMkpW4KtGihyFCrX5O3QJywOFzluDCaTpbjk6vCtJzSIma0zFjBOhqlOdJRIWXCQJzJTCyYoOFZoeJBNFi1NaYioNDQ3dJjI0t1ylbDOmEwUJUyxhU3lNDFziqRrOE9RZnl0hJoHDCsKHkHst4/Ey9VYCByGDSTyxXYzCybQNjgxQlupekiasscPID1Xk7WTMzZwJjTquWz714nQR0jLp3LyxY+ldDpHfKK2mGiWq8IvJTSKCRlpChyUR0zapFX//8hUJjaYaDWSNkRqp8imq7pNNzSwRkrvZllpSTXqWFHLVlMpKkb+5Jf/9rJwV0pXRjnjLCp1OlQdV4T/6qbPsnmFOlJQKkWHZ0omPWLmSkQQJEfKHiRPR1B2tNL2dmrNt4SUVlNvSU+uO0P90noScqKwV1LHi0lROFAdUnhFTWZzEh4QGkCJWi6rsb0gWoaNEh11VTn1hXa60+VsNzSXd1IZbZrImWjXyJEdZZINJEmIiptyYlJrZ3BTU1ekLUCuZVNVVVU6NDfiqlgLFjfJPEK8pHFsKUkAAFUPJEVjbIPmQzurChi4zeA3fKI6hKm0Z2zSZlNvOhqsiWb4mIjMZmb7+/vhq2lYGhjMFx1lnMOSZXDUdXKxhZEAVVUAPT36+/iIeWWydnEAAH9wVmgQJkvIij2FjqDSlJXOqK80i9iKAAABAHRSTlP//x1b/xNa///+/+n78v+IWv/t/hBp/x6LzwEBao3/kxKn/wPtnhEUEE0J/nf///9V/3b//wL//6AUA3pum3cJ/wMCj4X/nQiP/v7+/wD+/v7+/v7//v7//v7+/tT+/v7+//7////+/v7+/v7+//7+/6z////6/v///f7//v7+/////v7///79/v7//v7////////+///8/f/+/////////////v7////N//7/tfr//f+O///////////+Rf/+/////8j//pP///////9X/v9tdf///v///gP//7H///4Dzv///////////////2z9////////AwQq//4C/0r/////DsnI8QAAIwlJREFUeNqtewd4G9eVLtSLZce9xHZ673U323dfvzODAQaYQaMw6MAAIAmGAgkw7GKBREkUSdFLUyQlkQ7pJHqkLEuyypNkZaW1LCnKqngV17j3bie213X/e2fQSNmf3/ftMU1CwOD+/z3n3HPOPXfGZJ4tn53P/sx/78zOnT//L5GdO8+8Zwz62TlwptlvfB3/X7dgwYJ/hXzmM+w3/v7bgn9j8jsmC36HC/5fXkpeLVigX/A7/erPUPlXXfDZdRj6D5/9ZAJ/MJu/seBSfsdXDtfNkV+VyP+9uHyxeMXsbx8+vIO/dME3GMTHErj6RvNf3bTjcN3Bd06//ItPlPUXl1+s/9hvvHz6nb37Dmtf/SvzjVd/HAFwu2m67sK6tbf98pe/ue223xTkl0X5508jhasLI2A0/Gvtugt10zeVK6GEwCLzdV+sW73+ttvW3rVx2flIudSXSjKZDOOnVJJ4s+ya0i/fB6lftmT72ttuW/983RevA9RFCCwyXz50Yf1ta7cvaydUuILYqFhny9133y0Ycvfdcz7FN7hSYUO2LwOH9Rdyl5u/PJfAl83fOXl67dp158qw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" alt="" style="width:100%;height:100%;object-fit:cover"></div>
+      <h2 class="auth-title" id="authGateTitle">消防小本本</h2>
+      <p class="auth-sub">首次在此裝置（手機／平板／電腦）開啟，請輸入您的專屬通行密碼以將此裝置設為<strong>信任裝置</strong>。</p>
+      <form id="authGateForm">
+        <input class="auth-input" id="authPasscodeInput" type="password" inputmode="text" placeholder="請輸入通行密碼" autocomplete="current-password" required>
+        <div class="auth-error" id="authGateError"></div>
+        <div class="auth-trust-note">🛡️ 驗證成功後自動記憶於此裝置本機，日後開啟免重複輸入</div>
+        <button class="btn btn-primary" id="authSubmitBtn" type="submit" style="width:100%;min-height:44px;font-size:15px">🔓 驗證並設為信任裝置</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 信任裝置與修改密碼管理視窗 -->
+  <div class="modal-backdrop" id="securityModal" role="dialog" aria-modal="true" aria-labelledby="securityModalTitle">
+    <section class="modal" style="max-width:440px">
+      <div class="sheet-handle-wrap close-modal" title="關閉視窗"><span class="sheet-handle"></span></div>
+      <div class="modal-head">
+        <div><h2 id="securityModalTitle">🔒 信任裝置與密碼管理</h2><p>管理此裝置的信任狀態或變更雲端通行密碼</p></div>
+        <button class="icon-button close-modal" type="button" aria-label="關閉">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="readonly-info" style="grid-template-columns:1fr;margin-bottom:14px">
+          <div class="info-item">
+            <span class="info-label">目前裝置狀態</span>
+            <span class="info-value" style="color:#15803d">✅ 已認證為信任裝置（自動帶入通行金鑰）</span>
+          </div>
+        </div>
+        <form id="changePasscodeForm" class="form-grid" style="grid-template-columns:1fr">
+          <div class="field-group">
+            <label for="newPasscodeInput">變更雲端通行密碼（所有裝置下次同步時生效）</label>
+            <input class="field" id="newPasscodeInput" type="password" minlength="3" placeholder="輸入新通行密碼（至少 3 字元）" required>
+          </div>
+          <div class="modal-actions" style="justify-content:space-between">
+            <button class="btn btn-outline" id="revokeTrustBtn" type="button" style="color:#b91c1c;border-color:#fecaca;background:#fef2f2">🚪 解除此裝置信任</button>
+            <button class="btn btn-primary" id="savePasscodeBtn" type="submit">更新密碼</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      "use strict";
+      var GAS_API_URL = "https://script.google.com/macros/s/AKfycby_KpvIxGmEgZV_T7W8a84hv6LE4ifycdU--ZBANd_kjlJkrGiZKQzSCUxbihEqgzAb/exec";
+      var STORAGE_KEY = "fire_notebook_trusted_passcode_v1";
+
+      // 註冊 PWA Service Worker（僅在支援且非 GAS iframe 的標準網域下啟用）
+      if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost") && location.hostname.indexOf("googleusercontent.com") === -1 && location.hostname.indexOf("script.google.com") === -1) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("./sw.js").catch(function () {});
+        });
+      }
+
+      // 若已在 GAS 原生環境內，仍綁定「信任裝置管理」按鈕但不覆蓋原生 google.script.run
+      var isNativeGas = !!(window.google && window.google.script && window.google.script.run);
+      var pendingQueue = [];
+      var authModalOpen = false;
+
+      function getSavedPasscode() {
+        try { return (localStorage.getItem(STORAGE_KEY) || "").trim(); } catch (e) { return ""; }
+      }
+      function setSavedPasscode(val) {
+        try {
+          if (val) localStorage.setItem(STORAGE_KEY, String(val).trim());
+          else localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {}
+      }
+
+      function showAuthGate(errorText) {
+        var modal = document.getElementById("authGateModal");
+        var errNode = document.getElementById("authGateError");
+        var input = document.getElementById("authPasscodeInput");
+        if (!modal) return;
+        if (errNode) errNode.textContent = errorText || "";
+        modal.classList.add("open");
+        authModalOpen = true;
+        setTimeout(function () { if (input) input.focus(); }, 80);
+      }
+
+      function hideAuthGate() {
+        var modal = document.getElementById("authGateModal");
+        if (modal) modal.classList.remove("open");
+        authModalOpen = false;
+      }
+
+      function parseGasResponseText(rawText) {
+        var trimmed = String(rawText || "").trim();
+        if (!trimmed) throw new Error("伺服器回傳空白內容");
+        try {
+          return JSON.parse(trimmed);
+        } catch (e) {
+          var titleMatch = trimmed.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+          var titleText = titleMatch ? titleMatch[1].replace(/\s+/g, " ").trim() : "";
+          var bodyMatch = trimmed.replace(/<style[\s\S]*?<\/style>/gi, " ").replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+          var detail = titleText || bodyMatch.slice(0, 120) || trimmed.slice(0, 80);
+          throw new Error("Google 回傳了網頁而非資料 (" + detail + ")");
+        }
+      }
+
+      function sendGasPost(payloadObj, isRetry) {
+        var targetUrl = GAS_API_URL + "?_t=" + Date.now() + (isRetry ? "&retry=1" : "");
+        return fetch(targetUrl, {
+          method: "POST",
+          mode: "cors",
+          credentials: "omit",
+          cache: "no-store",
+          redirect: "follow",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payloadObj)
+        })
+          .then(function (res) { return res.text(); })
+          .then(function (text) { return parseGasResponseText(text); })
+          .catch(function (err) {
+            if (!isRetry) {
+              return sendGasPost(payloadObj, true);
+            }
+            throw err;
+          });
+      }
+
+      function callGasApi(action, args, onSuccess, onFailure) {
+        var passcode = getSavedPasscode();
+        if (!passcode && action !== "apiVerifyPasscode") {
+          pendingQueue.push({ action: action, args: args, onSuccess: onSuccess, onFailure: onFailure });
+          showAuthGate("");
+          return;
+        }
+        sendGasPost({
+          passcode: passcode,
+          action: action,
+          args: args || []
+        }, false)
+          .then(function (data) {
+            if (data && data.ok) {
+              if (onSuccess) onSuccess(data.result);
+            } else if (data && data.authError) {
+              setSavedPasscode("");
+              pendingQueue.push({ action: action, args: args, onSuccess: onSuccess, onFailure: onFailure });
+              showAuthGate(data.error || "通行密碼不正確，請重新輸入。");
+            } else {
+              var msg = (data && data.error) ? data.error : "雲端 API 執行失敗";
+              if (onFailure) onFailure({ message: msg });
+            }
+          })
+          .catch(function (err) {
+            if (onFailure) onFailure({ message: "連線至 Google Apps Script 失敗：" + (err && err.message ? err.message : err) });
+          });
+      }
+
+      function flushPendingQueue() {
+        var copy = pendingQueue.slice();
+        pendingQueue = [];
+        copy.forEach(function (item) {
+          callGasApi(item.action, item.args, item.onSuccess, item.onFailure);
+        });
+      }
+
+      if (!isNativeGas) {
+        function makeRunner(successHandler, failureHandler) {
+          var s = successHandler || function () {};
+          var f = failureHandler || function () {};
+          return new Proxy({}, {
+            get: function (target, prop) {
+              if (prop === "withSuccessHandler") {
+                return function (fn) { return makeRunner(fn, f); };
+              }
+              if (prop === "withFailureHandler") {
+                return function (fn) { return makeRunner(s, fn); };
+              }
+              return function () {
+                var args = Array.prototype.slice.call(arguments);
+                callGasApi(String(prop), args, s, f);
+              };
+            }
+          });
+        }
+        window.google = { script: { run: makeRunner() } };
+      }
+
+      window.addEventListener("DOMContentLoaded", function () {
+        var gateForm = document.getElementById("authGateForm");
+        if (gateForm) {
+          gateForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var input = document.getElementById("authPasscodeInput");
+            var btn = document.getElementById("authSubmitBtn");
+            var errNode = document.getElementById("authGateError");
+            var candidate = (input.value || "").trim();
+            if (!candidate) return;
+            btn.disabled = true;
+            btn.textContent = "驗證中…";
+            errNode.textContent = "";
+            setSavedPasscode(candidate);
+
+            sendGasPost({ passcode: candidate, action: "apiVerifyPasscode", args: [] }, false)
+              .then(function (data) {
+                btn.disabled = false;
+                btn.textContent = "🔓 驗證並設為信任裝置";
+                if (data && data.ok) {
+                  input.value = "";
+                  hideAuthGate();
+                  flushPendingQueue();
+                } else {
+                  setSavedPasscode("");
+                  errNode.textContent = (data && data.error) ? data.error : "通行密碼不正確";
+                }
+              })
+              .catch(function (err) {
+                btn.disabled = false;
+                btn.textContent = "🔓 驗證並設為信任裝置";
+                setSavedPasscode("");
+                errNode.textContent = "無法連線至 GAS 後端，請確認 GAS 已更新部署並設為「所有人」可存取。";
+              });
+          });
+        }
+
+        var secBtn = document.getElementById("openSecurityBtn");
+        var secModal = document.getElementById("securityModal");
+        if (secBtn && secModal) {
+          secBtn.addEventListener("click", function () {
+            secModal.classList.add("open");
+          });
+        }
+
+        var revokeBtn = document.getElementById("revokeTrustBtn");
+        if (revokeBtn) {
+          revokeBtn.addEventListener("click", function () {
+            setSavedPasscode("");
+            if (secModal) secModal.classList.remove("open");
+            showAuthGate("已解除此裝置的信任狀態，請重新輸入密碼以繼續使用。");
+          });
+        }
+
+        var changeForm = document.getElementById("changePasscodeForm");
+        if (changeForm) {
+          changeForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var newPass = (document.getElementById("newPasscodeInput").value || "").trim();
+            var saveBtn = document.getElementById("savePasscodeBtn");
+            if (newPass.length < 3) return;
+            var oldPass = getSavedPasscode();
+            saveBtn.disabled = true;
+            saveBtn.textContent = "更新中…";
+            window.google.script.run
+              .withSuccessHandler(function () {
+                saveBtn.disabled = false;
+                saveBtn.textContent = "更新密碼";
+                setSavedPasscode(newPass);
+                document.getElementById("newPasscodeInput").value = "";
+                if (secModal) secModal.classList.remove("open");
+                alert("✅ 雲端通行密碼已更新！此裝置已自動同步新密碼。");
+              })
+              .withFailureHandler(function (err) {
+                saveBtn.disabled = false;
+                saveBtn.textContent = "更新密碼";
+                alert(err && err.message ? err.message : String(err));
+              })
+              .apiChangePasscode(oldPass, newPass);
+          });
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      "use strict";
+      var STANDARD_TAGS = ["公文", "訓練", "耗材", "器材"];
+      var TAG_ICONS = { "公文": "📑", "訓練": "🏃", "耗材": "📦", "器材": "🔧" };
+      var STATUS_ITEMS = [
+        { key: "全部", label: "全部" },
+        { key: "待辦", label: "🔴 待辦" },
+        { key: "辦理中", label: "🔵 辦理中" },
+        { key: "已結案", label: "🟢 已結案" },
+        { key: "存查", label: "⚪ 存查" }
+      ];
+      var CARD_BATCH_SIZE = 40;
+      var recordsCache = null;
+      var visibleRecordCache = [];
+      var renderedCardCount = 0;
+      var recordsById = {};
+      var archiveYears = [];
+      var loadedYears = {};
+      var archivePages = {};
+      var archiveGenerations = {};
+      var activeIds = {};
+      var selectedArchiveYear = "";
+      var activeCursor = "";
+      var activeHasMore = false;
+      var recordsLoading = false;
+      var pendingArchiveRequest = false;
+      var pendingArchiveYear = "";
+      var selectedTag = "全部";
+      var selectedStatus = "全部";
+      var activeRecord = null;
+      var activeHistoryText = "";
+      var activeDescriptionLoaded = false;
+      var manualMode = false;
+      var tasks = [];
+      var tasksLoaded = false;
+      var tasksLoading = false;
+      var taskPageToken = "";
+      var taskHasMore = false;
+      var openTaskCount = 0;
+      var tasksCountKnown = false;
+      var newSubmitInFlight = false;
+      var progressSubmitInFlight = false;
+      var quickTaskInFlight = false;
+      var drawerOpen = false;
+      var toastTimer = null;
+      var searchTimer = null;
+      var uploadLimitBytes = 5 * 1024 * 1024;
+      var requestJsonLimitBytes = 6 * 1024 * 1024;
+      var requestIdMemory = {};
+
+      function el(id) { return document.getElementById(id); }
+      function todayString() {
+        return taipeiDateString(Date.now());
+      }
+      function taipeiDateString(timestamp) {
+        var taipeiNow = new Date(Number(timestamp) + 8 * 60 * 60 * 1000);
+        return taipeiNow.getUTCFullYear() + "-" + String(taipeiNow.getUTCMonth() + 1).padStart(2, "0") + "-" + String(taipeiNow.getUTCDate()).padStart(2, "0");
+      }
+      /* 預設載入當年度全部案件 ＋ 跨年未結案 */
+      function activeCutoffDate() {
+        return todayString().slice(0, 4) + "-01-01";
+      }
+      function isActiveRecord(record) {
+        return record.status === "待辦" || record.status === "辦理中" || (!!record.date && record.date >= activeCutoffDate());
+      }
+      function showToast(message, isError) {
+        var node = el("toast");
+        node.textContent = message;
+        node.classList.toggle("error", !!isError);
+        node.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { node.classList.remove("show"); }, 3800);
+      }
+      function setBusy(button, busy, label) {
+        if (!button) return;
+        if (busy) {
+          if (!button.disabled) button.dataset.originalText = button.textContent;
+          button.disabled = true;
+          button.textContent = label || "處理中…";
+        } else {
+          button.disabled = false;
+          if (button.dataset.originalText) button.textContent = button.dataset.originalText;
+        }
+      }
+      function serverFailure(error) {
+        var message = error && error.message ? error.message : String(error || "伺服器發生錯誤。");
+        if (message.indexOf("檔案合計過大") !== -1 || message.indexOf("HEIC") !== -1) {
+          window.alert(message);
+        } else {
+          showToast(message, true);
+        }
+      }
+      function mergeRecords(list, isActive) {
+        (list || []).forEach(function (record) {
+          var preview = record.historyPreview || record.history || "";
+          var description = record.description || "";
+          record.historyPreview = preview.split(/\r?\n-{10,}\r?\n/)[0].slice(0, 500);
+          record.descriptionPreview = description.length > 500 ? description.slice(0, 500) + "…" : description;
+          delete record.history;
+          record.searchText = [record.id, record.subject, description, record.historyPreview, record.category, record.status]
+            .join("\n").toLocaleLowerCase();
+          delete record.description;
+          recordsById[record.id] = record;
+          if (isActiveRecord(record)) activeIds[record.id] = true;
+          else delete activeIds[record.id];
+        });
+        recordsCache = null;
+      }
+      function getRecords() {
+        if (!recordsCache) {
+          recordsCache = Object.keys(recordsById).map(function (key) { return recordsById[key]; });
+          recordsCache.sort(function (a, b) {
+            var aOpen = a.status === "待辦" || a.status === "辦理中";
+            var bOpen = b.status === "待辦" || b.status === "辦理中";
+            if (aOpen !== bOpen) return aOpen ? -1 : 1;
+            if (aOpen) {
+              var aDue = a.dueDate || "";
+              var bDue = b.dueDate || "";
+              if (aDue && !bDue) return -1;
+              if (!aDue && bDue) return 1;
+              if (aDue && bDue && aDue !== bDue) return aDue.localeCompare(bDue);
+            } else {
+              var aDate = a.date || "";
+              var bDate = b.date || "";
+              if (aDate !== bDate) return bDate.localeCompare(aDate);
+            }
+            var createdCompare = String(b.createdAt || "").localeCompare(String(a.createdAt || ""));
+            return createdCompare || String(b.id || "").localeCompare(String(a.id || ""));
+          });
+        }
+        return recordsCache;
+      }
+      function loadBootstrap() {
+        el("cards").innerHTML = '<div class="loading"><span class="spinner"></span>載入案件資料…</div>';
+        google.script.run
+          .withSuccessHandler(function (data) {
+            recordsById = {};
+            mergeRecords(data.records || [], true);
+            archiveYears = data.archiveYears || [];
+            activeCursor = data.activeCursor || "";
+            activeHasMore = !!data.activeHasMore;
+            uploadLimitBytes = data.uploadLimitBytes || uploadLimitBytes;
+            requestJsonLimitBytes = data.maxRequestJsonBytes || requestJsonLimitBytes;
+            renderArchiveYears();
+            renderFilters();
+            renderCards();
+          })
+          .withFailureHandler(function (error) {
+            el("cards").innerHTML = "";
+            showEmpty("資料載入失敗", error && error.message ? error.message : "請確認 ROOT_FOLDER_ID 與試算表設定。");
+          })
+          .apiBootstrap();
+      }
+      function renderArchiveYears() {
+        var select = el("archiveYear");
+        var selected = select.value;
+        select.innerHTML = "";
+        var placeholder = document.createElement("option");
+        placeholder.value = "";
+        placeholder.textContent = "選擇歷史年度";
+        select.appendChild(placeholder);
+        archiveYears.forEach(function (year) {
+          var option = document.createElement("option");
+          option.value = year;
+          option.textContent = year + " 年" + (loadedYears[year]
+            ? (archivePages[year] && archivePages[year].hasMore ? "（已載入部分）" : "（已載入）")
+            : "");
+          select.appendChild(option);
+        });
+        if (selected) select.value = selected;
+        el("toggleArchive").textContent = select.classList.contains("hidden") ? "🗄️ 歷史年度" : "🗄️ 收合年度";
+      }
+      function unloadArchiveYear(year) {
+        if (!year) return;
+        archiveGenerations[year] = (archiveGenerations[year] || 0) + 1;
+        Object.keys(recordsById).forEach(function (id) {
+          var record = recordsById[id];
+          if (!activeIds[id] && record.date && record.date.slice(0, 4) === year) delete recordsById[id];
+        });
+        delete archivePages[year];
+        delete loadedYears[year];
+        recordsCache = null;
+        renderArchiveYears();
+      }
+      function renderFilters() {
+        var tags = STANDARD_TAGS.slice();
+        getRecords().forEach(function (record) {
+          if (record.category && tags.indexOf(record.category) === -1) tags.push(record.category);
+        });
+        var container = el("categoryFilters");
+        container.innerHTML = "";
+        var divider = document.createElement("div");
+        divider.className = "filter-divider";
+        container.appendChild(divider);
+        var all = ["全部"].concat(tags);
+        all.forEach(function (tag) {
+          var button = document.createElement("button");
+          button.type = "button";
+          button.className = "pill" + (selectedTag === tag ? " active" : "");
+          button.textContent = tag === "全部" ? "全部標籤" : ((TAG_ICONS[tag] || "🏷️") + " " + tag);
+          button.addEventListener("click", function () {
+            selectedTag = tag;
+            renderFilters();
+            renderCards();
+          });
+          container.appendChild(button);
+        });
+        renderStatusFilters();
+      }
+      function renderStatusFilters() {
+        var container = el("statusFilters");
+        container.innerHTML = "";
+        var records = getRecords();
+        STATUS_ITEMS.forEach(function (item) {
+          var count = item.key === "全部" ? records.length : records.filter(function (record) { return record.status === item.key; }).length;
+          var button = document.createElement("button");
+          button.type = "button";
+          button.dataset.status = item.key;
+          button.className = "status-tab" + (selectedStatus === item.key ? " active" : "");
+          button.appendChild(document.createTextNode(item.label));
+          var badge = document.createElement("span");
+          badge.className = "count";
+          badge.textContent = String(count);
+          button.appendChild(badge);
+          button.addEventListener("click", function () {
+            selectedStatus = item.key;
+            renderStatusFilters();
+            renderCards();
+          });
+          container.appendChild(button);
+        });
+      }
+      function visibleRecords() {
+        var query = el("searchInput").value.trim().toLocaleLowerCase();
+        var clearBtn = el("searchClear");
+        if (clearBtn) clearBtn.classList.toggle("visible", query.length > 0);
+        return getRecords().filter(function (record) {
+          if (selectedTag !== "全部" && record.category !== selectedTag) return false;
+          if (selectedStatus !== "全部" && record.status !== selectedStatus) return false;
+          return !query || record.searchText.indexOf(query) !== -1;
+        });
+      }
+      function renderCards() {
+        renderStatusFilters();
+        var container = el("cards");
+        container.innerHTML = "";
+        visibleRecordCache = visibleRecords();
+        renderedCardCount = 0;
+        var summaryText = "符合 " + visibleRecordCache.length + " / " + getRecords().length + " 筆已載入案件";
+        el("resultSummary").textContent = summaryText;
+        if (el("miniSummary")) el("miniSummary").textContent = "顯示 " + visibleRecordCache.length + " 筆";
+        var selectedYear = el("archiveYear").value;
+        var curYear = todayString().slice(0, 4);
+        el("resultTitle").textContent = selectedYear && loadedYears[selectedYear]
+          ? selectedYear + " 年歷史庫與 " + curYear + " 當年度案件"
+          : curYear + " 當年度全案件 ＋ 跨年未結案";
+        if (!visibleRecordCache.length) {
+          showEmpty("沒有符合條件的案件", "調整搜尋字詞或篩選條件，或載入其他年度的歷史資料。");
+          updateLoadMoreControl();
+          return;
+        }
+        appendCardBatch();
+      }
+      function appendCardBatch() {
+        var container = el("cards");
+        var fragment = document.createDocumentFragment();
+        var end = Math.min(renderedCardCount + CARD_BATCH_SIZE, visibleRecordCache.length);
+        for (var i = renderedCardCount; i < end; i++) fragment.appendChild(createCard(visibleRecordCache[i]));
+        container.appendChild(fragment);
+        renderedCardCount = end;
+        updateLoadMoreControl();
+      }
+      function hasRemoteRecords() {
+        var year = el("archiveYear").value;
+        if (year && archivePages[year] && archivePages[year].hasMore) return true;
+        return activeHasMore;
+      }
+      function updateLoadMoreControl() {
+        var row = el("loadMoreRow");
+        var button = el("loadMoreRecords");
+        var localMore = renderedCardCount < visibleRecordCache.length;
+        var remoteMore = hasRemoteRecords();
+        row.classList.toggle("hidden", !localMore && !remoteMore);
+        button.disabled = recordsLoading;
+        button.textContent = recordsLoading ? "載入中…" : (localMore ? "顯示更多結果" : "載入更多案件");
+      }
+      function loadMoreRecords() {
+        if (renderedCardCount < visibleRecordCache.length) {
+          appendCardBatch();
+          return;
+        }
+        var year = el("archiveYear").value;
+        if (year && archivePages[year] && archivePages[year].hasMore) requestArchivePage(year, true);
+        else loadActivePage();
+      }
+      function showEmpty(title, subtitle) {
+        var container = el("cards");
+        container.innerHTML = "";
+        var empty = document.createElement("div");
+        empty.className = "empty";
+        var icon = document.createElement("span");
+        icon.className = "empty-icon";
+        icon.textContent = title === "資料載入失敗" ? "⚠️" : "📂";
+        var strong = document.createElement("strong");
+        strong.textContent = title;
+        var copy = document.createElement("div");
+        copy.style.marginTop = "5px";
+        copy.style.fontSize = "13px";
+        copy.textContent = subtitle || "";
+        empty.appendChild(icon);
+        empty.appendChild(strong);
+        empty.appendChild(copy);
+        container.appendChild(empty);
+      }
+      function createCard(record) {
+        var statusText = record.status || "待辦";
+        var isClosed = statusText === "已結案" || statusText === "存查";
+        var delta = record.dueDate ? daysUntil(record.dueDate) : 9999;
+        var isLate = !isClosed && delta < 0;
+        var isSoon = !isClosed && delta >= 0 && delta <= 3;
+        var accent = statusText === "待辦" ? "accent-todo"
+          : statusText === "辦理中" ? "accent-doing"
+          : statusText === "已結案" ? "accent-done" : "accent-archive";
+
+        var card = document.createElement("article");
+        card.className = "card " + accent + (isLate ? " urgent-late" : isSoon ? " urgent-soon" : "") + (isClosed ? " is-closed" : "");
+
+        var mainWrap = document.createElement("div");
+        var top = document.createElement("div");
+        top.className = "card-top";
+        var chips = document.createElement("div");
+        chips.className = "chips";
+        var tag = document.createElement("span");
+        tag.className = "chip " + tagClass(record.category);
+        tag.textContent = (TAG_ICONS[record.category] || "🏷️") + " " + record.category;
+        var status = document.createElement("span");
+        status.className = "chip " + statusClass(statusText);
+        status.textContent = statusText;
+        chips.appendChild(tag);
+        chips.appendChild(status);
+
+        var curYear = todayString().slice(0, 4);
+        if (!isClosed && record.date && record.date.slice(0, 4) < curYear) {
+          var crossChip = document.createElement("span");
+          crossChip.className = "chip chip-crossyear";
+          crossChip.textContent = "📌 跨年未結案 (" + record.date.slice(0, 4) + ")";
+          chips.appendChild(crossChip);
+        }
+        top.appendChild(chips);
+
+        if (record.dueDate) {
+          var due = document.createElement("span");
+          due.className = "due-badge" + (isLate ? " late" : (isSoon ? " soon" : ""));
+          due.textContent = (isLate ? "⚠️ " : "⏳ ") + dueLabel(record.dueDate, delta);
+          top.appendChild(due);
+        }
+        mainWrap.appendChild(top);
+
+        var title = document.createElement("h2");
+        title.className = "card-title";
+        title.textContent = record.subject || "（未填寫主旨）";
+        mainWrap.appendChild(title);
+
+        var meta = document.createElement("div");
+        meta.className = "meta";
+        var date = document.createElement("span");
+        date.textContent = "📅 " + (record.date || "未填日期");
+        meta.appendChild(date);
+        var id = document.createElement("span");
+        id.className = "id";
+        id.textContent = record.id;
+        meta.appendChild(id);
+        mainWrap.appendChild(meta);
+
+        if (record.descriptionPreview) {
+          var description = document.createElement("p");
+          description.className = "description";
+          description.textContent = record.descriptionPreview;
+          mainWrap.appendChild(description);
+        }
+
+        if (record.historyPreview) {
+          var historyLabel = document.createElement("div");
+          historyLabel.className = "history-label";
+          var hlLeft = document.createElement("span");
+          hlLeft.textContent = "最新執行進度";
+          var hlRight = document.createElement("span");
+          hlRight.textContent = "點擊卡片查看時間軸 →";
+          historyLabel.appendChild(hlLeft);
+          historyLabel.appendChild(hlRight);
+          mainWrap.appendChild(historyLabel);
+
+          var history = document.createElement("div");
+          history.className = "history-preview";
+          history.textContent = record.historyPreview;
+          mainWrap.appendChild(history);
+        } else {
+          var emptyInline = document.createElement("div");
+          emptyInline.className = "history-empty-inline";
+          emptyInline.textContent = "✨ 尚無進度摘要・點擊卡片開啟抽屜新增進度";
+          mainWrap.appendChild(emptyInline);
+        }
+        card.appendChild(mainWrap);
+
+        var actions = document.createElement("div");
+        actions.className = "card-actions";
+        var leftActions = document.createElement("div");
+        leftActions.className = "card-actions-left";
+
+        var drive = document.createElement("a");
+        drive.className = "btn btn-small btn-outline";
+        drive.textContent = "📁 開啟資料夾";
+        if (record.folderUrl) {
+          drive.href = record.folderUrl;
+          drive.target = "_blank";
+          drive.rel = "noopener";
+          drive.addEventListener("click", function (ev) { ev.stopPropagation(); });
+        } else {
+          drive.setAttribute("aria-disabled", "true");
+        }
+        leftActions.appendChild(drive);
+
+        var sync = document.createElement("button");
+        sync.className = "btn btn-small btn-outline";
+        sync.type = "button";
+        sync.textContent = "🚒 同步到 Tasks";
+        sync.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          syncRecord(record, sync);
+        });
+        leftActions.appendChild(sync);
+        actions.appendChild(leftActions);
+
+        var update = document.createElement("button");
+        update.className = "btn btn-small btn-primary";
+        update.type = "button";
+        update.textContent = "✍️ 內文與進度";
+        update.addEventListener("click", function (ev) {
+          ev.stopPropagation();
+          openProgressModal(record);
+        });
+        actions.appendChild(update);
+        card.appendChild(actions);
+
+        card.addEventListener("click", function () {
+          openProgressModal(record);
+        });
+        return card;
+      }
+      function tagClass(category) {
+        return STANDARD_TAGS.indexOf(category) !== -1 ? "tag-" + category : "tag-custom";
+      }
+      function statusClass(status) { return "status-" + (VALID_STATUS(status) ? status : "待辦"); }
+      function VALID_STATUS(status) { return ["待辦", "辦理中", "已結案", "存查"].indexOf(status) !== -1; }
+      function daysUntil(dateText) {
+        if (!dateText) return 9999;
+        var parts = dateText.split("-").map(Number);
+        var todayParts = todayString().split("-").map(Number);
+        var due = Date.UTC(parts[0], parts[1] - 1, parts[2]);
+        var today = Date.UTC(todayParts[0], todayParts[1] - 1, todayParts[2]);
+        return Math.round((due - today) / 86400000);
+      }
+      function dueLabel(date, delta) {
+        if (delta < 0) return date + "・逾期 " + Math.abs(delta) + " 天";
+        if (delta === 0) return date + "・今天到期";
+        if (delta <= 3) return date + "・剩 " + delta + " 天";
+        return date;
+      }
+
+      /* 渲染視覺化垂直時間軸 */
+      function renderVisualTimeline(rawText) {
+        var container = el("visualTimeline");
+        if (!container) return;
+        container.innerHTML = "";
+        var text = String(rawText || "").trim();
+        if (!text) {
+          var emptyMsg = document.createElement("div");
+          emptyMsg.style.color = "#64748b";
+          emptyMsg.style.fontSize = "13px";
+          emptyMsg.style.padding = "6px 0";
+          emptyMsg.textContent = "尚無歷史進度紀錄，於上方輸入後儲存即可建立第一筆時間軸。";
+          container.appendChild(emptyMsg);
+          return;
+        }
+        var blocks = text.split(/\r?\n-{10,}\r?\n/);
+        blocks.forEach(function (block) {
+          var lines = block.trim().split(/\r?\n/);
+          var headerLine = lines[0] || "";
+          var m = headerLine.match(/\[([\d\- :]+)\]\s*(?:\(狀態：([^)]+)\))?/);
+          var timeStr = m ? m[1] : "歷史紀錄";
+          var statusStr = m && m[2] ? m[2] : "";
+          var bodyLines = [];
+          var files = [];
+          for (var i = (m ? 1 : 0); i < lines.length; i++) {
+            var line = lines[i];
+            if (line.indexOf("📎 附檔：") === 0) {
+              files.push(line.replace("📎 附檔：", "").trim());
+            } else {
+              bodyLines.push(line);
+            }
+          }
+          var item = document.createElement("div");
+          item.className = "tl-item";
+          var dot = document.createElement("span");
+          dot.className = "tl-dot";
+          item.appendChild(dot);
+
+          var head = document.createElement("div");
+          head.className = "tl-head";
+          var tNode = document.createElement("span");
+          tNode.className = "tl-time";
+          tNode.textContent = "⏱️ " + timeStr;
+          head.appendChild(tNode);
+          if (statusStr) {
+            var sChip = document.createElement("span");
+            sChip.className = "chip " + statusClass(statusStr);
+            sChip.textContent = statusStr;
+            head.appendChild(sChip);
+          }
+          item.appendChild(head);
+
+          var body = document.createElement("div");
+          body.className = "tl-body";
+          body.textContent = bodyLines.join("\n") || "（狀態更新）";
+          item.appendChild(body);
+
+          if (files.length) {
+            var attachWrap = document.createElement("div");
+            files.forEach(function (f) {
+              var att = document.createElement("span");
+              att.className = "tl-attachment";
+              att.textContent = "📎 " + f;
+              attachWrap.appendChild(att);
+            });
+            item.appendChild(attachWrap);
+          }
+          container.appendChild(item);
+        });
+      }
+
+      function openNewModal() {
+        el("newDate").value = todayString();
+        el("newDueDate").value = "";
+        el("newCategory").value = "公文";
+        el("newStatus").value = "待辦";
+        el("newSubject").value = "";
+        el("newDescription").value = "";
+        el("newFiles").value = "";
+        el("newFileNames").innerHTML = "";
+        el("newAddTask").checked = true;
+        openModal("newModal");
+        setTimeout(function () { el("newSubject").focus(); }, 50);
+      }
+      function openProgressModal(record) {
+        activeRecord = record;
+        activeHistoryText = "";
+        activeDescriptionLoaded = false;
+        manualMode = false;
+        el("progressSubject").textContent = record.subject || "";
+        el("progressDate").textContent = (record.date || "") + (record.dueDate ? "（限辦：" + record.dueDate + "）" : "");
+        el("progressId").textContent = record.id || "";
+        el("progressCreated").textContent = record.createdAt || "";
+        el("progressDescView").textContent = record.descriptionPreview || "載入內容說明…";
+        el("editRecordDate").value = record.date || "";
+        el("editRecordDueDate").value = record.dueDate || "";
+        el("editRecordCategory").value = record.category || "";
+        el("editRecordSubject").value = record.subject || "";
+        el("editRecordDescription").value = "";
+        el("editRecordDescription").disabled = true;
+        el("basicEditDetails").open = false;
+        el("progressStatus").value = record.status || "待辦";
+        el("progressText").value = "";
+        el("progressFiles").value = "";
+        el("progressFileNames").innerHTML = "";
+        el("fullHistory").value = "載入完整時間軸…";
+        el("fullHistory").readOnly = true;
+        el("fullHistory").classList.add("history-readonly", "hidden");
+        el("visualTimeline").classList.remove("hidden");
+        el("visualTimeline").innerHTML = '<div style="color:#64748b;font-size:13px;padding:8px 0">載入完整時間軸…</div>';
+        el("toggleManual").disabled = true;
+        el("toggleManual").classList.remove("btn-amber");
+        el("toggleManual").textContent = "🔧 切換為全文手動修改";
+        el("historyHint").textContent = "正在載入完整時間軸；載入後可切換全文手動修改。";
+        setBusy(el("updateButton"), true, "載入案件資料…");
+        openModal("progressModal");
+        google.script.run
+          .withSuccessHandler(function (data) {
+            if (activeRecord !== record) return;
+            setBusy(el("updateButton"), false);
+            activeHistoryText = data.history || "";
+            el("fullHistory").value = activeHistoryText;
+            renderVisualTimeline(activeHistoryText);
+            var fullDesc = data.description || "";
+            el("progressDescView").textContent = fullDesc || "（無補充內容說明）";
+            el("editRecordDescription").value = fullDesc;
+            el("editRecordDescription").disabled = false;
+            activeDescriptionLoaded = true;
+            el("toggleManual").disabled = false;
+            el("historyHint").textContent = "視覺化時間軸檢視中。切換手動修改後可直接整理全文；新增附件或進度會置頂。時間軸上限 50,000 字元。";
+          })
+          .withFailureHandler(function (error) {
+            if (activeRecord !== record) return;
+            el("fullHistory").value = "";
+            el("visualTimeline").innerHTML = "";
+            el("historyHint").textContent = "完整時間軸載入失敗，請關閉視窗後重試。";
+            serverFailure(error);
+          })
+          .apiGetRecordHistory(record.id, record.rowIndex);
+      }
+      function openModal(id) { el(id).classList.add("open"); document.body.style.overflow = "hidden"; }
+      function closeModal(id) {
+        el(id).classList.remove("open");
+        if (id === "progressModal") {
+          el("progressFiles").value = "";
+          el("progressFileNames").innerHTML = "";
+        }
+        if (id === "newModal") {
+          el("newFiles").value = "";
+          el("newFileNames").innerHTML = "";
+        }
+        if (id === "progressModal") {
+          setBusy(el("updateButton"), false);
+          activeRecord = null;
+          activeHistoryText = "";
+          activeDescriptionLoaded = false;
+          el("editRecordDescription").disabled = true;
+          el("fullHistory").value = "";
+          el("visualTimeline").innerHTML = "";
+          el("toggleManual").disabled = false;
+        }
+        if (!document.querySelector(".modal-backdrop.open")) document.body.style.overflow = "";
+      }
+      function toggleManualMode() {
+        manualMode = !manualMode;
+        var history = el("fullHistory");
+        var vTimeline = el("visualTimeline");
+        history.readOnly = !manualMode;
+        history.classList.toggle("history-readonly", !manualMode);
+        history.classList.toggle("hidden", !manualMode);
+        if (vTimeline) {
+          vTimeline.classList.toggle("hidden", manualMode);
+          if (!manualMode) renderVisualTimeline(history.value);
+        }
+        el("toggleManual").classList.toggle("btn-amber", manualMode);
+        el("toggleManual").textContent = manualMode ? "⏳ 切回視覺化時間軸檢視" : "🔧 切換為全文手動修改";
+        el("historyHint").textContent = manualMode
+          ? "手動模式：儲存時以此全文替換歷史；若本次另有進度或附件，系統會先加入時間戳與附件名稱。時間軸上限 50,000 字元。"
+          : "視覺化時間軸檢視中。新增進度會置頂累加，保留舊時間軸。時間軸上限 50,000 字元。";
+      }
+      function openDrawer() {
+        drawerOpen = true;
+        el("drawerBackdrop").classList.add("open");
+        el("tasksDrawer").classList.add("open");
+        document.body.style.overflow = "hidden";
+        if (!tasksLoaded) loadTasks();
+      }
+      function closeDrawer() {
+        drawerOpen = false;
+        el("drawerBackdrop").classList.remove("open");
+        el("tasksDrawer").classList.remove("open");
+        if (!document.querySelector(".modal-backdrop.open")) document.body.style.overflow = "";
+      }
+      function loadTasks(append) {
+        if (tasksLoading || (append && !taskHasMore)) return;
+        tasksLoading = true;
+        if (!append) el("taskList").innerHTML = '<div class="loading"><span class="spinner"></span>載入 Tasks…</div>';
+        else renderTasks();
+        google.script.run
+          .withSuccessHandler(function (data) {
+            tasks = append ? tasks.concat(data.tasks || []) : (data.tasks || []);
+            tasksLoaded = true;
+            tasksLoading = false;
+            taskPageToken = data.nextPageToken || "";
+            taskHasMore = !!taskPageToken;
+            if (typeof data.openCount === "number") {
+              openTaskCount = data.openCount;
+              tasksCountKnown = true;
+            }
+            el("tasksSubtitle").textContent = data.title + "・你的個人 Google Tasks";
+            renderTasks();
+          })
+          .withFailureHandler(function (error) {
+            tasksLoading = false;
+            if (!append) el("taskList").innerHTML = "";
+            var message = document.createElement("div");
+            message.className = "task-empty";
+            message.textContent = error && error.message ? error.message : "載入 Tasks 失敗。";
+            el("taskList").appendChild(message);
+          })
+          .apiLoadTasks(append ? taskPageToken : "");
+      }
+      function renderTasks() {
+        var list = el("taskList");
+        list.innerHTML = "";
+        var openTasks = tasks.filter(function (task) { return !task.completed; });
+        var doneTasks = tasks.filter(function (task) { return task.completed; });
+        var badgeStr = tasksCountKnown ? String(openTaskCount) : "…";
+        el("taskBadge").textContent = badgeStr;
+        if (el("mobileTaskBadge")) el("mobileTaskBadge").textContent = badgeStr;
+        renderTaskSection(list, "未完成（已載入 " + openTasks.length + (tasksCountKnown ? " / 共 " + openTaskCount : "") + "）", openTasks);
+        renderTaskSection(list, "已完成（" + doneTasks.length + "）", doneTasks);
+        if (!tasks.length) {
+          var empty = document.createElement("div");
+          empty.className = "task-empty";
+          empty.textContent = "目前沒有任務。可在上方新增，或從案件卡片同步。";
+          list.appendChild(empty);
+        }
+        if (taskHasMore) {
+          var more = document.createElement("button");
+          more.type = "button";
+          more.className = "btn btn-outline";
+          more.style.width = "100%";
+          more.style.marginTop = "12px";
+          more.disabled = tasksLoading;
+          more.textContent = tasksLoading ? "載入中…" : "載入更多任務";
+          more.addEventListener("click", function () { loadTasks(true); });
+          list.appendChild(more);
+        }
+      }
+      function renderTaskSection(parent, title, taskList) {
+        var heading = document.createElement("div");
+        heading.className = "task-section-title";
+        heading.textContent = title;
+        parent.appendChild(heading);
+        if (!taskList.length) {
+          var empty = document.createElement("div");
+          empty.className = "task-empty";
+          empty.textContent = "沒有項目";
+          parent.appendChild(empty);
+          return;
+        }
+        taskList.forEach(function (task) {
+          var row = document.createElement("div");
+          row.className = "task-row";
+          var checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.className = "task-check";
+          checkbox.checked = task.completed;
+          checkbox.disabled = !!task.pending;
+          checkbox.setAttribute("aria-label", task.completed ? "標記為未完成" : "標記為完成");
+          checkbox.addEventListener("change", function () { toggleTask(task, checkbox); });
+          row.appendChild(checkbox);
+          var main = document.createElement("div");
+          main.className = "task-main";
+          var titleNode = document.createElement("div");
+          titleNode.className = "task-title" + (task.completed ? " done" : "");
+          titleNode.textContent = task.title;
+          main.appendChild(titleNode);
+          if (task.dueDate) {
+            var due = document.createElement("div");
+            due.className = "task-due";
+            due.textContent = "📅 " + task.dueDate;
+            main.appendChild(due);
+          }
+          row.appendChild(main);
+          var remove = document.createElement("button");
+          remove.type = "button";
+          remove.className = "task-delete";
+          remove.textContent = "×";
+          remove.title = "刪除此任務";
+          remove.addEventListener("click", function () { deleteTask(task); });
+          row.appendChild(remove);
+          parent.appendChild(row);
+        });
+      }
+      function toggleTask(task, checkbox) {
+        if (task.pending) return;
+        var wanted = checkbox.checked;
+        var old = task.completed;
+        task.pending = true;
+        task.completed = wanted;
+        if (old !== wanted && tasksCountKnown) openTaskCount += wanted ? -1 : 1;
+        renderTasks();
+        google.script.run
+          .withSuccessHandler(function (result) {
+            task.pending = false;
+            task.completed = result.completed;
+            renderTasks();
+          })
+          .withFailureHandler(function (error) {
+            task.pending = false;
+            task.completed = old;
+            if (old !== wanted && tasksCountKnown) openTaskCount += wanted ? 1 : -1;
+            renderTasks();
+            serverFailure(error);
+          })
+          .apiToggleTask(task.id, wanted);
+      }
+      function deleteTask(task) {
+        if (!window.confirm("確定刪除這項 Google Tasks 任務？")) return;
+        google.script.run
+          .withSuccessHandler(function () {
+            if (!task.completed && tasksCountKnown) openTaskCount = Math.max(0, openTaskCount - 1);
+            tasks = tasks.filter(function (item) { return item.id !== task.id; });
+            renderTasks();
+            showToast("任務已刪除。");
+          })
+          .withFailureHandler(serverFailure)
+          .apiDeleteTask(task.id);
+      }
+      function syncRecord(record, button) {
+        setBusy(button, true, "同步中…");
+        google.script.run
+          .withSuccessHandler(function (task) {
+            setBusy(button, false);
+            showToast("已同步到 Google Tasks。");
+            if (tasksLoaded) loadTasks(false);
+          })
+          .withFailureHandler(function (error) { setBusy(button, false); serverFailure(error); })
+          .apiSyncRecordToTask(record.id, record.rowIndex);
+      }
+      function renderSelectedFileNames(input, target) {
+        var files = Array.prototype.slice.call(input.files || []);
+        target.innerHTML = "";
+        files.forEach(function (file) {
+          var pill = document.createElement("span");
+          pill.className = "file-pill";
+          var kb = Math.max(1, Math.round((file.size || 0) / 1024));
+          pill.textContent = (file.type && file.type.indexOf("image/") === 0 ? "🖼️ " : "📄 ") + file.name + " (" + kb + " KB)";
+          target.appendChild(pill);
+        });
+      }
+      function imageToJpeg(file) {
+        function imageElementSource() {
+          return new Promise(function (resolve, reject) {
+            var url = URL.createObjectURL(file);
+            var image = new Image();
+            image.onload = function () {
+              resolve({
+                source: image, width: image.naturalWidth, height: image.naturalHeight,
+                close: function () { URL.revokeObjectURL(url); }
+              });
+            };
+            image.onerror = function () { URL.revokeObjectURL(url); reject(new Error("無法解碼影像")); };
+            image.src = url;
+          });
+        }
+        var sourcePromise = window.createImageBitmap
+          ? createImageBitmap(file).then(function (bitmap) {
+              return {
+                source: bitmap, width: bitmap.width, height: bitmap.height,
+                close: function () { bitmap.close(); }
+              };
+            }).catch(imageElementSource)
+          : imageElementSource();
+
+        return sourcePromise.then(function (img) {
+          return new Promise(function (resolve, reject) {
+            try {
+              var scale = Math.min(1, 1600 / Math.max(img.width, img.height));
+              var width = Math.max(1, Math.round(img.width * scale));
+              var height = Math.max(1, Math.round(img.height * scale));
+              var canvas = document.createElement("canvas");
+              canvas.width = width;
+              canvas.height = height;
+              var context = canvas.getContext("2d", { alpha: false });
+              if (!context) throw new Error("無法建立圖片轉檔畫布");
+              context.fillStyle = "#ffffff";
+              context.fillRect(0, 0, width, height);
+              context.drawImage(img.source, 0, 0, width, height);
+              img.close();
+              canvas.toBlob(function (blob) {
+                if (!blob) { reject(new Error("JPEG 轉檔失敗")); return; }
+                var stem = file.name.replace(/\.[^.]+$/, "");
+                try {
+                  resolve(new File([blob], stem + ".jpg", { type: "image/jpeg", lastModified: Date.now() }));
+                } catch (err) {
+                  try { Object.defineProperty(blob, "name", { value: stem + ".jpg" }); } catch (ignored) {}
+                  resolve(blob);
+                }
+              }, "image/jpeg", 0.75);
+            } catch (err) {
+              try { img.close(); } catch (ignored) {}
+              reject(err);
+            }
+          });
+        });
+      }
+      function readAsBase64(file) {
+        return new Promise(function (resolve, reject) {
+          var reader = new FileReader();
+          reader.onload = function () {
+            var result = String(reader.result || "");
+            resolve(result.substring(result.indexOf(",") + 1));
+          };
+          reader.onerror = function () { reject(new Error("讀取附件失敗：" + file.name)); };
+          reader.readAsDataURL(file);
+        });
+      }
+      async function collectFiles(input, onProgress) {
+        var source = Array.prototype.slice.call(input.files || []);
+        var result = [];
+        var total = 0;
+        for (var i = 0; i < source.length; i++) {
+          var file = source[i];
+          if (onProgress) onProgress("處理附件 " + (i + 1) + " / " + source.length + "…");
+          var isHeic = isHeicFile(file);
+          var isImage = isHeic || !!(file.type && file.type.indexOf("image/") === 0);
+          var processed = file;
+          if (isImage) {
+            try {
+              processed = await imageToJpeg(file);
+            } catch (error) {
+              if (isHeic) {
+                throw new Error("這張 HEIC/HEIF 照片無法在目前瀏覽器轉成 JPEG。請先在 iPhone 將照片轉存為 JPEG，再重新選取。");
+              }
+              processed = file;
+            }
+          }
+          if (isHeic && (!processed.type || processed.type.toLowerCase() !== "image/jpeg")) {
+            throw new Error("HEIC/HEIF 必須先轉成 JPEG 才能上傳。");
+          }
+          total += processed.size;
+          if (total > uploadLimitBytes) {
+            throw new Error("本次附件合計超過 " + Math.floor(uploadLimitBytes / 1024 / 1024) + " MB。請分批上傳，或直接放入案件資料夾。");
+          }
+          var encoded = await readAsBase64(processed);
+          var outputName = processed.name || file.name;
+          if (isHeic && /\.hei[cf]$/i.test(outputName)) outputName = outputName.replace(/\.hei[cf]$/i, ".jpg");
+          result.push({
+            name: outputName,
+            mimeType: processed.type || file.type || "application/octet-stream",
+            data: encoded
+          });
+          if (onProgress) onProgress("已準備 " + (i + 1) + " / " + source.length + " 個附件・" + (total / 1024 / 1024).toFixed(1) + " MB");
+        }
+        return result;
+      }
+
+      function isHeicFile(file) {
+        return /\.(heic|heif)$/i.test(String(file.name || "")) ||
+          /image\/hei[cf]/i.test(String(file.type || ""));
+      }
+
+      function ensureRequestSize(payload) {
+        var size = new Blob([JSON.stringify(payload)]).size;
+        if (size > requestJsonLimitBytes) {
+          var message = "檔案合計過大，請分批上傳或只留重點附件";
+          window.alert(message);
+          throw new Error("REQUEST_SIZE_ALREADY_ALERTED");
+        }
+      }
+
+      function fastHash(text) {
+        var value = 2166136261;
+        text = String(text || "");
+        for (var i = 0; i < text.length; i++) {
+          value ^= text.charCodeAt(i);
+          value = Math.imul(value, 16777619);
+        }
+        return (value >>> 0).toString(16);
+      }
+
+      function requestFingerprint(payload) {
+        var copy = {};
+        Object.keys(payload).forEach(function (key) {
+          if (key !== "clientRequestId" && key !== "files") copy[key] = payload[key];
+        });
+        copy.files = (payload.files || []).map(function (file) {
+          return {
+            name: file.name, mimeType: file.mimeType,
+            length: file.data.length, hash: fastHash(file.data)
+          };
+        });
+        return fastHash(JSON.stringify(copy));
+      }
+
+      function makeRequestId() {
+        if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
+        return "req-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+      }
+
+      function prepareClientRequest(kind, payload) {
+        var fingerprint = requestFingerprint(payload);
+        var key = "fireNotebook.pending." + kind;
+        var saved = requestIdMemory[kind] || null;
+        try {
+          var raw = sessionStorage.getItem(key);
+          if (raw) saved = JSON.parse(raw);
+        } catch (ignored) {}
+        var next;
+        if (saved && saved.id && saved.fingerprint === fingerprint) {
+          next = saved;
+        } else {
+          if (saved && !window.confirm("上一筆操作的結果可能尚未確認。請先重新載入案件清單確認沒有建立或更新，再按「確定」開始新操作。")) {
+            throw new Error("為避免重複操作，已取消送出。");
+          }
+          next = { id: makeRequestId(), fingerprint: fingerprint };
+        }
+        payload.clientRequestId = next.id;
+        ensureRequestSize(payload);
+
+        requestIdMemory[kind] = next;
+        try { sessionStorage.setItem(key, JSON.stringify(next)); } catch (ignored) {}
+        return next.id;
+      }
+
+      function clearClientRequestId(kind) {
+        delete requestIdMemory[kind];
+        try { sessionStorage.removeItem("fireNotebook.pending." + kind); } catch (ignored) {}
+      }
+      function handleNewSubmit(event) {
+        event.preventDefault();
+        if (newSubmitInFlight) return;
+        newSubmitInFlight = true;
+        var button = el("createButton");
+        setBusy(button, true, "壓縮附件並建立…");
+        collectFiles(el("newFiles"), function (label) { setBusy(button, true, label); }).then(function (files) {
+          var payload = {
+            date: el("newDate").value,
+            dueDate: el("newDueDate").value,
+            category: el("newCategory").value,
+            subject: el("newSubject").value,
+            description: el("newDescription").value,
+            status: el("newStatus").value,
+            addToTasks: el("newAddTask").checked,
+            files: files
+          };
+          prepareClientRequest("CREATE", payload);
+          setBusy(button, true, "送出案件與附件…");
+          google.script.run
+            .withSuccessHandler(function (result) {
+              newSubmitInFlight = false;
+              clearClientRequestId("CREATE");
+              setBusy(button, false);
+              mergeRecords([result.record], true);
+              closeModal("newModal");
+              if (result.taskWarning) showToast(result.taskWarning, true);
+              else showToast("案件已建立。" + (result.record.taskId ? " 已同步到 Tasks。" : ""));
+              el("searchInput").value = "";
+              selectedStatus = "全部";
+              selectedTag = "全部";
+              renderFilters();
+              renderCards();
+              if (tasksLoaded && result.record.taskId) loadTasks(false);
+            })
+            .withFailureHandler(function (error) {
+              newSubmitInFlight = false; setBusy(button, false);
+              if (!error || error.message !== "REQUEST_SIZE_ALREADY_ALERTED") serverFailure(error);
+            })
+            .apiCreateRecord(payload);
+        }).catch(function (error) {
+          newSubmitInFlight = false;
+          setBusy(button, false);
+          if (!error || error.message !== "REQUEST_SIZE_ALREADY_ALERTED") serverFailure(error);
+        });
+      }
+      function handleProgressSubmit(event) {
+        event.preventDefault();
+        if (!activeRecord || progressSubmitInFlight) return;
+        progressSubmitInFlight = true;
+        var previousStatus = activeRecord.status;
+        var button = el("updateButton");
+        setBusy(button, true, "壓縮附件並儲存…");
+        collectFiles(el("progressFiles"), function (label) { setBusy(button, true, label); }).then(function (files) {
+          var payload = {
+            id: activeRecord.id,
+            rowIndex: activeRecord.rowIndex,
+            date: el("editRecordDate").value,
+            category: el("editRecordCategory").value,
+            subject: el("editRecordSubject").value,
+            dueDate: el("editRecordDueDate").value,
+            status: el("progressStatus").value,
+            progressText: el("progressText").value,
+            manualMode: manualMode,
+            fullHistory: manualMode ? el("fullHistory").value : "",
+            files: files
+          };
+          if (activeDescriptionLoaded) payload.description = el("editRecordDescription").value;
+          prepareClientRequest("UPDATE", payload);
+          setBusy(button, true, "儲存進度與附件…");
+          google.script.run
+            .withSuccessHandler(function (result) {
+              progressSubmitInFlight = false;
+              clearClientRequestId("UPDATE");
+              setBusy(button, false);
+              mergeRecords([result.record], true);
+              closeModal("progressModal");
+              renderFilters();
+              renderCards();
+              if (result.taskWarning) showToast(result.taskWarning, true);
+              else showToast("案件進度已更新。");
+              activeRecord = null;
+              if (tasksLoaded && (result.record.status === "已結案" || previousStatus === "已結案")) loadTasks(false);
+            })
+            .withFailureHandler(function (error) {
+              progressSubmitInFlight = false; setBusy(button, false);
+              if (!error || error.message !== "REQUEST_SIZE_ALREADY_ALERTED") serverFailure(error);
+            })
+            .apiUpdateRecord(payload);
+        }).catch(function (error) {
+          progressSubmitInFlight = false;
+          setBusy(button, false);
+          if (!error || error.message !== "REQUEST_SIZE_ALREADY_ALERTED") serverFailure(error);
+        });
+      }
+      function handleQuickTask(event) {
+        event.preventDefault();
+        if (quickTaskInFlight) return;
+        quickTaskInFlight = true;
+        var titleInput = el("quickTaskTitle");
+        var dueInput = el("quickTaskDue");
+        var button = event.submitter || event.target.querySelector("button[type=submit]");
+        setBusy(button, true, "新增中…");
+        google.script.run
+          .withSuccessHandler(function (task) {
+            quickTaskInFlight = false;
+            setBusy(button, false);
+            tasks.unshift(task);
+            if (tasksCountKnown && !task.completed) openTaskCount++;
+            titleInput.value = "";
+            dueInput.value = "";
+            renderTasks();
+            showToast("任務已新增。");
+          })
+          .withFailureHandler(function (error) { quickTaskInFlight = false; setBusy(button, false); serverFailure(error); })
+          .apiAddQuickTask(titleInput.value, dueInput.value);
+      }
+      function loadArchiveYear(year) {
+        if (!year) return;
+        if (loadedYears[year]) {
+          renderCards();
+          return;
+        }
+        requestArchivePage(year, false);
+      }
+      function processPendingArchiveRequest() {
+        if (!pendingArchiveRequest) return false;
+        var year = pendingArchiveYear;
+        pendingArchiveRequest = false;
+        pendingArchiveYear = "";
+        if (year && selectedArchiveYear === year) loadArchiveYear(year);
+        else renderCards();
+        return true;
+      }
+      function requestArchivePage(year, append) {
+        if (recordsLoading) {
+          pendingArchiveRequest = true;
+          pendingArchiveYear = year;
+          return;
+        }
+        var state = archivePages[year] || { cursor: "", hasMore: true };
+        if (append && !state.hasMore) return;
+        var generation = archiveGenerations[year] || 0;
+        recordsLoading = true;
+        updateLoadMoreControl();
+        if (!append && !getRecords().length) {
+          el("cards").innerHTML = '<div class="loading"><span class="spinner"></span>載入 ' + year + ' 年歷史資料…</div>';
+        }
+        google.script.run
+          .withSuccessHandler(function (data) {
+            recordsLoading = false;
+            if (selectedArchiveYear !== year || (archiveGenerations[year] || 0) !== generation) {
+              processPendingArchiveRequest();
+              updateLoadMoreControl();
+              return;
+            }
+            mergeRecords(data.records || [], false);
+            archivePages[year] = { cursor: data.cursor || "", hasMore: !!data.hasMore };
+            loadedYears[year] = true;
+            renderArchiveYears();
+            el("archiveYear").value = year;
+            renderFilters();
+            renderCards();
+            if (!append) showToast("已載入 " + year + " 年歷史資料首批案件。");
+            processPendingArchiveRequest();
+          })
+          .withFailureHandler(function (error) {
+            recordsLoading = false;
+            if ((archiveGenerations[year] || 0) !== generation) {
+              processPendingArchiveRequest();
+              updateLoadMoreControl();
+              return;
+            }
+            if (!processPendingArchiveRequest()) {
+              if (selectedArchiveYear === year) {
+                selectedArchiveYear = "";
+                el("archiveYear").value = "";
+              }
+              renderCards();
+              serverFailure(error);
+            }
+          })
+          .apiLoadArchiveYear(year, append ? state.cursor : "");
+      }
+      function loadActivePage() {
+        if (recordsLoading || !activeHasMore) return;
+        recordsLoading = true;
+        updateLoadMoreControl();
+        google.script.run
+          .withSuccessHandler(function (data) {
+            recordsLoading = false;
+            mergeRecords(data.records || [], true);
+            activeCursor = data.cursor || "";
+            activeHasMore = !!data.hasMore;
+            renderFilters();
+            renderCards();
+            processPendingArchiveRequest();
+          })
+          .withFailureHandler(function (error) {
+            recordsLoading = false;
+            updateLoadMoreControl();
+            if (!processPendingArchiveRequest()) serverFailure(error);
+          })
+          .apiLoadActivePage(activeCursor);
+      }
+      function init() {
+        el("openNew").addEventListener("click", openNewModal);
+        el("openTasks").addEventListener("click", openDrawer);
+        if (el("mobileOpenNew")) el("mobileOpenNew").addEventListener("click", openNewModal);
+        if (el("mobileOpenTasks")) el("mobileOpenTasks").addEventListener("click", openDrawer);
+        el("closeTasks").addEventListener("click", closeDrawer);
+        el("drawerBackdrop").addEventListener("click", closeDrawer);
+
+        /* 方案 A：點擊頂部「🔍 搜尋/篩選」平滑捲回頂端搜尋列 */
+        if (el("scrollToSearchBtn")) {
+          el("scrollToSearchBtn").addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setTimeout(function () {
+              if (el("searchInput")) el("searchInput").focus({ preventScroll: true });
+            }, 260);
+          });
+        }
+
+        if (el("searchClear")) {
+          el("searchClear").addEventListener("click", function () {
+            el("searchInput").value = "";
+            renderCards();
+            el("searchInput").focus();
+          });
+        }
+
+        el("toggleArchive").addEventListener("click", function () {
+          var select = el("archiveYear");
+          var wasOpen = !select.classList.contains("hidden");
+          select.classList.toggle("hidden");
+          if (wasOpen) {
+            var year = selectedArchiveYear || select.value;
+            selectedArchiveYear = "";
+            select.value = "";
+            if (year) unloadArchiveYear(year);
+            if (pendingArchiveYear === year) {
+              pendingArchiveRequest = false;
+              pendingArchiveYear = "";
+            }
+            renderFilters();
+            renderCards();
+          }
+          renderArchiveYears();
+        });
+        el("archiveYear").addEventListener("change", function () {
+          var nextYear = this.value;
+          if (selectedArchiveYear && selectedArchiveYear !== nextYear) unloadArchiveYear(selectedArchiveYear);
+          selectedArchiveYear = nextYear;
+          renderCards();
+          if (recordsLoading) {
+            pendingArchiveRequest = true;
+            pendingArchiveYear = nextYear;
+          } else if (nextYear) loadArchiveYear(nextYear);
+        });
+        el("searchInput").addEventListener("input", function () {
+          clearTimeout(searchTimer);
+          searchTimer = setTimeout(renderCards, 180);
+        });
+        el("loadMoreRecords").addEventListener("click", loadMoreRecords);
+        el("newFiles").addEventListener("change", function () { renderSelectedFileNames(this, el("newFileNames")); });
+        el("progressFiles").addEventListener("change", function () { renderSelectedFileNames(this, el("progressFileNames")); });
+        el("newStatus").addEventListener("change", function () {
+          if (this.value === "存查" || this.value === "已結案") el("newAddTask").checked = false;
+          else el("newAddTask").checked = true;
+        });
+        el("newForm").addEventListener("submit", handleNewSubmit);
+        el("progressForm").addEventListener("submit", handleProgressSubmit);
+        el("toggleManual").addEventListener("click", toggleManualMode);
+        el("quickTaskForm").addEventListener("submit", handleQuickTask);
+        Array.prototype.forEach.call(document.querySelectorAll(".close-modal"), function (button) {
+          button.addEventListener("click", function () {
+            var modal = button.closest(".modal-backdrop");
+            if (modal) closeModal(modal.id);
+          });
+        });
+        Array.prototype.forEach.call(document.querySelectorAll(".modal-backdrop"), function (backdrop) {
+          backdrop.addEventListener("click", function (event) {
+            if (event.target === backdrop) closeModal(backdrop.id);
+          });
+        });
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            closeDrawer();
+            Array.prototype.forEach.call(document.querySelectorAll(".modal-backdrop.open"), function (modal) { closeModal(modal.id); });
+          }
+        });
+        loadBootstrap();
+      }
+      init();
+    })();
+  </script>
+</body>
+</html>
