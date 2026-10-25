@@ -1,5 +1,89 @@
 [
   {
+    "version": "v2.4.1",
+    "slug": "修復手機版標籤類別下拉選單點擊無反應",
+    "date": "2026-10-25",
+    "createdAt": "2026-10-25 12:27:58",
+    "folderName": "v2.4.1_2026-10-25_修復手機版標籤類別下拉選單點擊無反應",
+    "summary": "修復手機版「標籤類別」與「執行狀態」點擊下拉式選單無反應之問題，整合原生下拉選單/滾輪觸發層，其餘介面與功能維持不變。",
+    "changes": [
+      "手機版單行滾輪整合原生下拉選單觸發層（點擊標籤/狀態任一處立即彈出系統選單，選取後即時過濾）",
+      "建檔與編輯彈窗標籤類別右側加入原生下拉選擇輔助，手機端點選既有標籤更直覺"
+    ],
+    "files": [
+      {
+        "relativePath": "outputs/Code.gs",
+        "sizeBytes": 77633,
+        "sha256": "bda87113a46f97987ab8fe429a4119e0ef5b8d1b8d7805f527fdaeb2647b133e"
+      },
+      {
+        "relativePath": "outputs/Index.html",
+        "sizeBytes": 193316,
+        "sha256": "4d6420353da49acbb00573fe36f3a011871e94c426c9ba98133ba02fe364849c"
+      },
+      {
+        "relativePath": "outputs/UI-Preview.html",
+        "sizeBytes": 193316,
+        "sha256": "4d6420353da49acbb00573fe36f3a011871e94c426c9ba98133ba02fe364849c"
+      },
+      {
+        "relativePath": "outputs/Desktop-Icon.ico",
+        "sizeBytes": 204190,
+        "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+      },
+      {
+        "relativePath": "outputs/Desktop-Icon.png",
+        "sizeBytes": 467161,
+        "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+      },
+      {
+        "relativePath": "outputs/Desktop-Icon-192.png",
+        "sizeBytes": 82349,
+        "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+      },
+      {
+        "relativePath": "outputs/Desktop-Icon-180.png",
+        "sizeBytes": 73083,
+        "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+      },
+      {
+        "relativePath": "pwa/apple-touch-icon.png",
+        "sizeBytes": 73083,
+        "sha256": "eaf01fe11f4555d0d97cac37ac13cd6cf8782ed68e79aaaf1c5d08fb38414fd2"
+      },
+      {
+        "relativePath": "pwa/favicon.ico",
+        "sizeBytes": 204190,
+        "sha256": "629696753dd9584cabb6f5aa51629cc4829066cf05feae0dc735828c61c067b1"
+      },
+      {
+        "relativePath": "pwa/icon-192.png",
+        "sizeBytes": 82349,
+        "sha256": "1c05a547e48d6f6b129fc064f2223daa52ac67681080810c89c25a1ee73684da"
+      },
+      {
+        "relativePath": "pwa/icon-512.png",
+        "sizeBytes": 467161,
+        "sha256": "6cc3fc986be3cb969fd7a9af2a9e209678ec2a8f472e72ddc4678ea338994293"
+      },
+      {
+        "relativePath": "pwa/index.html",
+        "sizeBytes": 193316,
+        "sha256": "4d6420353da49acbb00573fe36f3a011871e94c426c9ba98133ba02fe364849c"
+      },
+      {
+        "relativePath": "pwa/manifest.json",
+        "sizeBytes": 685,
+        "sha256": "75cf8ef908ac40e4df1968abc6fb78628a3ef70ac191a0a389b5f08ef92af86e"
+      },
+      {
+        "relativePath": "pwa/sw.js",
+        "sizeBytes": 1831,
+        "sha256": "813f5bba244b7a3de52ab53fb519275e3d2fbed532f666377b9b2ec2c8152bb5"
+      }
+    ]
+  },
+  {
     "version": "v2.4.0",
     "slug": "手機版C2單行滾輪篩選與待辦說明彈窗",
     "date": "2026-10-22",

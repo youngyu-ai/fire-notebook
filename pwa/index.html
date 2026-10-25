@@ -391,6 +391,12 @@
     }
     .wheel-c2-arrows {
       display: flex; flex-direction: column; padding-right: 5px; line-height: 1; gap: 1px;
+      position: relative; z-index: 7;
+    }
+    .wheel-c2-select {
+      position: absolute; left: 0; top: 0; width: calc(100% - 22px); height: 100%;
+      opacity: 0; z-index: 6; cursor: pointer; font-size: 16px;
+      -webkit-appearance: menulist-button;
     }
     .wheel-c2-arrows button {
       border: 0; background: transparent; padding: 1px 4px; font-size: 10px;
@@ -698,6 +704,7 @@
         <div class="wheel-c2" id="mobileStatusWheelBox">
           <span class="wheel-c2-prefix">狀態</span>
           <div class="wheel-c2-scroller" id="mobileStatusWheel" aria-label="上下滾動選擇執行狀態"></div>
+          <select class="wheel-c2-select" id="mobileStatusSelect" aria-label="選擇執行狀態"></select>
           <div class="wheel-c2-arrows">
             <button type="button" id="statusWheelUp" aria-label="上一個狀態" title="上一個狀態">▲</button>
             <button type="button" id="statusWheelDown" aria-label="下一個狀態" title="下一個狀態">▼</button>
@@ -706,6 +713,7 @@
         <div class="wheel-c2" id="mobileTagWheelBox">
           <span class="wheel-c2-prefix">標籤</span>
           <div class="wheel-c2-scroller" id="mobileTagWheel" aria-label="上下滾動選擇標籤類別"></div>
+          <select class="wheel-c2-select" id="mobileTagSelect" aria-label="選擇標籤類別"></select>
           <div class="wheel-c2-arrows">
             <button type="button" id="tagWheelUp" aria-label="上一個標籤" title="上一個標籤">▲</button>
             <button type="button" id="tagWheelDown" aria-label="下一個標籤" title="下一個標籤">▼</button>
@@ -783,7 +791,17 @@
           </div>
           <div class="field-group">
             <label for="newCategory">標籤類別 *</label>
-            <input class="field" id="newCategory" type="text" list="categoryOptions" maxlength="100" required value="公文" placeholder="可選既有標籤或輸入自訂標籤">
+            <div style="position:relative;display:flex;align-items:center">
+              <input class="field" id="newCategory" type="text" list="categoryOptions" maxlength="100" required value="公文" placeholder="可選既有標籤或輸入自訂標籤" style="padding-right:32px">
+              <select id="newCategoryQuickSelect" style="position:absolute;right:0;top:0;bottom:0;width:32px;opacity:0;cursor:pointer;-webkit-appearance:menulist-button;z-index:2" aria-label="選擇標籤類別">
+                <option value="">選擇既有標籤</option>
+                <option value="公文">公文</option>
+                <option value="訓練">訓練</option>
+                <option value="耗材">耗材</option>
+                <option value="器材">器材</option>
+              </select>
+              <span style="position:absolute;right:10px;pointer-events:none;color:#64748b;font-size:12px;z-index:1">▾</span>
+            </div>
             <datalist id="categoryOptions"><option value="公文"><option value="訓練"><option value="耗材"><option value="器材"></datalist>
           </div>
           <div class="field-group">
@@ -855,7 +873,17 @@
               </div>
               <div class="field-group">
                 <label for="editRecordCategory">標籤類別 *</label>
-                <input class="field" id="editRecordCategory" type="text" list="categoryOptions" maxlength="100" required>
+                <div style="position:relative;display:flex;align-items:center">
+                  <input class="field" id="editRecordCategory" type="text" list="categoryOptions" maxlength="100" required style="padding-right:32px">
+                  <select id="editRecordCategoryQuickSelect" style="position:absolute;right:0;top:0;bottom:0;width:32px;opacity:0;cursor:pointer;-webkit-appearance:menulist-button;z-index:2" aria-label="選擇標籤類別">
+                    <option value="">選擇既有標籤</option>
+                    <option value="公文">公文</option>
+                    <option value="訓練">訓練</option>
+                    <option value="耗材">耗材</option>
+                    <option value="器材">器材</option>
+                  </select>
+                  <span style="position:absolute;right:10px;pointer-events:none;color:#64748b;font-size:12px;z-index:1">▾</span>
+                </div>
               </div>
               <div class="field-group">
                 <label for="editRecordSubject">案件/公文主旨 *</label>
@@ -1478,6 +1506,20 @@
           setTimeout(function () { wheelProgrammaticLock.status = false; }, 120);
         }
 
+        var statusSelect = el("mobileStatusSelect");
+        if (statusSelect) {
+          statusSelect.innerHTML = "";
+          STATUS_ITEMS.forEach(function (item) {
+            var opt = document.createElement("option");
+            opt.value = item.key;
+            var count = item.key === "全部" ? records.length : records.filter(function (record) { return record.status === item.key; }).length;
+            opt.textContent = item.label + " (" + count + ")";
+            if (item.key === selectedStatus) opt.selected = true;
+            statusSelect.appendChild(opt);
+          });
+          statusSelect.value = selectedStatus;
+        }
+
         currentTagOptions = getAvailableTags();
         if (tagWheel) {
           tagWheel.innerHTML = "";
@@ -1499,6 +1541,20 @@
           wheelProgrammaticLock.tag = true;
           tagWheel.scrollTop = activeTagIdx * ROW_H;
           setTimeout(function () { wheelProgrammaticLock.tag = false; }, 120);
+        }
+
+        var tagSelect = el("mobileTagSelect");
+        if (tagSelect) {
+          tagSelect.innerHTML = "";
+          currentTagOptions.forEach(function (tag) {
+            var opt = document.createElement("option");
+            opt.value = tag;
+            var count = tag === "全部" ? records.length : records.filter(function (record) { return record.category === tag; }).length;
+            opt.textContent = (tag === "全部" ? "全部標籤" : ((TAG_ICONS[tag] || "🏷️") + " " + tag)) + " (" + count + ")";
+            if (tag === selectedTag) opt.selected = true;
+            tagSelect.appendChild(opt);
+          });
+          tagSelect.value = selectedTag;
         }
 
         if (el("mobileStatusWheelBox")) el("mobileStatusWheelBox").classList.toggle("filtered", selectedStatus !== "全部");
@@ -2617,6 +2673,44 @@
               }
             }, 90);
           }, { passive: true });
+        }
+
+        if (el("mobileStatusSelect")) {
+          el("mobileStatusSelect").addEventListener("change", function () {
+            if (this.value && this.value !== selectedStatus) {
+              selectedStatus = this.value;
+              renderFilters();
+              renderCards();
+            }
+          });
+        }
+
+        if (el("mobileTagSelect")) {
+          el("mobileTagSelect").addEventListener("change", function () {
+            if (this.value && this.value !== selectedTag) {
+              selectedTag = this.value;
+              renderFilters();
+              renderCards();
+            }
+          });
+        }
+
+        if (el("newCategoryQuickSelect")) {
+          el("newCategoryQuickSelect").addEventListener("change", function () {
+            if (this.value) {
+              el("newCategory").value = this.value;
+              this.value = "";
+            }
+          });
+        }
+
+        if (el("editRecordCategoryQuickSelect")) {
+          el("editRecordCategoryQuickSelect").addEventListener("change", function () {
+            if (this.value) {
+              el("editRecordCategory").value = this.value;
+              this.value = "";
+            }
+          });
         }
 
         if (el("statusWheelUp")) el("statusWheelUp").addEventListener("click", function () { stepMobileWheel("status", -1); });
